@@ -1,0 +1,3 @@
+Doctor1,veterinar
+Doctor2,stomatolog
+Doctor3,oftalmolog

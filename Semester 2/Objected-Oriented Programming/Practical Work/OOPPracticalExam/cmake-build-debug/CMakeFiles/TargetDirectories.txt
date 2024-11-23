@@ -1,0 +1,5 @@
+C:/Users/Riki/Documents/Facultate/Sem-2/OOP/OOPPracticalExam/cmake-build-debug/CMakeFiles/OOPPracticalExam.dir
+C:/Users/Riki/Documents/Facultate/Sem-2/OOP/OOPPracticalExam/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Riki/Documents/Facultate/Sem-2/OOP/OOPPracticalExam/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Riki/Documents/Facultate/Sem-2/OOP/OOPPracticalExam/cmake-build-debug/CMakeFiles/OOPPracticalExam_autogen_timestamp_deps.dir
+C:/Users/Riki/Documents/Facultate/Sem-2/OOP/OOPPracticalExam/cmake-build-debug/CMakeFiles/OOPPracticalExam_autogen.dir

@@ -1,0 +1,5 @@
+Patient1,miopia,oftalmolog,Doctor1,2024-09-25
+Patient2,carie,stomatolog,Doctor2,2024-10-02
+Patient3,undiagnosed,,,
+Patient4,something,oftalmolog,Doctor1,2024-11-18
+Patient5,soh,oftalmolog,Doctor1,2022-11-1
