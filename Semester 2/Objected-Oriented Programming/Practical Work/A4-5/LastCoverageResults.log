@@ -1,0 +1,21 @@
+[2024-04-09 17:39:49] [info] Start Program:
+Path:"C:\Users\Riki\Documents\Facultate\Sem 2\OOP\a4-5\A4-5\x64\Debug\A4-5.exe"
+Arguments:
+Working directory: "C:\Users\Riki\Documents\Facultate\Sem 2\OOP\a4-5\A4-5\"
+Modules: Selected: C:\Users\Riki\Documents\Facultate\Sem 2\OOP\a4-5\A4-5\x64\Debug\A4-5.exe Excluded: 
+Sources: Selected: C:\Users\Riki\Documents\Facultate\Sem 2\OOP\a4-5\A4-5 Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: Binary C:\Users\Riki\AppData\Local\Temp\2tesmenk.aov 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+
+[2024-04-09 17:39:51] [info] Module: C:\Users\Riki\Documents\Facultate\Sem 2\OOP\a4-5\A4-5\x64\Debug\A4-5.exe is selected because it matches selected pattern: C:\Users\Riki\Documents\Facultate\Sem 2\OOP\a4-5\A4-5\x64\Debug\A4-5.exe
+[2024-04-09 17:39:51] [info] ----------------------------------------------------
+[2024-04-09 17:39:51] [info] Coverage binary generated in file: C:\Users\Riki\AppData\Local\Temp\2tesmenk.aov
+[2024-04-09 17:39:51] [info] ----------------------------------------------------
