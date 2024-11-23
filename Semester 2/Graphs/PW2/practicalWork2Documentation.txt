@@ -1,0 +1,110 @@
+# This external function gets a filename and returns an undirected graph,
+# so it adds every edge in reverse also if it does not exist already
+# Works for both formats of a file representing a graph (format 1 and format 2)
+# (an isolated vertex in format 2 is a line with a vertex and -1 on the second position)
+def get_undirected_graph_from_file(file_name):
+    with open(file_name, "r") as file:
+        line = file.readline().strip().split(" ")
+        if len(line) == 3 or (len(line) == 2 and line[1] == "-1"):
+            graph = DirectedGraph(0)
+            lines = file.readlines()
+            for line in lines:
+                line = line.strip().split(" ")
+                if len(line) == 3:
+                    v1 = int(line[0])
+                    v2 = int(line[1])
+                    cost = int(line[2])
+                    if not graph.is_vertex(v1):
+                        graph.add_vertex(v1)
+                    if not graph.is_vertex(v2):
+                        graph.add_vertex(v2)
+                    if not graph.is_edge((v1, v2)):
+                        graph.add_edge((v1, v2), cost)
+                    if not graph.is_edge((v2, v1)):
+                        graph.add_edge((v2, v1), cost)
+                else:
+                    v1 = int(line[0])
+                    if not graph.is_vertex(v1):
+                        graph.add_vertex(v1)
+        else:
+            vertices = int(line[0])
+            graph = DirectedGraph(vertices)
+            lines = file.readlines()
+            for line in lines:
+                line = line.strip().split(" ")
+                v1 = int(line[0])
+                v2 = int(line[1])
+                cost = int(line[2])
+                if not graph.is_edge((v1, v2)):
+                    graph.add_edge((v1, v2), cost)
+                if not graph.is_edge((v2, v1)):
+                    graph.add_edge((v2, v1), cost)
+    return graph
+
+    # This new method inside the DirectedGraph class perform a depth first search on a given vertex,
+    # searching all the accessible vertices from that starting vertex
+    # and changing the processed list accordingly
+    # The processed list works like a stack because it appends at the end and pops from the end.
+    def depth_first(self, vertex: int, visited: set, processed: list):
+        for x in self._dict_out[vertex]:
+            if x not in visited:
+                visited.add(x)
+                self.depth_first(x, visited, processed)
+        processed.append(vertex)
+
+    # This new method inside the DirectedGraph class finds the connected components of the current graph, supposing it is undirected
+    # It goes through the stack and works his way down until it processes all the vertices from the stack
+    # and adds all the edges needed into a new graph object called connected_component
+    # The processed list works like a stack because it appends at the end and pops from the end.
+    # At the end appends that graph object (the connected component) to a list
+    # The list connected_components with all connected components graph objects is returned
+    def find_connected_components(self):
+        processed = []
+        visited = set()
+        connected_components = []
+
+        for vertex in self.parse_vertices():
+            if vertex not in processed:
+                visited.add(vertex)
+                self.depth_first(vertex, visited, processed)
+                visited.clear()
+                start_vertex = processed.pop()
+                connected_component = DirectedGraph(0)
+                visited.add(start_vertex)
+                if not connected_component.is_vertex(start_vertex):
+                    connected_component.add_vertex(start_vertex)
+                stack = [start_vertex]
+                while stack:
+                    current_vertex = stack.pop()
+                    for neighbor in self.parse_outbound_edges(current_vertex):
+                        if neighbor not in visited:
+                            visited.add(neighbor)
+                            if not connected_component.is_vertex(neighbor):
+                                connected_component.add_vertex(neighbor)
+                            if not connected_component.is_edge((current_vertex, neighbor)):
+                                connected_component.add_edge((current_vertex, neighbor), self.get_cost((current_vertex, neighbor)))
+                            if not connected_component.is_edge((neighbor, current_vertex)):
+                                connected_component.add_edge((neighbor, current_vertex), self.get_cost((current_vertex, neighbor)))
+                            stack.append(neighbor)
+                        else:
+                            if self.is_edge((current_vertex, neighbor)) and not connected_component.is_edge((current_vertex, neighbor)):
+                                if not connected_component.is_edge((current_vertex, neighbor)):
+                                    connected_component.add_edge((current_vertex, neighbor), self.get_cost((current_vertex, neighbor)))
+                                if not connected_component.is_edge((neighbor, current_vertex)):
+                                    connected_component.add_edge((neighbor, current_vertex), self.get_cost((current_vertex, neighbor)))
+
+                connected_components.append(connected_component)
+
+        return connected_components
+
+(in the main function)
+	sys.setrecursionlimit(100001) # we increase the recursion limit so that it works for graph100k.txt as well
+	# ...
+	# at the specific option selected by the user to "Find the connected components."
+		comps = graph.find_connected_components()
+                idx = 0
+                file_name = "component"
+                for comp in comps:
+                    idx += 1
+                    write_graph_to_file(comp, file_name + str(idx) + ".txt")
+	# This part of the code creates me a file for every component the graph has

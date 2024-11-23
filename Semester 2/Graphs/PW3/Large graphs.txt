@@ -1,0 +1,11 @@
+graph1k.txt:
+Lowest cost walk from 1 to 100: [1, 5, 487, 175, 714, 799, 222, 561, 100], total cost: 141
+Lowest cost walk from 100 to 1: [100, 259, 229, 641, 538, 854, 1], total cost: 196
+
+graph10k.txt:
+Lowest cost walk from 1 to 100: [1, 7317, 460, 6010, 5295, 4560, 5513, 8467, 3517, 99, 9159, 6840, 5177, 7133, 288, 100], total cost: 344
+Lowest cost walk from 100 to 1: [100, 4442, 3980, 1974, 407, 4489, 5162, 2008, 3631, 2305, 8336, 1], total cost: 238
+
+graph100k.txt:
+Lowest cost walk from 1 to 100: [1, 99842, 59480, 5210, 19068, 66428, 33692, 97073, 23675, 73057, 100], total cost: 304
+Lowest cost walk from 100 to 1: [100, 85636, 77467, 52472, 38155, 40962, 34650, 29215, 35260, 1], total cost: 361

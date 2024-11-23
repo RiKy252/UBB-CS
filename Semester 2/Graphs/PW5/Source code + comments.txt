@@ -1,0 +1,47 @@
+    def find_hamiltonian_cycle(self):
+        def is_valid_vertex(v, pos, path):
+            # Check if this vertex is an adjacent vertex of the previously added vertex
+            if v not in self._dict_out[path[pos - 1]]:
+                return False
+            # Check if the vertex has already been included
+            if v in path:
+                return False
+            return True
+
+        def hamiltonian_cycle_util(path, pos):
+            # If all vertices are included in the path
+            if pos == self._vertices:
+                # And if there is an edge from the last included vertex to the first vertex
+                if path[pos - 1] in self._dict_out[path[0]]:
+                    return True
+                else:
+                    return False
+
+            # Try different vertices as the next candidate in the Hamiltonian Cycle
+            for v in self.parse_vertices():
+                if is_valid_vertex(v, pos, path):
+                    path[pos] = v
+                    if hamiltonian_cycle_util(path, pos + 1):
+                        return True
+                    # Remove current vertex if it doesn't lead to a solution
+                    path[pos] = -1
+            return False
+
+        # Initializing the path array with -1
+        path = [-1] * self._vertices
+        # Let the first vertex be 0 in the path (it can be any vertex from the graph)
+        path[0] = 0
+
+        if not hamiltonian_cycle_util(path, 1):
+            return None
+        else:
+            path.append(path[0])  # Append the starting vertex to the end to form a cycle
+            return path
+
+# ... in main ->
+            elif option == 19:  # hamiltonian cycle
+                cycle = graph.find_hamiltonian_cycle()
+                if cycle:
+                    print("Hamiltonian Cycle found:", cycle)
+                else:
+                    print("No Hamiltonian Cycle found")

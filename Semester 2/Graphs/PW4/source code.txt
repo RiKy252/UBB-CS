@@ -1,0 +1,78 @@
+    def topological_sorting(self):
+        # This function returns a topological sorting of the graph
+        # Initialize the list and the queue, as well as the count dictionary
+        sorted_list = []
+        q = []  # this is a list but will work as a queue, as I will append to the end, and pop from the beginning
+        count = {}
+        # Initialize the count dictionary to the in degree of each vertex
+        for vertex in self.parse_vertices():
+            count[vertex] = len(self._dict_in[vertex])
+            # Append to the queue the vertices with in degree 0
+            if count[vertex] == 0:
+                q.append(vertex)
+
+        # Loop until the queue is empty
+        while q:
+            # Pop from the queue the current vertex and append it to the sorted list
+            current_vertex = q.pop(0)
+            sorted_list.append(current_vertex)
+            # Parse neighbors of the current vertex and decrease their in degree in the count dictionary
+            for neighbor in self.parse_outbound_edges(current_vertex):
+                count[neighbor] -= 1
+                # If the in degree of the neighbor is 0, append it to the queue to be processed
+                if count[neighbor] == 0:
+                    q.append(neighbor)
+
+        # If the graph is a DAG, the topological sorting will be returned, otherwise an exception will be raised
+        if len(sorted_list) < self._vertices:
+            raise ValueError("The graph has a cycle!")
+
+        return sorted_list
+
+    def highest_cost_path_dag(self, start, end, topological_sort: list):
+        # This function returns the highest cost path between two vertices in a DAG, taking as input the topological sorted list as well
+        # Initialize the distance dictionary and the path dictionary
+        distance = {}
+        path = {vertex: None for vertex in self.parse_vertices()}
+        for vertex in self.parse_vertices():
+            distance[vertex] = float('-inf')
+        distance[start] = 0
+        # Iterate through the topological sorted list and update the distance and path dictionaries if we find a higher cost path
+        for current_vertex in topological_sort:
+            if current_vertex == end:
+                break
+            for adj in self.parse_outbound_edges(current_vertex):
+                if distance[adj] < (distance[current_vertex] + self.dict_cost[(current_vertex, adj)]):
+                    distance[adj] = distance[current_vertex] + self.dict_cost[(current_vertex, adj)]
+                    path[adj] = current_vertex
+        # Return the highest cost and the path as a tuple
+        # If the end vertex has a distance of -inf, it means there is no path between the two vertices
+        highest_cost = distance[end]
+        return highest_cost, path
+	
+	# in the UI: ...
+
+            elif option == 18:  # topological sorting
+                try:
+                    # I get the topological sorting of the graph and retrieve input from the user to perform the highest cost path
+                    topological_list = graph.topological_sorting()
+                    print(f"The graph is a DAG: topological sorting = {topological_list}")
+                    start = int(input("Enter the start vertex: ").strip())
+                    end = int(input("Enter the end vertex: ").strip())
+                    if not graph.is_vertex(start):
+                        raise ValueError(f"The vertex {start} does not belong to the graph!")
+                    if not graph.is_vertex(end):
+                        raise ValueError(f"The vertex {end} does not belong to the graph!")
+                    dist, path_dict = graph.highest_cost_path_dag(start, end, topological_list)
+                    if dist == float('-inf'):
+                        raise ValueError("There is no path between the two vertices!")
+                    path = []
+                    current_vertex = end
+                    while current_vertex != start:
+                        path.append(current_vertex)
+                        current_vertex = path_dict[current_vertex]
+                    path.append(start)
+                    path.reverse()
+                    print(f"The highest cost path from {start} to {end} is: {path} and the cost is {dist}")
+                except ValueError as error:
+                    print(error)
