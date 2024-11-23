@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GUI</class>
+ <widget class="QWidget" name="GUI">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>568</width>
+    <height>588</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>GUI</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QListWidget" name="billsListWidget"/>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QCheckBox" name="paidCheckbox">
+       <property name="text">
+        <string>Paid</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="unpaidCheckbox">
+       <property name="text">
+        <string>Unpaid</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="2" column="0" colspan="2">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>The total of unpaid bills:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" colspan="3">
+      <widget class="QPushButton" name="calculateButton">
+       <property name="text">
+        <string>Calculate total</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QLineEdit" name="unpaidBillsLineEdit"/>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLineEdit" name="userCompanyNameLineEdit"/>
+     </item>
+     <item row="0" column="0" colspan="2">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Company name:</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>paidCheckbox</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>showPaid()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>28</x>
+     <y>459</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>5</x>
+     <y>510</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>unpaidCheckbox</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>showUnpaied()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>549</x>
+     <y>453</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>562</x>
+     <y>453</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>showPaid()</slot>
+  <slot>showUnpaied()</slot>
+ </slots>
+</ui>

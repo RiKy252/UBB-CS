@@ -1,0 +1,5 @@
+"C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2023.3.4/bin/ninja/win/x64/ninja.exe" -DCMAKE_PREFIX_PATH=C:/Qt/6.7.0/mingw_64/lib/cmake -G Ninja -S C:\Users\Riki\Documents\Facultate\Sem-2\OOP\BillsTestPractice -B C:\Users\Riki\Documents\Facultate\Sem-2\OOP\BillsTestPractice\cmake-build-debug
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
+-- Configuring done (2.0s)
+-- Generating done (0.1s)
+-- Build files have been written to: C:/Users/Riki/Documents/Facultate/Sem-2/OOP/BillsTestPractice/cmake-build-debug
