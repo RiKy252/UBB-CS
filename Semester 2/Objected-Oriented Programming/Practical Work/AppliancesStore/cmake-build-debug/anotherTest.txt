@@ -1,0 +1,4 @@
+Refrigerator: 1, consumed electricity: 110.000000 KWclass: A, freezer: yes
+Refrigerator: 2, consumed electricity: 60.000000 KWclass: A++, freezer: no
+Washing machine: 3, consumed electricity: 50.000000 KW consumed per hour: 2.500000 KW
+Washing machine: -1, consumed electricity: 1000.000000 KW consumed per hour: 50.000000 KW

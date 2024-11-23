@@ -1,0 +1,2 @@
+Refrigerator: 2, consumed electricity: 60.000000 KWclass: A++, freezer: no
+Refrigerator: 3, consumed electricity: 50.000000 KW consumed per hour: 2.500000 KW

@@ -1,0 +1,3 @@
+C:/Users/Riki/Documents/Facultate/Sem-2/OOP/AppliancesStore/cmake-build-debug/CMakeFiles/AppliancesStore.dir
+C:/Users/Riki/Documents/Facultate/Sem-2/OOP/AppliancesStore/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Riki/Documents/Facultate/Sem-2/OOP/AppliancesStore/cmake-build-debug/CMakeFiles/rebuild_cache.dir
