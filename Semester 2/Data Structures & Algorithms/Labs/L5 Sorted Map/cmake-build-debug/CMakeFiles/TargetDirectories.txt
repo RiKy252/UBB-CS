@@ -1,0 +1,3 @@
+C:/Users/Riki/Documents/Facultate/Sem-2/DSA/L5 Sorted Map/cmake-build-debug/CMakeFiles/L5_Sorted_Map.dir
+C:/Users/Riki/Documents/Facultate/Sem-2/DSA/L5 Sorted Map/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Riki/Documents/Facultate/Sem-2/DSA/L5 Sorted Map/cmake-build-debug/CMakeFiles/rebuild_cache.dir
