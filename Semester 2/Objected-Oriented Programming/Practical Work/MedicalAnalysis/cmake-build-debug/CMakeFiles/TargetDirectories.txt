@@ -1,0 +1,3 @@
+C:/Users/Riki/Documents/Facultate/Sem-2/OOP/MedicalAnalysis/cmake-build-debug/CMakeFiles/MedicalAnalysis.dir
+C:/Users/Riki/Documents/Facultate/Sem-2/OOP/MedicalAnalysis/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Riki/Documents/Facultate/Sem-2/OOP/MedicalAnalysis/cmake-build-debug/CMakeFiles/rebuild_cache.dir
