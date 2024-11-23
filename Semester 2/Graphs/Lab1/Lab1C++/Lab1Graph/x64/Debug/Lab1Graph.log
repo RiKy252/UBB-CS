@@ -1,0 +1,4 @@
+﻿  main.cpp
+C:\Users\Riki\Documents\Facultate\Sem 2\Graphs\Lab1\Lab1C++\main.cpp(148,44): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Riki\Documents\Facultate\Sem 2\Graphs\Lab1\Lab1C++\main.cpp(155,45): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Lab1Graph.vcxproj -> C:\Users\Riki\Documents\Facultate\Sem 2\Graphs\Lab1\Lab1C++\x64\Debug\Lab1Graph.exe
