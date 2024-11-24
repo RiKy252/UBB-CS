@@ -1,0 +1,154 @@
+FUNCTIONS:
+a) Scalar functions
+
+CREATE FUNCTION ufNoStudents(@age INT)
+RETURNS INT AS
+BEGIN
+	DECLARE @no INT
+	SET @no = 0
+	SELECT @no = COUNT(*)
+	FROM Students
+	WHERE age = @age
+	RETURN @no
+END
+GO
+
+PRINT dbo.ufNoStudents(20)
+
+b) Inline table-valued functions (only one statement)
+
+CREATE FUNCTION ufStudentsNames(@age INT)
+RETURNS TABLE
+AS
+	RETURN
+		SELECT sname
+		FROM students
+		WHERE age = @age
+GO
+
+SELECT *
+FROM ufStudentsNames(20)
+
+c) Multi-statement table-valued functions
+
+CREATE FUNCTION ufCoursesFilteredByCredits(@credits INT)
+RETURNS @CoursesCredits TABLE (cid INT, cname VARCHAR(70))
+AS
+BEGIN
+	INSERT INTO @CoursesCredits 
+	SELECT cid, cname
+	FROM Courses
+	WHERE credits = @credits 														-- first statement
+
+	IF @@ROWCOUNT = 0
+		INSERT INTO @CoursesCredits
+		VALUES(0, 'No courses found with specified number of credits.')  				-- second statement
+
+	RETURN 
+END
+GO
+
+SELECT *
+FROM ufCoursesFilteredByCredits(6)
+
+___________________________________________________________________________________________
+
+VIEWS:
+virtual table, best option to keep a definition of a select
+
+syntax:
+--------
+CREATE VIEW view_name
+AS SELECT_statement
+
+example:
+
+CREATE OR ALTER VIEW vExaminations
+AS
+SELECT S.sid, S.sname, S.sgroup, C.cid, C.cname
+FROM Students S INNER JOIN Exams E on E.sid = E.studentId
+	INNER JOIN Courses C ON E.courseId = C.cid
+GO
+
+SELECT *
+FROM vExaminations
+(order by can be used only outside the view)
+
+___________________________________________________________________________________________
+
+
+SYSTEM CATALOG
+system function kept by the server, predefined
+
+-sys.objects = everything in the database
+-sys,columns = information about each column in the database
+-sys,sql_modules = procedures, functions, views of the database
+-sys.tables = all the tables from the database
+
+___________________________________________________________________________________________
+
+TRIGGERS
+can be created and is "triggered" when using insert, update or/and delete automatically, beside the corresponding statement
+
+syntax:
+---------
+CREATE TRIGGER trigger_name
+ON [table | view]
+	{ FOR | AFTER | INSTEAD OF }
+	{ [INSERT] [,] [UPDATE] [,] [DELETE] }
+AS
+	{ sql_statement }
+
+example:
+----------
+CREATE TRIGGER when_adding_prod
+	ON Products
+	FOR INSERT
+AS
+BEGIN
+	INSERT INTO BuyLog(PName, OperationDate, Qunatity)
+	SELECT Name, GETDATE(), Qunatity
+	FROM INSERTED
+END
+GO
+-----------------------------------------------------
+CREATE TRIGGER Delete_Product
+	ON Product
+	FOR DELETE
+AS
+BEGIN
+	SET NOCOUNT ON;
+	INSERT INTO BuyLog(Name, OperationDate, Quantity)
+	SELECT Name, GETDATE(), Quantity
+	FROM deleted
+END
+GO
+-----------------------------------------------------
+CREATE TRIGGER Modify_Update_Product
+	ON Product
+	FOR UPDATE	 -- deleted is the old value, inserted is the new value
+AS
+BEGIN
+	SET NOCOUNT ON; 		--no run (ON) – the count is not returned.
+					 		-- run (OFF) - the count is returned.
+
+	INSERT INTO SellLog(Name, OperationDate, Quantity)
+	SELECT d.Name, GETDATE(), d.Quantity - i.Quantity
+	FROM deleted d INNER JOIN inserted i ON d.Pid = i.Pid
+	WHERE i.Quantity < d.Quantity
+	INSERT INTO BuyLog(Name, OperationDate, Quantity)
+	SELECT i.Name, GETDATE(), i.Quantity - d.Quantity
+	FROM deleted d INNER JOIN inserted i ON d.Pid = i.Pid
+	WHERE i.Quantity > d.Quantity
+END
+GO
+
+
+
+
+
+
+
+
+
+

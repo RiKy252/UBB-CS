@@ -1,0 +1,21 @@
+create table emp(
+	id int,
+	name varchar(10),
+	PRIMARY KEY(id)
+);
+
+candidate key = a key that could be used as primary key as well, that has chances to change pretty low
+name = candidate key
+
+CREATE PROCEDURE name_proc
+	@paramId int
+	@newName varchar(10)
+AS
+BEGIN
+	UPDATE TABLE customers
+	SET customers.name = newName
+	WHERE customers.id = paramId
+END
+
+EXEC name_proc @paramId = 1, @newName = 'George'
+

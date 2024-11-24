@@ -1,0 +1,120 @@
+						STORED PROCEDURES (a sequence of SQL statements)
+________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________
+-- Create
+CREATE PROCEDURE SPName AS                                                                                        
+	-- sequence of SQL statements
+GO
+________________________________________________________________________________________________________________________________________________
+-- Execute
+EXECUTE SPName
+EXEC SPName
+SPName (doesn't work all the time)
+________________________________________________________________________________________________________________________________________________
+-- Examples with students, courses, exams tables
+
+CREATE PROCEDURE uspStudentNames
+AS
+	SELECT sname
+	FROM Students
+GO
+
+EXEC uspStudentNames
+# DROP PROCEDURE uspStudentNames
+________________________________________________________________________________________________________________________________________________
+-- Stored procedure with one parameter
+ALTER PROCEDURE uspStudentNames(@age INT)
+AS
+	SELECT sname
+	FROM Students
+	WHERE age = @age
+GO
+
+EXEC uspStudentNames 22
+-- For more parameters just separate by ","
+________________________________________________________________________________________________________________________________________________
+-- Stored procedure with an output parameter
+CREATE PROCEDURE uspNoOfStudents(@age INT, @noStd INT OUTPUT)
+AS
+	SELECT @noStd = COUNT(*)
+	FROM Students
+	WHERE age = @age
+GO
+
+DECLARE @noStd INT
+SET @noStd = 0
+EXEC uspNoOfStudents 20, @noStd = @noStd OUTPUT
+PRINT @noStd
+________________________________________________________________________________________________________________________________________________
+-- Stored procedure with the RAISERROR statement
+ALTER PROCEDURE uspNoOfStudent(@age INT, @noStd INT OUTPUT)
+AS
+BEGIN
+	SELECT @noStd = COUNT(*)
+	FROM Students
+	WHERE age = @age
+	IF @noStd = 0
+		RAISERROR('There are no students of the specified age.', 10, 1)
+END
+GO
+-- BEGIN and END is used when there are 2+ statements
+
+
+RAISERROR(N'This is the message %s %d', -- message text
+	  10, -- severity
+	  1, -- state
+	  N'number', -- first argument
+	  5); -- second argument
+________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________
+							GLOBAL VARIABLES
+________________________________________________________________________________________________________________________________________________
+-- Example of global variables
+@@ERROR - error number for the previous T-SQL statement executed
+@@IDENTITY - the last inserted IDENTITY value
+@@ROWCOUNT - the number of the rows affected by the last statement
+@@SERVERNAME - the name of the local server on which SQL server is running
+@@SPID - the session id for the current process
+@@VERSION - system and build information
+
+SELECT @@ERROR -- 0 is ok
+________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________
+								DYNAMIC EXECUTION
+________________________________________________________________________________________________________________________________________________
+-- Syntax
+EXEC(<command>)
+-- Examples
+EXEC('SELECT sid, cid FROM Exams WHERE sid = 1234')
+GO
+
+DECLARE @var VARCHAR(MAX)
+SET @var = 'SELECT sid, cid FROM Exams WHERE sid = 1234'
+EXEC(@var)
+GO
+________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________
+								OUTPUT CLAUSE
+________________________________________________________________________________________________________________________________________________
+-- Provides access to added / modified / deleted records
+UPDATE Courses
+SET cname = 'Database management systems'
+OUTPUT inserted.cid, deleted.cname, inserted.cname, GETDATE(), SUSER_SNAME()
+INTO CourseChanges
+WHERE cid = 'DB2'
+________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________								CURSORS (FETCH)
+-- Fetches a certain row from a cursor
+
+DECLARE
+OPEN
+FETCH:
+	FETCH FIRST - returns the first row from the cursor
+	FETCH NEXT - the row immediately following the current row
+	FETCH PRIOR - the row before the current row
+	FETCH LAST - the last row from the cursor
+CLOSE
+DEALLOCATION
+________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________

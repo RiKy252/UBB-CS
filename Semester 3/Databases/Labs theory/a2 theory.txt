@@ -1,0 +1,76 @@
+--INSERT INTO customer(age) values(13) --> this will only add the value 13 to the age column, as a new row
+
+--DELETE FROM customer
+--WHERE customer.id = 33
+
+--UPDATE customer 
+--SET customer.age = 0 
+--WHERE customer.name = "A" AND customer.id = 111
+
+--UPDATE customer
+--SET customer.age = 0
+--WHERE NOT customer.id = 33
+
+--UPDATE customer
+--SET customer.age = 0
+--WHERE customer.name IS NULL
+
+--UPDATE customer
+--SET customer.age = 0
+--WHERE customer.name LIKE '%A' -> ends with A
+--						   'A%' -> starts with A
+--						   '%A%' -> A is somewhere in the middle
+--						   '%_A' -> "_" holds place to a character
+--						   '%B__' -> e.g. ABCD
+--						   'b%A'
+
+--SELECT customer.name
+--FROM customer
+--WHERE customer.id NOT IN ('0', '1', '2')
+--					    IN
+
+--SELECT customer.age
+--FROM customer
+--WHERE customer.id BETWEEN 1 AND 100
+
+--SELECT customer.id
+--FROM customer
+--WHERE customer.id = 111
+--UNION ALL -> output1 u output2 allowing duplicates because of ALL
+--SELECT customer.id
+--FROM customer
+--WHERE customer.name = "A"
+
+--SELECT customer.age
+--FROM customer
+--WHERE customer.id = 111
+--INTERSECT -> output1 n output2
+--SELECT customer.id
+--FROM customer
+--WHERE customer.name = "A"
+--to use INTERSECT properly, the output should be the same type (int and int, etc.)
+
+--INNER JOIN = common elements of the 2 tables
+--LEFT JOIN = common elements and the left side of query
+--RIGHT JOIN = common elements and the right side of query
+--FULL JOIN = everything
+--FULL OUTER JOIN = everything (but for big amounts of data)
+
+--SELECT customer.name
+--FROM customer
+--INNER JOIN order
+--ON customer.id = order.id
+
+--SELECT customer.name
+--FROM customer
+--WHERE customer.id = order.id
+--GROUP BY customer.name
+
+--GROUP BY customer.name 
+--ORDER BY customer.name DESC -> --=-- desc order
+
+--SELECT customer.name
+--FROM customer
+--WHERE customer.id = order.id
+--GROUP BY customer.name
+--HAVING customer.age < 40

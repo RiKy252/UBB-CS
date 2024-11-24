@@ -1,0 +1,92 @@
+create database Seminar2
+
+create table Student(
+	Sid int PRIMARY KEY not null,
+	Sname varchar(50),
+	Email varchar(50),
+	Age int,
+	Sgroup int
+);
+
+create table Courses(
+	Cid int PRIMARY KEY not null,
+	Cname varchar(50),
+	Credits int
+);
+
+create table Exams(
+	Sid int FOREIGN KEY REFERENCES Student(Sid),
+	Cid int FOREIGN KEY REFERENCES Courses(Cid),
+	Grade int
+	CONSTRAINT PK_Exams PRIMARY KEY (Sid, Cid)
+);
+
+INSERT INTO Student(Sid, Sname, Email, Age, Sgroup) VALUES (1, 'Maria', '@gmail.com', 21, 912)
+INSERT INTO Student(Sid, Sname, Email, Age, Sgroup) VALUES (2, 'Alex', '@gmail.com', 23, 911)
+INSERT INTO Student(Sid, Sname, Email, Age, Sgroup) VALUES (3, 'Radu', '@gmail.com', 24, 923)
+INSERT INTO Student(Sid, Sname, Email, Age, Sgroup) VALUES (4, 'Andrei', '@gmail.com', 21, 934)
+
+INSERT INTO Courses(Cid, Cname, Credits) VALUES (1, 'ASC', 6)
+INSERT INTO Courses(Cid, Cname, Credits) VALUES (2, 'DB', 4)
+INSERT INTO Courses(Cid, Cname, Credits) VALUES (3, 'PLF', 5)
+INSERT INTO Courses(Cid, Cname, Credits) VALUES (4, 'FP', 5)
+INSERT INTO Courses(Cid, Cname, Credits) VALUES (5, 'OOP', 6)
+
+INSERT INTO Exams(Sid, Cid, Grade) VALUES (1, 1, 10)
+INSERT INTO Exams(Sid, Cid, Grade) VALUES (2, 1, 7)
+INSERT INTO Exams(Sid, Cid, Grade) VALUES (1, 2, 8)
+INSERT INTO Exams(Sid, Cid, Grade) VALUES (1, 3, 9)
+INSERT INTO Exams(Sid, Cid, Grade) VALUES (3, 4, 10)
+INSERT INTO Exams(Sid, Cid, Grade) VALUES (4, 1, 10)
+INSERT INTO Exams(Sid, Cid, Grade) VALUES (2, 5, 3)
+INSERT INTO Exams(Sid, Cid, Grade) VALUES (3, 5, 5)
+INSERT INTO Exams(Sid, Cid, Grade) VALUES (2, 3, 10)
+
+--Q1
+SELECT *
+FROM Student S
+WHERE S.age = 21
+
+
+--Q2
+SELECT DISTINCT S.Sname, S.Email
+FROM Student S
+WHERE S.age = 21
+
+
+
+--Q3
+SELECT S.Sname, E.Cid
+FROM Student S, Exams E
+WHERE S.Sid = E.Sid AND E.Grade = 10
+
+SELECT Sname, Cid
+FROM Student, Exams
+WHERE Student.Sid = Exams.Sid AND Grade = 10
+
+
+
+--Q4
+SELECT S.Age, age1 = S.Age - 18, 2 * S.Age AS age2
+FROM Student S
+
+
+
+--Q5
+SELECT S.Sid
+FROM Student S
+WHERE S.Age > 20
+UNION
+SELECT E.Sid
+FROM Exams E
+WHERE E.Cid = 1
+--UNION ALL doesnt eliminate duplicates
+
+--Q6
+SELECT E.Sid
+FROM Exams E, Courses C
+WHERE E.Cid = C.Cid AND C.Credits = 4
+INTERSECT
+SELECT E2.Sid
+FROM Exams E2, Courses C2
+WHERE E2.Cid = C2.Cid AND C2.Credits = 5
