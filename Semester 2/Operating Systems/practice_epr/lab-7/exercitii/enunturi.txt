@@ -1,0 +1,17 @@
+
+fork/exec
+--------------------------------------------------------------------------------------------------
+Scrieți un program C care execută o comandă Bash și afișează rezultatul execuției pe ecran.
+Exemplu: ls -l
+
+
+fork/dup/exec
+--------------------------------------------------------------------------------------------------
+Scrieți un program C care execută o comandă Bash și scrie rezultatul execuției într-un fișier.
+Exemplu: ls -l >lista_fisiere
+
+
+fork/dup/exec/pipe
+--------------------------------------------------------------------------------------------------
+Scrieți un program C care execută două comenzi Bash conectate prin pipe.
+Exemplu: ls -l | wc -l

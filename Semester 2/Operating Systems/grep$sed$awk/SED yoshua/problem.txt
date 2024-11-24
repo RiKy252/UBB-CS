@@ -1,0 +1,24 @@
+SED.1	
+Folosind SED inlocuiti toate vocalele dintr-un fisier cu upparcase-ul
+acestora.
+SED.2	
+Folosind SED stergeti primele 2 si ultimele 3 caractere de pe fiecare
+linie dintr-un fisier.
+SED.3	
+Triple all the big letters from a file.
+SED.4	
+Put all groups of digits from a file, that contain at least 2 digits between
+curly brakets ( { } ).
+SED.5	
+A file containing at least 2 words separated by space on each line is given.
+Delete the 2nd word from each line.
+SED.6	
+Se da un fisier care contine cel putin 2 cuvinte pe fiecare linie separate
+prin spatiu. Folosind utilitarul SED intershcimbati primul si ultimul cuvant
+de pe fiecare linie.
+SED.7	
+Folosind utilitarul SED interschimbati primul si ultimul caracter de pe
+fiecare linie dintr-un un fisier.
+SED.8	
+Folosind utilitarul SED stergeti toate grupurile de caractere dintr-un
+fisier formate din cel putin 3 vocale mari.

@@ -1,0 +1,1 @@
+Acesta este un fisier text care se intampla sa aiba in el cuvantul printf

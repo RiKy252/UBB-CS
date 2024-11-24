@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Sa se scrie un script shell/bash care primeste ca argument un numar N. 
+# Se va valida faptul ca scriptul a fost apelat cu numarul corect de argumente.
+# Scriptul va afisa, alternativ, la fiecare secunda, timp de N secunde, mesajul "tic" daca ora curenta 
+# indica o secunda para, si "toc" daca este impara. Ora curenta va fi luata cu comanda
+#    date +%-H:%-M:%-S
+# Asteptarea intre secunde se va face folosind comanda sleep

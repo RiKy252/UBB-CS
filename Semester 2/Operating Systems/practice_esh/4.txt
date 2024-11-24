@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Sa se scrie un script shell care monitorizeaza userii conectati (prin comanda who) si, daca detecteaza 
+# ca un user are conexiuni de la mai mult de N IP-uri diferite, afiseaza urmatorul mesaj:
+#     Contul xm1234 are X conexiuni.
+# unde X este numarul de IP-uri distincte, iar N este un argument dat scriptului.
+# Scriptul va rula fara oprire si va face aceasta verificare la fiecare 5 secunde. Asteptarea se va face
+# cu comanda sleep
+# Se cere ca, la orice moment dat, pe ecran sa nu apara mesajul aceluiasi user mai mult de o singura data.

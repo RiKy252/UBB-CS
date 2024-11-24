@@ -1,0 +1,69 @@
+AWK.1	
+Se da un fisier care contine doar numere (oricate numere pe linie, fisierul
+poate contine oricate lini). Folosind doar utilitarul AWK afisati pe ecran
+suma numerelor de pe liniile pare si media aritmetica a numerelor impare.
+Indexare liniilor incepe de la 1.
+AWK.2	
+Se da un fisier care contine cuvinte (oricate cuvinte pe orice linie,
+fisierul poate contine oricate lini). Folosind utulitarul AWK afisati pe
+ecran urmatoarele informati:
+- numarul total de cuvinte de pe linile pare
+- numarul mediu de cuvinte de pe linile impare
+Indexarea linilor se face de la 1
+AWK.3	
+Se da un fisier care contine doar numere (oricate numere pe linie, fisierul
+poate contine oricate lini). Folosind utilitarul AWK afisati pe ecran suma
+primului si ultimului numar de pe linile care contin un numar par de numere
+si media aritmetica a numerelor de pe pozitia din mijloc de pe liniile care
+contin un numar impar de numere.
+AWK.4	
+Se da un fisier care contine oricate civinte pe linie. Folosind utlitarul
+AWK afisati pe ecran linile care contin cele mai multe si cele mai putine
+cuvinte si numarul mediu de cuvinte per linie din fisier.
+AWK.5	
+Folosind utilitarul AWK afisti pe ecran numarul mediu de cuvinte per linie dintr-un fisier,
+si cuvintele a caror frecventa este mai mica decat media respectiva.
+AWK.6	
+Folosind AWK afistai pe eran toate field-urile situate la mijlocul
+linilor care contin un numar impar de fielduri dintr-un fisier, dupa care
+afisati pe o singura linie numarul (index-ul) linilor care contin mai mult de 2
+fielduri.
+AWK.7	
+Folosind AWK Afisati vectorul de frecventa a unui fisier.
+AWK.8	
+Se sa un fisier cu urmatorul format: Nume Prenume nota1 nota2 nota 3.
+Folosind AWK afisati pe ecran urmatoarele informatii: Nume Prenume Medie,
+pe aceeasi linie unde media este media aritmetica a celor 3 note, dupa care afisati unmele si
+prenumele celor care au media mai mare decat 8
+
+ex:
+input:
+nume1 prenume1 8 9 7
+nume2 prenume2 8 2 4
+nume3 prenume3 10 10 9
+
+output
+nume1 prenume1 8
+nume2 prenume2 4.66667
+nume3 prenume3 9.66667
+nume3 prenume3
+AWK.9	
+A file containing a random number of words is given. For each line, if the
+line contains an odd number of words diplay the number of words, otherwise
+diplay the first and last word from that line.
+AWK.10	
+A file containing at least 5 words per line is given. Knowing that the first
+word and the last 2 words from each line are numbets, for each line display
+the sum of those 3 numbers, and then display the average of the first numbers
+from all the line.
+
+ex:
+input:
+1 a a 3 3
+3 b b 4 5 5
+5 c c 8 7 9 9
+output:
+7
+13
+23
+3

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Sa se creeze un script shell/bash care primeste urmatoarele argumente:
+#    un nume de functie C
+#    un nume de librarie standard C
+#    unul sau mai multe fisiere sau directoare
+# Pentru fiecare fisier primit ca argument, si pentru toate fisierele din directoarele primite ca 
+# argument, scriptul va verifica daca foloseste fisierul este o sursa C. Daca este, scriptul va verifica
+# daca codul foloseste functia primita. Daca o foloseste, dar libraria nu este inclusa, scriptul va 
+# adauga un include cu libraria, pe prima linie a fisierului.

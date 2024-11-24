@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#     Sa se scrie un script shell/bash care primeste urmatoarele argumente: o extensie de fisier, de
+# forma ".c", urmata de mai multe path-uri catre directoare. 
+#     Pentru fiecare fisier din directoarele date, care are extensia specificata, sa se afiseze 
+# urmatoarele informatii, in formatul urmator:
+#     
+#     fisier.c (in ./director1/subdirector/)
+#        Linii: 57
+#        Dimensiune: 2145
+#
+#    Se considera ca fisierele nu au spatii in nume.
