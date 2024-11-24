@@ -1,0 +1,24 @@
+% successor(l1l2..ln)
+% [], if n = 0
+% l1 + 1, if n > 0 and l1 < 9
+% {0} U successor(l2l3..ln), if n > 0 and l1 = 9
+
+% successor(L - list, R - result) -> (i, o)
+
+successor([], []).
+successor([H|T], [H1|T]):-
+    H < 9,
+    H1 is H + 1.
+successor([H|T], [0|R]):-
+    H =:= 9,
+    successor(T, R).
+
+mainSuccessor(L, RR):-
+    reverse(L, RL),
+    successor(RL, R),
+    reverse(R, RR).
+
+% main(l1l2..ln) =
+% [], if n = 0
+% l1 U main(l2l3..ln), if n > 0 and is_list(l1)
+% mainSuccessor(l1) U main(l2l3..ln), if n > 0 and \+ is_list(l1)

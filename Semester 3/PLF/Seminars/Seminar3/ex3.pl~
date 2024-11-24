@@ -1,0 +1,55 @@
+% Given a list of numbers and sublists of numbers, remove odd numbers
+% from sublists that have a mountain aspect.
+% mountain: incr seq followed by decreasing seq; 3+
+% EX: [1, 2, [1, 2, 3 , 2], 6, [1, 2], [1, 4, 5, 6, 7, 1], 8, 2, [4,
+% 3, 1], 11, 5, [6,7,6], 8]
+% ->
+% [1, 2, [2, 2], 6, [1, 2], [4, 6], 8, 2, [4, 3, 1], 11, 5, [6, 6], 8]
+
+% removeOdd(l1l2..ln) = [], n = 0
+%                       removeOdd(l2l3..ln), l1 % 2 = 1
+%                       l1 u removeOdd(l2l3..ln), l1 % 2 = 0
+% removeOdd(L - list, R - result) -> fm(i, o)
+
+removeOdd([], []).
+removeOdd([H|T], R):-
+    H mod 2 =:= 1,
+    removeOdd(T, R).
+removeOdd([H|T], [H|R]):-
+    H mod 2 =:= 0,
+    removeOdd(T, R).
+
+% mountSeq(l1l2..ln, F) = mountSeq(l2l3..ln, 0), l1 < l2 and F != 0
+%                    mountSeq(l2l3..ln, 1), l1 > l2 and (F = 1 or F = 0)
+%                    true, n = 1 and F = 1
+%                    false, otherwise
+%
+% mainMountSeq(l1l2..ln) = mountSeq(l1l2..ln, 0), l1 < l2
+%                          false, otherwise
+% mountSeq(L - list, F - flag) -> fm(i, i)
+% mainMountSeq(L - list) -> fm(i)
+
+mountSeq([_], 1).
+mountSeq([H1,H2|T], 0):-
+    H1 < H2,
+    mountSeq([H2|T], 0).
+mountSeq([H1,H2|T], _):-
+    H1 > H2,
+    mountSeq([H2|T], 1).
+
+% process(l1l2..ln) = [], n = 0
+%                     removeOdd(l1) u process(l2..ln), if l1 is a list
+%                        and mountain
+%                     l1 u process(l2..ln), otherwise
+% process(L - list, R - list)
+% flow model (i, o)
+
+process([], []).
+process([H|T], [HR|TR]):-
+    is_list(H),
+    mountain(H),!,
+    removeOdd(H, HR),
+    process(T, TR).
+process([H|T], [H|TR]):-
+    process(T, TR).
+

@@ -1,0 +1,18 @@
+% minNrC(l1l2..ln, C) = C if n = 0
+%                       minNrC(l2l3..ln, min(C, l1)), otherwise
+% min(e1, e2) = e1 if e1 <= e2
+%               e2 if e2 < e1
+% mainMinNrC(l1l2..ln) = minNrC(l2l3..ln, l1)
+%
+% minNrC(l - list, C - number, R - number) -> (i, i, o)
+
+min(E1, E2, E1):-
+    E1=<E2, !.
+min(E1, E2, E2):-
+    E2<E1.
+
+minNrC([], C, C).
+minNrC([H|T], C, R):-
+    min(H, C, MR),
+    minNrC(T, MR, R).
+mainMinNrC([H|T], R):-minNrC([H|T], H, R).

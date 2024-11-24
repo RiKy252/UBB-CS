@@ -1,0 +1,22 @@
+% multiply_list(l1l2..ln, k, c) =
+% [], if n = 0
+% (l1 * k + c) % 10 U multiply_list(l2l3..ln, k, (l1 * k + c) // 10),n>0
+
+
+% Base case: if the input list is empty, the result is also empty.
+multiply_list([], _, 0, []).
+
+% Recursive case:
+% Multiply the head of the list with the digit, add any carry, and compute the new digit and carry.
+multiply_list([H|T], K, C, [RD|R]) :-
+    P is H * K + C,
+    RD is P mod 10,           % Extract the resulting digit
+    NC is P // 10,     % Compute the carry
+    multiply_list(T, K, NC, R).
+
+% Wrapper predicate to handle the multiplication with the list in reverse order
+% (since it represents a number).
+multiply_list_by_digit(L, K, R) :-
+    reverse(L, RL),      % Reverse the list for easier computation
+    multiply_list(RL, K, 0, RR), % Perform the multiplication
+    reverse(RR, R).             % Reverse the result back to normal order
