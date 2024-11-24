@@ -1,0 +1,2 @@
+#!/bin/bash
+grep -E "[AEIOU]{3}" 2 | grep -Ev "[13579]" 2

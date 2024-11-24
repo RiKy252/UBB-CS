@@ -1,0 +1,2 @@
+#!/bin/bash
+grep -E "^[^AEIOU]*[AEIOU]{0,1}[^AEIOU]*[AEIOU]{0,1}[^AEIOU]*[AEIOU]{0,1}[^AEIOU]*$" 4 | grep -E -v "[13579]" 
