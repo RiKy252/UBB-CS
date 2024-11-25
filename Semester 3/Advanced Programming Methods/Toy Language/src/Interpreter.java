@@ -3,10 +3,7 @@ import Model.ADTs.Heap;
 import Model.ADTs.MyDictionary;
 import Model.ADTs.MyList;
 import Model.ADTs.MyStack;
-import Model.Expressions.ArithExp;
-import Model.Expressions.RelationalExp;
-import Model.Expressions.ValueExp;
-import Model.Expressions.VarExp;
+import Model.Expressions.*;
 import Model.PrgState;
 import Model.Statements.*;
 import Model.Types.BoolType;
@@ -77,6 +74,7 @@ public class Interpreter {
             IRepo repository5 = new Repo(program5,"log5.txt");
             Controller controller5 = new Controller(repository5);
 
+            // Heap allocation
             IStmt ex6 = new CompStmt(new VarDeclStmt("v", new RefType(new IntType())),
                     new CompStmt(new NewStmt("v", new ValueExp(new IntValue(20))),
                             new CompStmt(new VarDeclStmt("a", new RefType(new RefType(new IntType()))),
@@ -86,6 +84,27 @@ public class Interpreter {
             IRepo repository6 = new Repo(program6, "log6.txt");
             Controller controller6 = new Controller(repository6);
 
+            // Heap reading
+            IStmt ex7 = new CompStmt(new VarDeclStmt("v", new RefType(new IntType())),
+                    new CompStmt(new NewStmt("v", new ValueExp(new IntValue(20))),
+                            new CompStmt(new VarDeclStmt("a", new RefType(new RefType(new IntType()))),
+                                    new CompStmt(new NewStmt("a", new VarExp("v")),
+                                            new CompStmt(new PrintStmt(new ReadHeapExp(new VarExp("v"))),
+                                                    new PrintStmt(new ArithExp(new ReadHeapExp(new ReadHeapExp(new VarExp("a"))), new ValueExp(new IntValue(5)), 1)))))));
+            PrgState program7 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new Heap<>(), ex7);
+            IRepo repository7 = new Repo(program7, "log7.txt");
+            Controller controller7 = new Controller(repository7);
+
+            // Heap writing
+            IStmt ex8 = new CompStmt(new VarDeclStmt("v", new RefType(new IntType())),
+                    new CompStmt(new NewStmt("v", new ValueExp(new IntValue(20))),
+                            new CompStmt(new PrintStmt(new ReadHeapExp(new VarExp("v"))),
+                                    new CompStmt(new WriteHeapStmt("v", new ValueExp(new IntValue(30))),
+                                            new PrintStmt(new ArithExp(new ReadHeapExp(new VarExp("v")), new ValueExp(new IntValue(5)), 1))))));
+            PrgState program8 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new Heap<>(), ex8);
+            IRepo repository8 = new Repo(program8, "log8.txt");
+            Controller controller8 = new Controller(repository8);
+
             TextMenu menu = new TextMenu();
             menu.addCommand(new RunExampleCommand("1", "Run the following program:\n" + ex1, controller1));
             menu.addCommand(new RunExampleCommand("2", "Run the following program:\n" + ex2, controller2));
@@ -93,6 +112,8 @@ public class Interpreter {
             menu.addCommand(new RunExampleCommand("4", "Run the following program:\n" + ex4, controller4));
             menu.addCommand(new RunExampleCommand("5", "Run the following program:\n" + ex5, controller5));
             menu.addCommand(new RunExampleCommand("6", "Run the following program:\n" + ex6, controller6));
+            menu.addCommand(new RunExampleCommand("7", "Run the following program:\n" + ex7, controller7));
+            menu.addCommand(new RunExampleCommand("8", "Run the following program:\n" + ex8, controller8));
             menu.addCommand(new ExitCommand("0", "Exit program"));
             menu.show();
         } catch (MyException e) {

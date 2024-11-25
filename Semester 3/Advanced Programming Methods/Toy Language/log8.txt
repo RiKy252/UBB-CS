@@ -1,0 +1,119 @@
+Stack:
+Ref (int) v;
+new(v, 20);
+print(readHeap(v));
+writeHeap(v, 30);
+print(readHeap(v) + 5)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+Stack:
+Ref (int) v
+new(v, 20);
+print(readHeap(v));
+writeHeap(v, 30);
+print(readHeap(v) + 5)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+Stack:
+new(v, 20);
+print(readHeap(v));
+writeHeap(v, 30);
+print(readHeap(v) + 5)
+Symbolic table:
+v->(0, int)
+Out:
+File table:
+Heap:
+
+
+Stack:
+new(v, 20)
+print(readHeap(v));
+writeHeap(v, 30);
+print(readHeap(v) + 5)
+Symbolic table:
+v->(0, int)
+Out:
+File table:
+Heap:
+
+
+Stack:
+print(readHeap(v));
+writeHeap(v, 30);
+print(readHeap(v) + 5)
+Symbolic table:
+v->(1, int)
+Out:
+File table:
+Heap:
+1->20
+
+
+Stack:
+print(readHeap(v))
+writeHeap(v, 30);
+print(readHeap(v) + 5)
+Symbolic table:
+v->(1, int)
+Out:
+File table:
+Heap:
+1->20
+
+
+Stack:
+writeHeap(v, 30);
+print(readHeap(v) + 5)
+Symbolic table:
+v->(1, int)
+Out:
+20
+File table:
+Heap:
+1->20
+
+
+Stack:
+writeHeap(v, 30)
+print(readHeap(v) + 5)
+Symbolic table:
+v->(1, int)
+Out:
+20
+File table:
+Heap:
+1->20
+
+
+Stack:
+print(readHeap(v) + 5)
+Symbolic table:
+v->(1, int)
+Out:
+20
+File table:
+Heap:
+1->30
+
+
+Stack:
+
+Symbolic table:
+v->(1, int)
+Out:
+20
+35
+File table:
+Heap:
+1->30
+
+

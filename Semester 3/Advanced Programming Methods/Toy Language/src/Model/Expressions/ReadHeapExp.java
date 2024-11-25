@@ -30,7 +30,8 @@ public class ReadHeapExp implements Exp {
         if (!heap.isDefined(addr)) {
             throw new MyException("Address " + addr + " is not defined in the heap");
         }
-        return heap.read(addr);
+        Value heapValue = heap.read(addr);
+        return heapValue;
     }
     @Override
     public Exp deepcopy() {
