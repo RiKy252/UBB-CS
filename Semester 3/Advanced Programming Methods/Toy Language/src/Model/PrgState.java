@@ -11,10 +11,10 @@ public class PrgState {
     private  MyIStack<IStmt> exeStack;
     private MyIDictionary<String, Value> symTable;
     private MyIList<Value> out;
-    private MyIFileTable fileTable;
+    private MyIDictionary<String, BufferedReader> fileTable;
     IStmt originalProgram;
 
-    public PrgState(MyIStack<IStmt> stack, MyIDictionary<String, Value> symbolicTable, MyIList<Value> output, MyIFileTable fileTable, IStmt program) {
+    public PrgState(MyIStack<IStmt> stack, MyIDictionary<String, Value> symbolicTable, MyIList<Value> output, MyIDictionary<String, BufferedReader> fileTable, IStmt program) {
         exeStack = stack;
         symTable = symbolicTable;
         out = output;
@@ -43,7 +43,7 @@ public class PrgState {
         return out;
     }
 
-    public MyIFileTable getFileTable() {
+    public MyIDictionary<String, BufferedReader> getFileTable() {
          return fileTable;
     }
 

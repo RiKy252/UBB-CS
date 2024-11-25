@@ -1,6 +1,5 @@
 import Controller.Controller;
 import Model.ADTs.MyDictionary;
-import Model.ADTs.MyFileTable;
 import Model.ADTs.MyList;
 import Model.ADTs.MyStack;
 import Model.Expressions.ArithExp;
@@ -28,7 +27,7 @@ public class Interpreter {
             IStmt ex1 = new CompStmt(new VarDeclStmt("v", new IntType()),
                     new CompStmt(new AssignStmt("v", new ValueExp(new IntValue(2))),
                             new PrintStmt(new VarExp("v"))));
-            PrgState program1 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyFileTable(), ex1);
+            PrgState program1 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), ex1);
             IRepo repository1 = new Repo(program1, "log1.txt");
             Controller controller1 = new Controller(repository1);
 
@@ -39,7 +38,7 @@ public class Interpreter {
                                     new ArithExp(new ValueExp(new IntValue(3)), new ValueExp(new IntValue(5)), 3), 1)),
                                     new CompStmt(new AssignStmt("b", new ArithExp(new VarExp("a"), new ValueExp(new IntValue(1)), 1)),
                     new PrintStmt(new VarExp("b"))))));
-            PrgState program2 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyFileTable(), ex2);
+            PrgState program2 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), ex2);
             IRepo repository2 = new Repo(program2, "log2.txt");
             Controller controller2 = new Controller(repository2);
 
@@ -49,7 +48,7 @@ public class Interpreter {
                                     new CompStmt(new IfStmt(new VarExp("a"),new AssignStmt("v",new ValueExp(new
                                             IntValue(2))), new AssignStmt("v", new ValueExp(new IntValue(3)))), new PrintStmt(new
                                             VarExp("v"))))));
-            PrgState program3 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyFileTable(), ex3);
+            PrgState program3 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), ex3);
             IRepo repository3 = new Repo(program3, "log3.txt");
             Controller controller3 = new Controller(repository3);
 
@@ -61,7 +60,7 @@ public class Interpreter {
                                                     new CompStmt(new PrintStmt(new VarExp("varc")),
                                                             new CompStmt(new ReadFile(new VarExp("varf"), "varc"),
                                                                     new CompStmt(new PrintStmt(new VarExp("varc")), new CloseRFile(new VarExp("varf"))))))))));
-            PrgState program4 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyFileTable(), ex4);
+            PrgState program4 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), ex4);
             IRepo repository4 = new Repo(program4, "log4.txt");
             Controller controller4 = new Controller(repository4);
 
@@ -72,7 +71,7 @@ public class Interpreter {
                                             new CompStmt(new VarDeclStmt("res", new BoolType()),
                                                     new CompStmt(new AssignStmt("res", new RelationalExp(new VarExp("a"),new VarExp("b"), ">")),
                                                             new PrintStmt(new VarExp("res"))))))));
-            PrgState program5 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyFileTable(), ex5);
+            PrgState program5 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), ex5);
             IRepo repository5 = new Repo(program5,"log5.txt");
             Controller controller5 = new Controller(repository5);
 
@@ -89,5 +88,3 @@ public class Interpreter {
         }
     }
 }
-
-// TODO -> A4 and Delete MyIFileTable, repair file operations functions

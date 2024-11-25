@@ -1,13 +1,15 @@
 package Model.Statements;
 
 import Model.ADTs.MyIDictionary;
-import Model.ADTs.MyIFileTable;
 import Model.Expressions.Exp;
 import Model.PrgState;
 import Model.Types.StringType;
 import Model.Values.StringValue;
 import Model.Values.Value;
 import MyException.MyException;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 public class OpenRFile implements IStmt {
     Exp exp;
@@ -29,8 +31,17 @@ public class OpenRFile implements IStmt {
         if (!(val.getType() instanceof StringType)) {
             throw new MyException("Expression type is not string!");
         }
-        MyIFileTable fileTable = program.getFileTable();
-        fileTable.openFile(((StringValue) val).getVal());
+        MyIDictionary<String, BufferedReader> fileTable = program.getFileTable();
+        String name = ((StringValue) val).getVal();
+        if (fileTable.isDefined(name)) {
+            throw new MyException("File already opened!");
+        }
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(name));
+            fileTable.update(name, reader);
+        } catch (Exception e) {
+            throw new MyException("Error opening file!");
+        }
         return program;
     }
 }

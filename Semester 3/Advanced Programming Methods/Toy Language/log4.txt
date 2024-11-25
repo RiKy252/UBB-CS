@@ -1,0 +1,243 @@
+Stack:
+string varf;
+varf = "test.in";
+OpenRFile(varf);
+int varc;
+ReadFile(varf, varc);
+print(varc);
+ReadFile(varf, varc);
+print(varc);
+CloseRFile(varf)
+Symbolic table:
+Out:
+File table:
+
+
+Stack:
+string varf
+varf = "test.in";
+OpenRFile(varf);
+int varc;
+ReadFile(varf, varc);
+print(varc);
+ReadFile(varf, varc);
+print(varc);
+CloseRFile(varf)
+Symbolic table:
+Out:
+File table:
+
+
+Stack:
+varf = "test.in";
+OpenRFile(varf);
+int varc;
+ReadFile(varf, varc);
+print(varc);
+ReadFile(varf, varc);
+print(varc);
+CloseRFile(varf)
+Symbolic table:
+varf->""
+Out:
+File table:
+
+
+Stack:
+varf = "test.in"
+OpenRFile(varf);
+int varc;
+ReadFile(varf, varc);
+print(varc);
+ReadFile(varf, varc);
+print(varc);
+CloseRFile(varf)
+Symbolic table:
+varf->""
+Out:
+File table:
+
+
+Stack:
+OpenRFile(varf);
+int varc;
+ReadFile(varf, varc);
+print(varc);
+ReadFile(varf, varc);
+print(varc);
+CloseRFile(varf)
+Symbolic table:
+varf->"test.in"
+Out:
+File table:
+
+
+Stack:
+OpenRFile(varf)
+int varc;
+ReadFile(varf, varc);
+print(varc);
+ReadFile(varf, varc);
+print(varc);
+CloseRFile(varf)
+Symbolic table:
+varf->"test.in"
+Out:
+File table:
+
+
+Stack:
+int varc;
+ReadFile(varf, varc);
+print(varc);
+ReadFile(varf, varc);
+print(varc);
+CloseRFile(varf)
+Symbolic table:
+varf->"test.in"
+Out:
+File table:
+test.in->java.io.BufferedReader@443b7951
+
+
+Stack:
+int varc
+ReadFile(varf, varc);
+print(varc);
+ReadFile(varf, varc);
+print(varc);
+CloseRFile(varf)
+Symbolic table:
+varf->"test.in"
+Out:
+File table:
+test.in->java.io.BufferedReader@443b7951
+
+
+Stack:
+ReadFile(varf, varc);
+print(varc);
+ReadFile(varf, varc);
+print(varc);
+CloseRFile(varf)
+Symbolic table:
+varf->"test.in"
+varc->0
+Out:
+File table:
+test.in->java.io.BufferedReader@443b7951
+
+
+Stack:
+ReadFile(varf, varc)
+print(varc);
+ReadFile(varf, varc);
+print(varc);
+CloseRFile(varf)
+Symbolic table:
+varf->"test.in"
+varc->0
+Out:
+File table:
+test.in->java.io.BufferedReader@443b7951
+
+
+Stack:
+print(varc);
+ReadFile(varf, varc);
+print(varc);
+CloseRFile(varf)
+Symbolic table:
+varf->"test.in"
+varc->15
+Out:
+File table:
+test.in->java.io.BufferedReader@443b7951
+
+
+Stack:
+print(varc)
+ReadFile(varf, varc);
+print(varc);
+CloseRFile(varf)
+Symbolic table:
+varf->"test.in"
+varc->15
+Out:
+File table:
+test.in->java.io.BufferedReader@443b7951
+
+
+Stack:
+ReadFile(varf, varc);
+print(varc);
+CloseRFile(varf)
+Symbolic table:
+varf->"test.in"
+varc->15
+Out:
+15
+File table:
+test.in->java.io.BufferedReader@443b7951
+
+
+Stack:
+ReadFile(varf, varc)
+print(varc);
+CloseRFile(varf)
+Symbolic table:
+varf->"test.in"
+varc->15
+Out:
+15
+File table:
+test.in->java.io.BufferedReader@443b7951
+
+
+Stack:
+print(varc);
+CloseRFile(varf)
+Symbolic table:
+varf->"test.in"
+varc->50
+Out:
+15
+File table:
+test.in->java.io.BufferedReader@443b7951
+
+
+Stack:
+print(varc)
+CloseRFile(varf)
+Symbolic table:
+varf->"test.in"
+varc->50
+Out:
+15
+File table:
+test.in->java.io.BufferedReader@443b7951
+
+
+Stack:
+CloseRFile(varf)
+Symbolic table:
+varf->"test.in"
+varc->50
+Out:
+15
+50
+File table:
+test.in->java.io.BufferedReader@443b7951
+
+
+Stack:
+
+Symbolic table:
+varf->"test.in"
+varc->50
+Out:
+15
+50
+File table:
+
+
