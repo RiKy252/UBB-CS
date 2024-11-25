@@ -1,0 +1,115 @@
+Stack:
+int a;
+int b;
+a = 2 + 3 * 5;
+b = a + 1;
+print(b)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+Stack:
+int a
+int b;
+a = 2 + 3 * 5;
+b = a + 1;
+print(b)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+Stack:
+int b;
+a = 2 + 3 * 5;
+b = a + 1;
+print(b)
+Symbolic table:
+a->0
+Out:
+File table:
+Heap:
+
+
+Stack:
+int b
+a = 2 + 3 * 5;
+b = a + 1;
+print(b)
+Symbolic table:
+a->0
+Out:
+File table:
+Heap:
+
+
+Stack:
+a = 2 + 3 * 5;
+b = a + 1;
+print(b)
+Symbolic table:
+a->0
+b->0
+Out:
+File table:
+Heap:
+
+
+Stack:
+a = 2 + 3 * 5
+b = a + 1;
+print(b)
+Symbolic table:
+a->0
+b->0
+Out:
+File table:
+Heap:
+
+
+Stack:
+b = a + 1;
+print(b)
+Symbolic table:
+a->17
+b->0
+Out:
+File table:
+Heap:
+
+
+Stack:
+b = a + 1
+print(b)
+Symbolic table:
+a->17
+b->0
+Out:
+File table:
+Heap:
+
+
+Stack:
+print(b)
+Symbolic table:
+a->17
+b->18
+Out:
+File table:
+Heap:
+
+
+Stack:
+
+Symbolic table:
+a->17
+b->18
+Out:
+18
+File table:
+Heap:
+
+

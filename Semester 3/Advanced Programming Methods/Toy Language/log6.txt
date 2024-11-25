@@ -1,0 +1,157 @@
+Stack:
+Ref (int) v;
+new(v, 20);
+Ref (Ref (int)) a;
+new(a, v);
+print(v);
+print(a)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+Stack:
+Ref (int) v
+new(v, 20);
+Ref (Ref (int)) a;
+new(a, v);
+print(v);
+print(a)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+Stack:
+new(v, 20);
+Ref (Ref (int)) a;
+new(a, v);
+print(v);
+print(a)
+Symbolic table:
+v->(0, int)
+Out:
+File table:
+Heap:
+
+
+Stack:
+new(v, 20)
+Ref (Ref (int)) a;
+new(a, v);
+print(v);
+print(a)
+Symbolic table:
+v->(0, int)
+Out:
+File table:
+Heap:
+
+
+Stack:
+Ref (Ref (int)) a;
+new(a, v);
+print(v);
+print(a)
+Symbolic table:
+v->(1, int)
+Out:
+File table:
+Heap:
+1->20
+
+
+Stack:
+Ref (Ref (int)) a
+new(a, v);
+print(v);
+print(a)
+Symbolic table:
+v->(1, int)
+Out:
+File table:
+Heap:
+1->20
+
+
+Stack:
+new(a, v);
+print(v);
+print(a)
+Symbolic table:
+a->(0, Ref (int))
+v->(1, int)
+Out:
+File table:
+Heap:
+1->20
+
+
+Stack:
+new(a, v)
+print(v);
+print(a)
+Symbolic table:
+a->(0, Ref (int))
+v->(1, int)
+Out:
+File table:
+Heap:
+1->20
+
+
+Stack:
+print(v);
+print(a)
+Symbolic table:
+a->(2, Ref (int))
+v->(1, int)
+Out:
+File table:
+Heap:
+1->20
+2->(1, int)
+
+
+Stack:
+print(v)
+print(a)
+Symbolic table:
+a->(2, Ref (int))
+v->(1, int)
+Out:
+File table:
+Heap:
+1->20
+2->(1, int)
+
+
+Stack:
+print(a)
+Symbolic table:
+a->(2, Ref (int))
+v->(1, int)
+Out:
+(1, int)
+File table:
+Heap:
+1->20
+2->(1, int)
+
+
+Stack:
+
+Symbolic table:
+a->(2, Ref (int))
+v->(1, int)
+Out:
+(1, int)
+(2, Ref (int))
+File table:
+Heap:
+1->20
+2->(1, int)
+
+

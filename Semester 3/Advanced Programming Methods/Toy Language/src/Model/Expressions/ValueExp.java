@@ -1,5 +1,6 @@
 package Model.Expressions;
 
+import Model.ADTs.IHeap;
 import Model.ADTs.MyIDictionary;
 import Model.Values.Value;
 import MyException.*;
@@ -10,7 +11,7 @@ public class ValueExp implements Exp {
         this.e = e;
     }
     @Override
-    public Value eval(MyIDictionary<String, Value> table) {
+    public Value eval(MyIDictionary<String, Value> table, IHeap<Integer, Value> heap) {
         return e;
     }
     @Override

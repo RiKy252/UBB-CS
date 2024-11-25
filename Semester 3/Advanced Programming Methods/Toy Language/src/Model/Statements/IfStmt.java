@@ -1,5 +1,6 @@
 package Model.Statements;
 
+import Model.ADTs.IHeap;
 import Model.ADTs.MyIDictionary;
 import Model.Expressions.Exp;
 import Model.PrgState;
@@ -20,7 +21,8 @@ public class IfStmt implements IStmt {
     @Override
     public PrgState execute(PrgState state) throws IncompatibleTypeException {
         MyIDictionary<String, Value> symTbl = state.getSymTable();
-        Value val = exp.eval(symTbl);
+        IHeap<Integer, Value> heap = state.getHeap();
+        Value val = exp.eval(symTbl, heap);
         if (!val.getType().equals(new BoolType())) {
             throw new IncompatibleTypeException("The if expression is not a boolean");
         }

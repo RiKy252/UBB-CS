@@ -2,14 +2,8 @@ package Model.Statements;
 
 import Model.ADTs.MyIDictionary;
 import Model.PrgState;
-import Model.Types.BoolType;
-import Model.Types.IntType;
-import Model.Types.StringType;
-import Model.Types.Type;
-import Model.Values.BoolValue;
-import Model.Values.IntValue;
-import Model.Values.StringValue;
-import Model.Values.Value;
+import Model.Types.*;
+import Model.Values.*;
 import MyException.*;
 
 public class VarDeclStmt implements IStmt {
@@ -24,23 +18,8 @@ public class VarDeclStmt implements IStmt {
         MyIDictionary<String, Value> symTbl = state.getSymTable();
         if (symTbl.isDefined(id))
             throw new AlreadyDefinedException("Variable is already defined");
-        else {
-            if (type.equals(new BoolType())) {
-                BoolType t = new BoolType();
-                BoolValue value = (BoolValue) t.defaultValue();
-                symTbl.add(id, value);
-            }
-            else if (type.equals(new IntType())) {
-                IntType t = new IntType();
-                IntValue value = (IntValue) t.defaultValue();
-                symTbl.add(id, value);
-            }
-            else {
-                StringType t = new StringType();
-                StringValue value = (StringValue) t.defaultValue();
-                symTbl.add(id, value);
-            }
-        }
+        Value defaultValue = type.defaultValue();
+        symTbl.add(id, defaultValue);
         return state;
     }
     @Override

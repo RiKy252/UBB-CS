@@ -1,5 +1,6 @@
 package Model.Expressions;
 
+import Model.ADTs.IHeap;
 import Model.Types.IntType;
 import Model.ADTs.MyIDictionary;
 import Model.Values.IntValue;
@@ -28,11 +29,11 @@ public class ArithExp implements Exp{
         return null;
     }
     @Override
-    public Value eval(MyIDictionary<String, Value> table) throws DivisionByZeroException, IncompatibleTypeException {
+    public Value eval(MyIDictionary<String, Value> table, IHeap<Integer, Value> heap) throws DivisionByZeroException, IncompatibleTypeException {
         Value v1, v2;
-        v1 = e1.eval(table);
+        v1 = e1.eval(table, heap);
         if (v1.getType().equals(new IntType())) {
-            v2 = e2.eval(table);
+            v2 = e2.eval(table, heap);
             if (v2.getType().equals(new IntType())) {
                 IntValue i1 = (IntValue) v1;
                 IntValue i2 = (IntValue) v2;

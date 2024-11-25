@@ -1,5 +1,6 @@
 package Model.Statements;
 
+import Model.ADTs.IHeap;
 import Model.ADTs.MyIDictionary;
 import Model.Expressions.Exp;
 import Model.PrgState;
@@ -29,9 +30,10 @@ public class ReadFile implements IStmt {
     @Override
     public PrgState execute(PrgState program) throws MyException {
         MyIDictionary<String, Value> symTable = program.getSymTable();
+        IHeap<Integer, Value> heap = program.getHeap();
         if (!(symTable.lookup(varName).getType() instanceof IntType))
             throw new MyException("Variable is not of type int or is not declared!");
-        Value val = this.exp.eval(symTable);
+        Value val = this.exp.eval(symTable, heap);
         if (!(val.getType() instanceof StringType))
             throw new MyException("Expression value is not a string!");
         BufferedReader reader = null;

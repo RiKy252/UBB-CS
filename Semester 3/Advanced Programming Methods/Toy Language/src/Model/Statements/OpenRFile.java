@@ -1,5 +1,6 @@
 package Model.Statements;
 
+import Model.ADTs.IHeap;
 import Model.ADTs.MyIDictionary;
 import Model.Expressions.Exp;
 import Model.PrgState;
@@ -27,7 +28,8 @@ public class OpenRFile implements IStmt {
     @Override
     public PrgState execute(PrgState program) throws MyException {
         MyIDictionary<String, Value> symTable = program.getSymTable();
-        Value val = exp.eval(symTable);
+        IHeap<Integer, Value> heap = program.getHeap();
+        Value val = exp.eval(symTable, heap);
         if (!(val.getType() instanceof StringType)) {
             throw new MyException("Expression type is not string!");
         }

@@ -163,3 +163,182 @@ false
 File table:
 
 
+Stack:
+int a;
+a = 15;
+int b;
+b = 18;
+bool res;
+res = a > b;
+print(res)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+Stack:
+int a
+a = 15;
+int b;
+b = 18;
+bool res;
+res = a > b;
+print(res)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+Stack:
+a = 15;
+int b;
+b = 18;
+bool res;
+res = a > b;
+print(res)
+Symbolic table:
+a->0
+Out:
+File table:
+Heap:
+
+
+Stack:
+a = 15
+int b;
+b = 18;
+bool res;
+res = a > b;
+print(res)
+Symbolic table:
+a->0
+Out:
+File table:
+Heap:
+
+
+Stack:
+int b;
+b = 18;
+bool res;
+res = a > b;
+print(res)
+Symbolic table:
+a->15
+Out:
+File table:
+Heap:
+
+
+Stack:
+int b
+b = 18;
+bool res;
+res = a > b;
+print(res)
+Symbolic table:
+a->15
+Out:
+File table:
+Heap:
+
+
+Stack:
+b = 18;
+bool res;
+res = a > b;
+print(res)
+Symbolic table:
+a->15
+b->0
+Out:
+File table:
+Heap:
+
+
+Stack:
+b = 18
+bool res;
+res = a > b;
+print(res)
+Symbolic table:
+a->15
+b->0
+Out:
+File table:
+Heap:
+
+
+Stack:
+bool res;
+res = a > b;
+print(res)
+Symbolic table:
+a->15
+b->18
+Out:
+File table:
+Heap:
+
+
+Stack:
+bool res
+res = a > b;
+print(res)
+Symbolic table:
+a->15
+b->18
+Out:
+File table:
+Heap:
+
+
+Stack:
+res = a > b;
+print(res)
+Symbolic table:
+a->15
+res->false
+b->18
+Out:
+File table:
+Heap:
+
+
+Stack:
+res = a > b
+print(res)
+Symbolic table:
+a->15
+res->false
+b->18
+Out:
+File table:
+Heap:
+
+
+Stack:
+print(res)
+Symbolic table:
+a->15
+res->false
+b->18
+Out:
+File table:
+Heap:
+
+
+Stack:
+
+Symbolic table:
+a->15
+res->false
+b->18
+Out:
+false
+File table:
+Heap:
+
+

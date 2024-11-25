@@ -4,6 +4,7 @@ import Model.ADTs.*;
 import Model.Statements.IStmt;
 import Model.Values.StringValue;
 import Model.Values.Value;
+import com.sun.jdi.IntegerValue;
 
 import java.io.BufferedReader;
 
@@ -12,14 +13,16 @@ public class PrgState {
     private MyIDictionary<String, Value> symTable;
     private MyIList<Value> out;
     private MyIDictionary<String, BufferedReader> fileTable;
+    private IHeap<Integer, Value> heap;
     IStmt originalProgram;
 
-    public PrgState(MyIStack<IStmt> stack, MyIDictionary<String, Value> symbolicTable, MyIList<Value> output, MyIDictionary<String, BufferedReader> fileTable, IStmt program) {
+    public PrgState(MyIStack<IStmt> stack, MyIDictionary<String, Value> symbolicTable, MyIList<Value> output, MyIDictionary<String, BufferedReader> fileTable, IHeap<Integer, Value> heap, IStmt program) {
         exeStack = stack;
         symTable = symbolicTable;
         out = output;
         this.fileTable = fileTable;
         originalProgram = program.deepcopy();
+        this.heap = heap;
         stack.push(program);
     }
 
@@ -47,6 +50,8 @@ public class PrgState {
          return fileTable;
     }
 
+    public IHeap<Integer, Value> getHeap() { return heap; }
+
     public IStmt getStmt() {
         return originalProgram;
     }
@@ -56,6 +61,7 @@ public class PrgState {
         return "Stack:\n" + this.exeStack.toString() + "\n" +
                 "Symbolic table:\n" + this.symTable.toString() +
                 "Out:\n" + this.out.toString() +
-                "File table:\n" + this.fileTable.toString() + "\n";
+                "File table:\n" + this.fileTable.toString() +
+                "Heap:\n" + this.heap.toString() + "\n";
     }
 }

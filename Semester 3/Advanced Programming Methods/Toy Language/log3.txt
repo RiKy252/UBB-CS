@@ -1,0 +1,126 @@
+Stack:
+bool a;
+int v;
+a = true;
+if (a) then { v = 2 } else { v = 3 };
+print(v)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+Stack:
+bool a
+int v;
+a = true;
+if (a) then { v = 2 } else { v = 3 };
+print(v)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+Stack:
+int v;
+a = true;
+if (a) then { v = 2 } else { v = 3 };
+print(v)
+Symbolic table:
+a->false
+Out:
+File table:
+Heap:
+
+
+Stack:
+int v
+a = true;
+if (a) then { v = 2 } else { v = 3 };
+print(v)
+Symbolic table:
+a->false
+Out:
+File table:
+Heap:
+
+
+Stack:
+a = true;
+if (a) then { v = 2 } else { v = 3 };
+print(v)
+Symbolic table:
+a->false
+v->0
+Out:
+File table:
+Heap:
+
+
+Stack:
+a = true
+if (a) then { v = 2 } else { v = 3 };
+print(v)
+Symbolic table:
+a->false
+v->0
+Out:
+File table:
+Heap:
+
+
+Stack:
+if (a) then { v = 2 } else { v = 3 };
+print(v)
+Symbolic table:
+a->true
+v->0
+Out:
+File table:
+Heap:
+
+
+Stack:
+if (a) then { v = 2 } else { v = 3 }
+print(v)
+Symbolic table:
+a->true
+v->0
+Out:
+File table:
+Heap:
+
+
+Stack:
+v = 2
+print(v)
+Symbolic table:
+a->true
+v->0
+Out:
+File table:
+Heap:
+
+
+Stack:
+print(v)
+Symbolic table:
+a->true
+v->2
+Out:
+File table:
+Heap:
+
+
+Stack:
+
+Symbolic table:
+a->true
+v->2
+Out:
+2
+File table:
+Heap:
+
+

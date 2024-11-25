@@ -1,5 +1,6 @@
 package Model.Statements;
 
+import Model.ADTs.IHeap;
 import Model.Expressions.Exp;
 import Model.ADTs.MyIDictionary;
 import Model.ADTs.MyIStack;
@@ -23,8 +24,9 @@ public class AssignStmt implements IStmt {
     public PrgState execute(PrgState state) throws IncompatibleTypeException {
         MyIStack<IStmt> stack = state.getStack();
         MyIDictionary<String, Value> symTbl = state.getSymTable();
+        IHeap<Integer, Value> heap = state.getHeap();
         if (symTbl.isDefined(id)) {
-            Value val = exp.eval(symTbl);
+            Value val = exp.eval(symTbl, heap);
             Type typeId = (symTbl.lookup(id)).getType();
             if (val.getType().equals(typeId))
                 symTbl.update(id, val);

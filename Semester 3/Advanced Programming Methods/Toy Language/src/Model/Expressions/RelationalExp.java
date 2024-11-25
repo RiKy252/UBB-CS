@@ -1,5 +1,6 @@
 package Model.Expressions;
 
+import Model.ADTs.IHeap;
 import Model.ADTs.MyIDictionary;
 import Model.Types.IntType;
 import Model.Values.BoolValue;
@@ -24,11 +25,11 @@ public class RelationalExp implements Exp {
         return new RelationalExp(e1.deepcopy(), e2.deepcopy(), op);
     }
     @Override
-    public Value eval(MyIDictionary<String, Value> table) throws IncompatibleTypeException {
+    public Value eval(MyIDictionary<String, Value> table, IHeap<Integer, Value> heap) throws IncompatibleTypeException {
         Value v1, v2;
-        v1 = e1.eval(table);
+        v1 = e1.eval(table, heap);
         if (v1.getType().equals(new IntType())) {
-            v2 = e2.eval(table);
+            v2 = e2.eval(table, heap);
             if (v2.getType().equals(new IntType())) {
                 IntValue i1 = (IntValue) v1;
                 IntValue i2 = (IntValue) v2;
