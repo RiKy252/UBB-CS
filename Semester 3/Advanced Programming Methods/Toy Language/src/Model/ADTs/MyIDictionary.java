@@ -10,4 +10,5 @@ public interface MyIDictionary<TKey, TValue> {
     String toString();
     void remove(TKey key);
     List<TKey> getAllKeys();
+    List<TValue> getValues();
 }

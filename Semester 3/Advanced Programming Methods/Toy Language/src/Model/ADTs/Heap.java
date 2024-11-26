@@ -5,9 +5,12 @@ import Model.Values.Value;
 import MyException.MyException;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Heap<TKey, TValue> implements IHeap<TKey, TValue> {
-    private HashMap<Integer, Value> heap;
+    private Map<Integer, Value> heap;
     private Integer nextFreeAddr;
     public Heap() {
         heap = new HashMap<>();
@@ -53,5 +56,19 @@ public class Heap<TKey, TValue> implements IHeap<TKey, TValue> {
             buffer.append(key).append("->").append(this.heap.get(key)).append("\n");
         }
         return buffer.toString();
+    }
+    @Override
+    public Map<Integer, Value> safeGarbageCollector(List<Integer> addresses, Map<Integer, Value> heap) {
+        return heap.entrySet().stream()
+                .filter(e -> addresses.contains(e.getKey()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+    @Override
+    public void setHeap(Map<Integer, Value> heap) {
+        this.heap = heap;
+    }
+    @Override
+    public Map<Integer, Value> getHeap() {
+        return this.heap;
     }
 }

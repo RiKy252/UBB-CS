@@ -1,8 +1,10 @@
 package Controller;
 
+import Model.ADTs.IHeap;
 import Model.ADTs.MyIStack;
 import Model.PrgState;
 import Model.Statements.IStmt;
+import Model.Values.Value;
 import MyException.*;
 import Repository.IRepo;
 import java.util.ArrayList;
@@ -34,6 +36,8 @@ public class Controller {
                 if (displayFlag)
                     displayCurrentState(program);
                 repository.logPrgStateExec(program);
+                IHeap<Integer, Value> programHeap = program.getHeap();
+                programHeap.setHeap(programHeap.safeGarbageCollector(program.getReachableAddresses(), programHeap.getHeap()));
             }
             if (!displayFlag)
                 displayCurrentState(program);

@@ -38,4 +38,8 @@ public class MyDictionary<TKey, TValue> implements MyIDictionary<TKey, TValue> {
     public List<TKey> getAllKeys() {
         return new ArrayList<>(this.dict.keySet());
     }
+    @Override
+    public List<TValue> getValues() {
+        return new ArrayList<>(this.dict.values());
+    }
 }

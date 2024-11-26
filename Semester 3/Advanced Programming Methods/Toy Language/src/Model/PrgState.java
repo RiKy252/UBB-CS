@@ -2,11 +2,13 @@ package Model;
 
 import Model.ADTs.*;
 import Model.Statements.IStmt;
-import Model.Values.StringValue;
+import Model.Values.RefValue;
 import Model.Values.Value;
-import com.sun.jdi.IntegerValue;
 
 import java.io.BufferedReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class PrgState {
     private  MyIStack<IStmt> exeStack;
@@ -51,6 +53,29 @@ public class PrgState {
     }
 
     public IHeap<Integer, Value> getHeap() { return heap; }
+
+    public List<Integer> getReachableAddresses() {
+        List<Integer> addresses = new ArrayList<>();
+        Map<Integer, Value> heapTable = this.heap.getHeap();
+        for (Value val : this.symTable.getValues()) {
+            if (val instanceof RefValue) {
+                addresses.add(((RefValue) val).getAddress());
+            }
+        }
+        // in addresses, we have all the addresses that are referenced by the symTable
+        // we need to add the addresses that are referenced by the heap
+        for (int i = 0; i < addresses.size(); i++) {
+            Integer currentAddr = addresses.get(i);
+            Value val = heapTable.get(currentAddr);
+            if (val instanceof RefValue) {
+                Integer nextAddr = ((RefValue) val).getAddress();
+                if (!addresses.contains(nextAddr)) {
+                    addresses.add(nextAddr);
+                }
+            }
+        }
+        return addresses;
+    }
 
     public IStmt getStmt() {
         return originalProgram;
