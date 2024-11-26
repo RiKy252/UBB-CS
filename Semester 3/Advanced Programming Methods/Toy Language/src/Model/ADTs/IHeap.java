@@ -10,7 +10,6 @@ import java.util.Map;
 
 public interface IHeap<TKey, TValue> {
     Integer allocate(Value val);
-    void deallocate(Integer address) throws MyException;
     Value read(Integer address) throws MyException;
     void write(int address, Value val) throws MyException;
     String toString();

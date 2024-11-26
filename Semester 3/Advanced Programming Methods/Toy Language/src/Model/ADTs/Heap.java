@@ -26,14 +26,6 @@ public class Heap<TKey, TValue> implements IHeap<TKey, TValue> {
         return nextFreeAddr - 1;
     }
     @Override
-    public void deallocate(Integer address) throws MyException {
-        if (heap.containsKey(address)) {
-            heap.remove(address);
-        } else {
-            throw new MyException("Invalid heap address");
-        }
-    }
-    @Override
     public void write(int addr, Value val) throws MyException {
         if (heap.containsKey(addr)) {
             heap.put(addr, val);

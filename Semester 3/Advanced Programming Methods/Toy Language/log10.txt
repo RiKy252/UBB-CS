@@ -1,0 +1,325 @@
+Stack:
+int v;
+v = 4;
+while (v > 0) execute print(v);
+v = v - 1;
+print(v)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+Stack:
+int v
+v = 4;
+while (v > 0) execute print(v);
+v = v - 1;
+print(v)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+Stack:
+v = 4;
+while (v > 0) execute print(v);
+v = v - 1;
+print(v)
+Symbolic table:
+v->0
+Out:
+File table:
+Heap:
+
+
+Stack:
+v = 4
+while (v > 0) execute print(v);
+v = v - 1;
+print(v)
+Symbolic table:
+v->0
+Out:
+File table:
+Heap:
+
+
+Stack:
+while (v > 0) execute print(v);
+v = v - 1;
+print(v)
+Symbolic table:
+v->4
+Out:
+File table:
+Heap:
+
+
+Stack:
+while (v > 0) execute print(v);
+v = v - 1
+print(v)
+Symbolic table:
+v->4
+Out:
+File table:
+Heap:
+
+
+Stack:
+print(v);
+v = v - 1
+while (v > 0) execute print(v);
+v = v - 1
+print(v)
+Symbolic table:
+v->4
+Out:
+File table:
+Heap:
+
+
+Stack:
+print(v)
+v = v - 1
+while (v > 0) execute print(v);
+v = v - 1
+print(v)
+Symbolic table:
+v->4
+Out:
+File table:
+Heap:
+
+
+Stack:
+v = v - 1
+while (v > 0) execute print(v);
+v = v - 1
+print(v)
+Symbolic table:
+v->4
+Out:
+4
+File table:
+Heap:
+
+
+Stack:
+while (v > 0) execute print(v);
+v = v - 1
+print(v)
+Symbolic table:
+v->3
+Out:
+4
+File table:
+Heap:
+
+
+Stack:
+print(v);
+v = v - 1
+while (v > 0) execute print(v);
+v = v - 1
+print(v)
+Symbolic table:
+v->3
+Out:
+4
+File table:
+Heap:
+
+
+Stack:
+print(v)
+v = v - 1
+while (v > 0) execute print(v);
+v = v - 1
+print(v)
+Symbolic table:
+v->3
+Out:
+4
+File table:
+Heap:
+
+
+Stack:
+v = v - 1
+while (v > 0) execute print(v);
+v = v - 1
+print(v)
+Symbolic table:
+v->3
+Out:
+4
+3
+File table:
+Heap:
+
+
+Stack:
+while (v > 0) execute print(v);
+v = v - 1
+print(v)
+Symbolic table:
+v->2
+Out:
+4
+3
+File table:
+Heap:
+
+
+Stack:
+print(v);
+v = v - 1
+while (v > 0) execute print(v);
+v = v - 1
+print(v)
+Symbolic table:
+v->2
+Out:
+4
+3
+File table:
+Heap:
+
+
+Stack:
+print(v)
+v = v - 1
+while (v > 0) execute print(v);
+v = v - 1
+print(v)
+Symbolic table:
+v->2
+Out:
+4
+3
+File table:
+Heap:
+
+
+Stack:
+v = v - 1
+while (v > 0) execute print(v);
+v = v - 1
+print(v)
+Symbolic table:
+v->2
+Out:
+4
+3
+2
+File table:
+Heap:
+
+
+Stack:
+while (v > 0) execute print(v);
+v = v - 1
+print(v)
+Symbolic table:
+v->1
+Out:
+4
+3
+2
+File table:
+Heap:
+
+
+Stack:
+print(v);
+v = v - 1
+while (v > 0) execute print(v);
+v = v - 1
+print(v)
+Symbolic table:
+v->1
+Out:
+4
+3
+2
+File table:
+Heap:
+
+
+Stack:
+print(v)
+v = v - 1
+while (v > 0) execute print(v);
+v = v - 1
+print(v)
+Symbolic table:
+v->1
+Out:
+4
+3
+2
+File table:
+Heap:
+
+
+Stack:
+v = v - 1
+while (v > 0) execute print(v);
+v = v - 1
+print(v)
+Symbolic table:
+v->1
+Out:
+4
+3
+2
+1
+File table:
+Heap:
+
+
+Stack:
+while (v > 0) execute print(v);
+v = v - 1
+print(v)
+Symbolic table:
+v->0
+Out:
+4
+3
+2
+1
+File table:
+Heap:
+
+
+Stack:
+print(v)
+Symbolic table:
+v->0
+Out:
+4
+3
+2
+1
+File table:
+Heap:
+
+
+Stack:
+
+Symbolic table:
+v->0
+Out:
+4
+3
+2
+1
+0
+File table:
+Heap:
+
+

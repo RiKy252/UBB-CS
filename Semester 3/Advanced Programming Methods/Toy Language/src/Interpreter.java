@@ -116,6 +116,17 @@ public class Interpreter {
             IRepo repository9 = new Repo(program9, "log9.txt");
             Controller controller9 = new Controller(repository9);
 
+            // While stmt
+            IStmt ex10 = new CompStmt(new VarDeclStmt("v", new IntType()),
+                    new CompStmt(new AssignStmt("v", new ValueExp(new IntValue(4))),
+                            new CompStmt(new WhileStmt(new RelationalExp(new VarExp("v"), new ValueExp(new IntValue(0)), ">"),
+                                    new CompStmt(new PrintStmt(new VarExp("v")), new AssignStmt("v",
+                                            new ArithExp(new VarExp("v"), new ValueExp(new IntValue(1)), 2)))),
+                                    new PrintStmt(new VarExp("v")))));
+            PrgState program10 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new Heap<>(), ex10);
+            IRepo repository10 = new Repo(program10, "log10.txt");
+            Controller controller10 = new Controller(repository10);
+
             TextMenu menu = new TextMenu();
             menu.addCommand(new RunExampleCommand("1", "Run the following program:\n" + ex1, controller1));
             menu.addCommand(new RunExampleCommand("2", "Run the following program:\n" + ex2, controller2));
@@ -126,6 +137,7 @@ public class Interpreter {
             menu.addCommand(new RunExampleCommand("7", "Run the following program:\n" + ex7, controller7));
             menu.addCommand(new RunExampleCommand("8", "Run the following program:\n" + ex8, controller8));
             menu.addCommand(new RunExampleCommand("9", "Run the following program:\n" + ex9, controller9));
+            menu.addCommand(new RunExampleCommand("10", "Run the following program:\n" + ex10, controller10));
             menu.addCommand(new ExitCommand("0", "Exit program"));
             menu.show();
         } catch (MyException e) {
