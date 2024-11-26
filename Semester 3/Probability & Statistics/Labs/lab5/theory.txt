@@ -7,7 +7,7 @@ z index(1 - alpha / 2) = quantile of order 1 - alpha / 2 of the law N(0, 1).
 s = sample standard deviation -> std(x)
 
 for A.
-x is not matrix
+x is not matrix, it is a statistical distribution
 it has values on first line
 freq on the second
 so x should look like:
