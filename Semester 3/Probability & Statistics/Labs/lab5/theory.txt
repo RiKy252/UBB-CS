@@ -1,0 +1,19 @@
+mean = average
+x = vector of data
+x bar = average / mean of the data
+n = number of elements in x
+v bar = population standard deviation
+z index(1 - alpha / 2) = quantile of order 1 - alpha / 2 of the law N(0, 1).
+s = sample standard deviation -> std(x)
+
+for A.
+x is not matrix
+it has values on first line
+freq on the second
+so x should look like:
+x = [20, 20, 21, 22, 22, 22, ...]
+
+for 2.
+ (approximately) normally distributed -> normal underlying populations
+so we can use the 3. in conf_int in a) b)
+4. for c)
