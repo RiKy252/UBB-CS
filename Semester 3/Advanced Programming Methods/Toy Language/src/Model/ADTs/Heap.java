@@ -13,6 +13,7 @@ public class Heap<TKey, TValue> implements IHeap<TKey, TValue> {
     private Map<Integer, Value> heap;
     private Integer nextFreeAddr;
     public Heap() {
+        // ConcurrentHashMap
         heap = new HashMap<>();
         nextFreeAddr = 1;
     }

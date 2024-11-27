@@ -1,0 +1,16 @@
+; Remove all occurences of an element from a nonlinear list
+; Ex: e = 1, (1 2 7 (4 5 (6 1) 1) 3 (((1) 2))) => (2 7 (4 5 (6)) 3 (((0 2)))
+
+; removeEl(l1l2..ln, e) = null, if n = 0
+;                       = removeEl(l2l3..ln, e), l1 - atom & l1 = e
+;                       =  l1 U removeEl(l2l3..ln, e), l1 - atom & l1 != e
+;                       = removeEl(l1, e) U removeEl(l2l3..ln, e), if l1 = list
+
+(defun removeEl( l e )
+  (cond
+   ( (NULL l)                                 nil )
+   ( (and (atom(car l)) (= e (car l)))        (removeEl (cdr l) e) )
+   ( (atom (car l))                           (cons (car l) (removeEl (cdr l) e)) )
+   ( t                                        (cons (removeEl (car l) e) (removeEl (cdr l) e)) )
+  )
+)

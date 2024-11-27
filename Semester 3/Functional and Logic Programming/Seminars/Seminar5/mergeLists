@@ -1,0 +1,18 @@
+; Merge two sorted linear lists without keeping double values
+; Ex: (1 2 3 4), (2 3 5 7) -> (1 2 3 4 5 7)
+
+; mergeLists(l1l2..ln, k1k2..km) = l1l2..ln, if m = 0
+;                               = k1k2..km, if n = 0
+;                               = l1 U mergeLists(l2l3..ln, k1k2..km), l1 < k1
+;                               = k1 U mergeLists(l1l2..ln, k2k3..km), k1 < l1
+;                               = l1 U mergeLists(l2l3..ln, k2k3..km), l1 = k1
+
+(defun mergeLists ( l k )
+  (cond
+   ( ( NULL l )          k )
+   ( ( NULL k )          l )
+   ( (< (car l) (car k)) (cons (car l) (mergeLists (cdr l) k)) )
+   ( (> (car l) (car k)) (cons (car k) (mergeLists l (cdr k))) )
+   ( t                  (cons (car l) (mergeLists (cdr l) (cdr k))) )
+  )
+) 
