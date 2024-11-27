@@ -29,11 +29,11 @@ public class NewStmt implements IStmt {
     public PrgState execute(PrgState state) throws MyException {
         MyIDictionary<String, Value> symTbl = state.getSymTable();
         IHeap<Integer, Value> heap = state.getHeap();
-        if (!(symTbl.lookup(varName).getType() instanceof RefType)) {
-            throw new MyException("Variable " + varName + " is not of type RefType");
-        }
         if (!symTbl.isDefined(varName)) {
             throw new MyException("Variable " + varName + " is not defined");
+        }
+        if (!(symTbl.lookup(varName).getType() instanceof RefType)) {
+            throw new MyException("Variable " + varName + " is not of type RefType");
         }
         Value val = exp.eval(symTbl, heap);
         RefValue varNameValue = (RefValue) symTbl.lookup(varName);
