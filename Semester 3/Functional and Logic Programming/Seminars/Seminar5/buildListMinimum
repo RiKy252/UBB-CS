@@ -1,0 +1,33 @@
+; Build a list with the positions of the minimum number from a linear list
+; Ex: ( 1 2 0 a 4 0 b 1 7 ) => (3 6)
+
+; getMinimum(l1l2..ln) = l1, if n = 1
+;                        min(l1, getMinimum(l2l3..ln)), n > 1 & l1 is a number
+;                        getMin(l2l3..ln), otherwise
+
+; getPos(l1l2..ln, p, e) = [], if n = 0
+;                       [p] U getPos(l2l3..ln, p + 1, e), if n > 0 & l1 = e
+;                       getPos(l2l3..ln, p + 1, e), otherwise
+
+; buildList(l1l2..ln) = getPos(l1l2..ln, 1, getMin(l1l2..ln))
+
+(defun getMinimum ( l )
+  (cond
+   ( (NULL (cdr l))                             (car l) )
+   ( (numberp (car l))                          (min (car l) (getMinimum (cdr l))) )
+   ( t                                          (getMinimum (cdr l)) )
+  )
+)
+
+(defun getPos ( l i e )
+  (cond
+   ( (NULL l)                                nil )
+   ( (equal e (car l))                      (cons i (getPos (cdr l) (+ i 1) e)) )
+   ( t                                      (getPos (cdr l) (+ i 1) e) )
+  )
+)
+
+(defun buildList ( l )
+  ( getPos l 1 (getMinimum l) )
+
+)
