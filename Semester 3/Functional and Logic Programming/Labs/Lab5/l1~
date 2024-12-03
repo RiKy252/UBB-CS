@@ -1,0 +1,19 @@
+; l1.1a
+
+; getPosElem(i, c, l1l2..ln) = null, if n = 0
+;                            = l1, if i = c
+;                            = getPosElem(i + 1, c, l2l3..ln), if i != c
+
+(defun getPosElem( i c l )
+  (cond
+   ( (null l)                nil )
+   ( (= i c)                 (car l) )
+   ( t                       (getPosElem (+ i 1) c (cdr l)) )
+  )
+)
+
+; getPosElemMain(i, l1l2..ln) = getPosElem(1, i, l1l2..ln)
+
+(defun getPosElemMain( i l )
+  ( getPosElem 1 i l )
+)

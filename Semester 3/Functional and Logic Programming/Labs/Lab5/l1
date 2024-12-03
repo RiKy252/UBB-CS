@@ -1,0 +1,35 @@
+; l1.1a
+
+; getPosElem(i, c, l1l2..ln) = null, if n = 0
+;                            = l1, if i = c
+;                            = getPosElem(i + 1, c, l2l3..ln), if i != c
+
+(defun getPosElem( i c l )
+  (cond
+   ( (null l)                nil )
+   ( (= i c)                 (car l) )
+   ( t                       (getPosElem (+ i 1) c (cdr l)) )
+  )
+)
+
+; getPosElemMain(i, l1l2..ln) = getPosElem(1, i, l1l2..ln)
+
+(defun getPosElemMain( i l )
+  ( getPosElem 1 i l )
+)
+
+; l1.1b
+
+; isMember(e, l1l2..ln) = null, if n = 0
+;                       t, if atom(l1) and l1 = e
+;                       isMember(e, l2l3..ln), if atom(l1) and l1 != e
+;                       isMember(e, l1) U isMember(e, l2l3..ln), otherwise
+
+(defun isMember( e l )
+  (cond
+   ( (null l)                                            nil )
+   ( (and (atom (car l)) (equal (car l) e))              t )
+   ( (and (atom (car l)) (not (equal (car l) e)))        (isMember e (cdr l)) )
+   ( t                                                   (or (isMember e (car l)) (isMember e (cdr l))) )
+  )
+) 
