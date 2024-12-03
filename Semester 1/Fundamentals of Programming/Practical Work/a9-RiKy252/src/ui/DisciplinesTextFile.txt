@@ -1,0 +1,19 @@
+1,Artificial Intelligence
+2,Data Science
+3,Machine Learning
+4,Computer Networks
+5,Software Engineering
+6,Database Management
+7,Cybersecurity
+8,Human-Computer Interaction
+9,Computer Graphics
+10,Algorithms and Data Structures
+11,Computer Vision
+12,Operating Systems
+13,Information Systems
+14,Robotics
+15,Natural Language Processing
+16,Cloud Computing
+17,Computer Architecture
+18,Web Development
+19,Mobile App Development
