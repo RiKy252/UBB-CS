@@ -33,3 +33,23 @@
    ( t                                                   (or (isMember e (car l)) (isMember e (cdr l))) )
   )
 ) 
+
+; l1.1c
+
+; listOfAllSublists(l1l2..ln) = l, if n = 0
+;                               l1 U listOfAllSublists(l2l3..ln), if listp(l1)
+;                               listOfAllSublists(l2l3..ln), otherwise
+
+(defun listOfAllSublists (l)
+  (cond
+    ((null l)          nil)
+    ((listp (car l))   (append (list (car l))
+                       (listOfAllSublists (car l)) 
+                       (listOfAllSublists (cdr l)))) 
+    (t                 (listOfAllSublists (cdr l)))))
+
+; listOfAllSublistsMain(l1l2..ln) = l U listOfAllSublists(l)
+
+(defun listOfAllSublistsMain (l)
+  (cons l (listOfAllSublists l))
+)
