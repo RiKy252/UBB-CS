@@ -53,3 +53,17 @@
 (defun listOfAllSublistsMain (l)
   (cons l (listOfAllSublists l))
 )
+
+; l1.1d
+
+; removeDuplicates(l1l2..l3) = null, if n = 0
+;                              removeDuplicates(l2l3..ln), if isMember(l1, l2l3..ln) 
+;                              l1 U removeDuplicates(l2l3..ln), otherwise
+
+(defun removeDuplicates( l )
+	(cond
+		( (null l)                           nil )
+		( (isMember (car l) (cdr l))         (removeDuplicates (cdr l)) )
+		( t                                  (cons (car l) (removeDuplicates (cdr l))) )
+	)
+)
