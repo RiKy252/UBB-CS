@@ -8,14 +8,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Repo implements IRepo {
-    private ArrayList<PrgState> programs;
+    private List<PrgState> programs;
     private int index = 1;
     private String logFilePath;
 
     public Repo(PrgState program, String logFilePath) {
-        this.programs = new ArrayList<PrgState>();
+        this.programs = new ArrayList<>();
         this.programs.add(program);
         this.logFilePath = logFilePath;
     }
@@ -27,12 +28,7 @@ public class Repo implements IRepo {
     }
 
     @Override
-    public PrgState getCrtPrg() {
-        return this.programs.get(index - 1);
-    }
-
-    @Override
-    public ArrayList<PrgState> getAll() {
+    public List<PrgState> getPrgList() {
         return this.programs;
     }
 
@@ -48,5 +44,9 @@ public class Repo implements IRepo {
             logFile.println(program.toString());
             logFile.close();
         }
+    }
+    @Override
+    public void setPrgList(List<PrgState> newPrograms) {
+        this.programs = newPrograms;
     }
 }

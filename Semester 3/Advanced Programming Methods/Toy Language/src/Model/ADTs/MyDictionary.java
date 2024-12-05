@@ -1,4 +1,6 @@
 package Model.ADTs;
+import MyException.MyException;
+
 import java.util.*;
 
 public class MyDictionary<TKey, TValue> implements MyIDictionary<TKey, TValue> {
@@ -41,5 +43,13 @@ public class MyDictionary<TKey, TValue> implements MyIDictionary<TKey, TValue> {
     @Override
     public List<TValue> getValues() {
         return new ArrayList<>(this.dict.values());
+    }
+    @Override
+    public MyIDictionary<TKey, TValue> copy() throws MyException {
+        MyIDictionary<TKey, TValue> newDict = new MyDictionary<>();
+        for (TKey key : this.dict.keySet()) {
+            newDict.add(key, this.dict.get(key));
+        }
+        return newDict;
     }
 }

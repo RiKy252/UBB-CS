@@ -58,6 +58,6 @@ public class ReadFile implements IStmt {
             throw new MyException("Invalid line in file");
         }
         symTable.update(varName, new IntValue(answer));
-        return program;
+        return null;
     }
 }

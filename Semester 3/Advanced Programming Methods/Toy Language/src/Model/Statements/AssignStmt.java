@@ -36,7 +36,7 @@ public class AssignStmt implements IStmt {
         else {
             throw new IncompatibleTypeException("The used variable " + id + " was not declared before");
         }
-        return state;
+        return null;
     }
     @Override
     public IStmt deepcopy() {

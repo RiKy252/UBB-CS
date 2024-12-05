@@ -3,11 +3,11 @@ package Repository;
 import Model.PrgState;
 import MyException.MyException;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface IRepo {
-    PrgState getCrtPrg();
     void addPrg(PrgState program);
-    ArrayList<PrgState> getAll();
+    List<PrgState> getPrgList();
     void logPrgStateExec(PrgState program) throws MyException;
+    void setPrgList(List<PrgState> newPrograms);
 }

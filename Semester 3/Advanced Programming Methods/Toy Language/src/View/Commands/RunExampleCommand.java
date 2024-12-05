@@ -12,8 +12,8 @@ public class RunExampleCommand extends Command {
     @Override
     public void execute() {
         try {
-            controller.allStepsExec();
-        } catch (MyException e) {
+            controller.allSteps();
+        } catch (Exception e) {
             System.out.println(e);
         }
     }

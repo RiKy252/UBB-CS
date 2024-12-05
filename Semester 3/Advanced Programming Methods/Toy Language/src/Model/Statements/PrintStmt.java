@@ -25,7 +25,7 @@ public class PrintStmt implements IStmt {
         IHeap<Integer, Value> heap = state.getHeap();
         MyIList<Value> out = state.getOut();
         out.add(exp.eval(sym, heap));
-        return state;
+        return null;
     }
     @Override
     public IStmt deepcopy() {

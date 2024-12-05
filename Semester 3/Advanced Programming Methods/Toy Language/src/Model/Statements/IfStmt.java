@@ -35,7 +35,7 @@ public class IfStmt implements IStmt {
                 state.getStack().push(elseS);
             }
         }
-        return state;
+        return null;
     }
     @Override
     public String toString() {

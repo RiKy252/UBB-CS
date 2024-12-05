@@ -1,5 +1,7 @@
 package Model.ADTs;
 
+import MyException.MyException;
+
 import java.util.List;
 
 public interface MyIDictionary<TKey, TValue> {
@@ -11,4 +13,5 @@ public interface MyIDictionary<TKey, TValue> {
     void remove(TKey key);
     List<TKey> getAllKeys();
     List<TValue> getValues();
+    MyIDictionary<TKey, TValue> copy() throws MyException;
 }

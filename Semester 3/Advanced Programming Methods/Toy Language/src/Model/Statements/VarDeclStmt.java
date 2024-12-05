@@ -20,7 +20,7 @@ public class VarDeclStmt implements IStmt {
             throw new AlreadyDefinedException("Variable is already defined");
         Value defaultValue = type.defaultValue();
         symTbl.add(id, defaultValue);
-        return state;
+        return null;
     }
     @Override
     public String toString() {

@@ -13,6 +13,7 @@ import Model.Types.StringType;
 import Model.Values.BoolValue;
 import Model.Values.IntValue;
 import Model.Values.StringValue;
+import Model.Values.Value;
 import MyException.MyException;
 import Repository.IRepo;
 import Repository.Repo;
@@ -127,6 +128,24 @@ public class Interpreter {
             IRepo repository10 = new Repo(program10, "log10.txt");
             Controller controller10 = new Controller(repository10);
 
+            // Threads example
+
+            IStmt ex11 = new CompStmt(new VarDeclStmt("v", new IntType()),
+                    new CompStmt(new VarDeclStmt("a", new RefType(new IntType())),
+                            new CompStmt(new AssignStmt("v", new ValueExp(new IntValue(10))),
+                                    new CompStmt(new NewStmt("a", new ValueExp(new IntValue(22))),
+                                            new CompStmt(new ForkStmt(
+                                                    new CompStmt(new WriteHeapStmt("a", new ValueExp(new IntValue(30))),
+                                                            new CompStmt(new AssignStmt("v", new ValueExp(new IntValue(32))),
+                                                                    new CompStmt(new PrintStmt(new VarExp("v")),
+                                                                            new PrintStmt(new ReadHeapExp(new VarExp("a"))))))
+                                            ), new CompStmt(
+                                                    new PrintStmt(new VarExp("v")), new PrintStmt(new ReadHeapExp(new VarExp("a")))
+                                            ))))));
+            PrgState program11 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new Heap<>(), ex11);
+            IRepo repository11 = new Repo(program11, "log11.txt");
+            Controller controller11 = new Controller(repository11);
+
             TextMenu menu = new TextMenu();
             menu.addCommand(new RunExampleCommand("1", "Run the following program:\n" + ex1, controller1));
             menu.addCommand(new RunExampleCommand("2", "Run the following program:\n" + ex2, controller2));
@@ -138,6 +157,7 @@ public class Interpreter {
             menu.addCommand(new RunExampleCommand("8", "Run the following program:\n" + ex8, controller8));
             menu.addCommand(new RunExampleCommand("9", "Run the following program:\n" + ex9, controller9));
             menu.addCommand(new RunExampleCommand("10", "Run the following program:\n" + ex10, controller10));
+            menu.addCommand(new RunExampleCommand("11", "Run the following program:\n" + ex11, controller11));
             menu.addCommand(new ExitCommand("0", "Exit program"));
             menu.show();
         } catch (MyException e) {

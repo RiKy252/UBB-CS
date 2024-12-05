@@ -41,7 +41,7 @@ public class WriteHeapStmt implements IStmt {
         } else {
             throw new MyException("Variable not found in sym table");
         }
-        return state;
+        return null;
     }
 
     @Override

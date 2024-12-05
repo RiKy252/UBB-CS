@@ -44,6 +44,6 @@ public class OpenRFile implements IStmt {
         } catch (Exception e) {
             throw new MyException("Error opening file!");
         }
-        return program;
+        return null;
     }
 }

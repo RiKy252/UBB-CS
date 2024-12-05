@@ -42,7 +42,7 @@ public class NewStmt implements IStmt {
         }
         int addr = heap.allocate(val);
         symTbl.update(varName, new RefValue(addr, val.getType()));
-        return state;
+        return null;
     }
     @Override
     public IStmt deepcopy() {

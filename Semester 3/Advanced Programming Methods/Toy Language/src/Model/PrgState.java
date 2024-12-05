@@ -4,6 +4,7 @@ import Model.ADTs.*;
 import Model.Statements.IStmt;
 import Model.Values.RefValue;
 import Model.Values.Value;
+import MyException.EmptyExecutionStackException;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;
@@ -11,7 +12,9 @@ import java.util.List;
 import java.util.Map;
 
 public class PrgState {
-    private  MyIStack<IStmt> exeStack;
+    private int id;
+    static int nextId = 0;
+    private MyIStack<IStmt> exeStack;
     private MyIDictionary<String, Value> symTable;
     private MyIList<Value> out;
     private MyIDictionary<String, BufferedReader> fileTable;
@@ -19,6 +22,10 @@ public class PrgState {
     IStmt originalProgram;
 
     public PrgState(MyIStack<IStmt> stack, MyIDictionary<String, Value> symbolicTable, MyIList<Value> output, MyIDictionary<String, BufferedReader> fileTable, IHeap<Integer, Value> heap, IStmt program) {
+        synchronized (PrgState.class) {
+            this.id = nextId;
+            nextId++;
+        }
         exeStack = stack;
         symTable = symbolicTable;
         out = output;
@@ -83,10 +90,26 @@ public class PrgState {
 
     @Override
     public String toString() {
-        return "Stack:\n" + this.exeStack.toString() + "\n" +
+        return "ID: " + this.id + "\n" +
+                "Stack:\n" + this.exeStack.toString() + "\n" +
                 "Symbolic table:\n" + this.symTable.toString() +
                 "Out:\n" + this.out.toString() +
                 "File table:\n" + this.fileTable.toString() +
                 "Heap:\n" + this.heap.toString() + "\n";
+    }
+
+    public boolean isNotCompleted() {
+        return !this.exeStack.isEmpty();
+    }
+
+    public PrgState oneStepExec() throws EmptyExecutionStackException {
+        if (exeStack.isEmpty())
+            throw new EmptyExecutionStackException("Program state stack is empty");
+        IStmt currentStatement = exeStack.pop();
+        return currentStatement.execute(this);
+    }
+
+    public int getId() {
+        return this.id;
     }
 }

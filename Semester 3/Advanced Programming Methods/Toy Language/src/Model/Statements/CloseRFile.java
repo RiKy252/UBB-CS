@@ -44,6 +44,6 @@ public class CloseRFile implements IStmt {
         } catch (MyException e) {
             throw new MyException("File could not be found!");
         }
-        return program;
+        return null;
     }
 }
