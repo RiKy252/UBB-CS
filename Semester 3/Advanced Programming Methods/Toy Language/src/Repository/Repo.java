@@ -12,7 +12,6 @@ import java.util.List;
 
 public class Repo implements IRepo {
     private List<PrgState> programs;
-    private int index = 1;
     private String logFilePath;
 
     public Repo(PrgState program, String logFilePath) {
@@ -24,7 +23,6 @@ public class Repo implements IRepo {
     @Override
     public void addPrg(PrgState program) {
         this.programs.add(program);
-        index++;
     }
 
     @Override

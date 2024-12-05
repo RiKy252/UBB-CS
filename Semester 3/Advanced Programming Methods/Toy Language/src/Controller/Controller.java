@@ -24,7 +24,7 @@ public class Controller {
         this.repository = repo;
     }
     public void oneStepForAllPrg(List<PrgState> prgList) throws InterruptedException {
-        prgList.forEach(prg -> repository.logPrgStateExec(prg));
+        // prgList.forEach(prg -> repository.logPrgStateExec(prg));
         List<Callable<PrgState>> callList = prgList.stream()
                 .map((PrgState p) -> (Callable<PrgState>)() -> {return p.oneStepExec();})
                 .collect(Collectors.toList());

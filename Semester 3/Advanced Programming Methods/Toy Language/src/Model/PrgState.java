@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class PrgState {
     private int id;
-    static int nextId = 0;
+    private static int nextId = 1;
     private MyIStack<IStmt> exeStack;
     private MyIDictionary<String, Value> symTable;
     private MyIList<Value> out;

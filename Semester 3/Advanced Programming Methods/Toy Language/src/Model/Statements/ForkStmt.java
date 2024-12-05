@@ -12,7 +12,7 @@ public class ForkStmt implements IStmt {
     @Override
     public PrgState execute(PrgState program) throws MyException {
         PrgState newProgram = new PrgState(new MyStack<>(), program.getSymTable().copy(), program.getOut(), program.getFileTable(), program.getHeap(), inner);
-        newProgram.getStack().push(inner);
+        // newProgram.getStack().push(inner);
         return newProgram;
     }
     @Override
@@ -24,4 +24,3 @@ public class ForkStmt implements IStmt {
         return new ForkStmt(inner.deepcopy());
     }
 }
-// TODO fork only executes the stmt inside, not from the parent thread too.
