@@ -36,7 +36,7 @@
 
 ; l1.1c
 
-; listOfAllSublists(l1l2..ln) = null, if n = 0
+; listOfAllSublists(l1l2..ln) = l, if n = 0
 ;                               l1 U listOfAllSublists(l2l3..ln), if listp(l1)
 ;                               listOfAllSublists(l2l3..ln), otherwise
 
