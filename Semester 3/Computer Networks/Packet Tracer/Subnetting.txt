@@ -1,0 +1,26 @@
+Subnetting:
+
+192.168.0.0 / 22
+					(network mask)
+						   |
+Subnetwork 1: 256 hosts    / 23 -> 9 bits for host (32 bits for entire IP addr)
+we need 256 hosts but we need to take into account the network addr and the broadcast addr as well -> we need to hold 258 elements -> 2^9
+
+Subnetwork 2: 100 hosts -> 102 addr
+7 bits for hosts -> 32 - 7 = 25 => /25
+
+					(16 bits) (7 bits)							
+						||	     |
+/ 23 (decimal notation) = 255.255.254.0 = mask for s1
+
+/ 25 = 255.255.255.128 = mask for s2
+
+Subnet 1:
+192.168.0.0
+broadcast addr = IP or (!mask) = 192.168.1.255 (broadcast addr is last in the network)
+range of Subnet 1 = 192.168.0.0 -> 192.168.1.255
+
+Subnet 2:
+192.168.2.0
+broadcast addr = IP or (!mask) = 192.168.2.127
+range of Subnet 2 = 192.168.2.0 -> 192.168.2.127
