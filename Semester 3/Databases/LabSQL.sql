@@ -1187,4 +1187,314 @@ ALTER TABLE [TestViews] ADD
 
 GO
 
+---------------------
 
+create table CUSTOMERS_TEST (
+	CustomerID int primary key,
+	CustomerName varchar(255)
+)
+
+create table PRODUCTS_TEST (
+	ProductID int primary key,
+	CustomerID int,
+	foreign key (CustomerID) references CUSTOMERS_TEST(CustomerID) on delete cascade on update cascade
+)
+
+create table PRODUCT_CATEGORIES_TEST (
+	CategoryID int primary key,
+	CategoryName varchar(255)
+)
+
+create table STORE_SECTION_TEST (
+	StoreSectionID int primary key,
+	StoreSectionName varchar(255)
+)
+
+create table EMPLOYEES_TEST (
+	EmployeeID int primary key,
+	EmployeeName varchar(255)
+)
+
+create table EMPLOYEES_PER_SECTION_TEST (
+	EmployeeID int,
+	StoreSectionID int,
+	foreign key (EmployeeID) references EMPLOYEES_TEST(EmployeeID) on delete cascade on update cascade,
+	foreign key (StoreSectionID) references STORE_SECTION_TEST(StoreSectionID) on delete cascade on update cascade
+)
+
+create or alter procedure populateTableCUSTOMERS_TEST(@rows int) as
+	declare @i int
+	set @i = 0
+	while @i < @rows
+	begin
+		insert into CUSTOMERS_TEST values (@i, 'Customer' + cast(@i as varchar(255)))
+		set @i = @i + 1
+	end
+go
+
+create or alter procedure populateTablePRODUCTS_TEST(@rows int) as
+	declare @i int
+	set @i = 0
+	while @i < @rows
+	begin
+		insert into PRODUCTS_TEST values (@i, @i)
+		set @i = @i + 1
+	end
+go
+
+create or alter procedure populateTablePRODUCT_CATEGORIES_TEST(@rows int) as
+	declare @i int
+	set @i = 0
+	while @i < @rows 
+	begin
+		insert into PRODUCT_CATEGORIES_TEST values (@i, 'ProductCategory' + cast(@i as varchar(255)))
+		set @i = @i + 1
+	end
+go
+
+create or alter procedure populateTableSTORE_SECTION_TEST(@rows int) as
+	declare @i int
+	set @i = 0
+	while @i < @rows 
+	begin
+		insert into STORE_SECTION_TEST values (@i, 'StoreSection' + cast(@i as varchar(255)))
+		set @i = @i + 1
+	end
+go
+
+create or alter procedure populateTableEMPLOYEES_TEST(@rows int) as
+	declare @i int
+	set @i = 0
+	while @i < @rows 
+	begin
+		insert into EMPLOYEES_TEST values (@i, 'Employee' + cast(@i as varchar(255)))
+		set @i = @i + 1
+	end
+go
+
+create or alter procedure populateTableEMPLOYEES_PER_SECTION_TEST(@rows int) as
+	declare @i int
+	set @i = 0
+	while @i < @rows 
+	begin
+		insert into EMPLOYEES_PER_SECTION_TEST values (@i, @i)
+		set @i = @i + 1
+	end
+go
+
+create or alter procedure addToTables (@tableName varchar(50)) as
+    if @tableName in (select Name from Tables) begin
+        print 'Table already present in Tables'
+        return
+    end
+    if @tableName not in (select TABLE_NAME from INFORMATION_SCHEMA.TABLES) begin
+        print 'Table not present in the database'
+        return
+    end
+    insert into Tables (Name) values (@tableName)
+GO
+
+create or alter procedure addToViews (@viewName varchar(50)) as
+    if @viewName in (select Name from Views) begin
+        print 'View already present in Views'
+        return
+    end
+    if @viewName not in (select TABLE_NAME from INFORMATION_SCHEMA.VIEWS) begin
+        print 'View not present in the database'
+        return
+    end
+    insert into Views (Name) values (@viewName)
+GO
+
+create or alter procedure addToTests (@testName varchar(50)) as
+    if @testName in (select Name from Tests) begin
+        print 'Test already present in Tests'
+        return
+    end
+    insert into Tests (Name) values (@testName)
+GO
+
+create or alter procedure connectTableToTest (@tableName varchar(50), @testName varchar(50), @rows int, @pos int) as
+    if @tableName not in (select Name from Tables) begin
+        print 'Table not present in Tables'
+        return
+    end
+    if @testName not in (select Name from Tests) begin
+        print 'Test not present in Tests'
+        return
+    end
+	-- check if the @pos is already used for the same test in the table
+    if exists(
+        select *
+        from TestTables T1 join Tests T2 on T1.TestID = T2.TestID
+        where T2.Name=@testName and Position=@pos
+        ) begin
+        print 'Position provided conflicts with previous positions'
+        return
+    end
+    insert into TestTables (TestID, TableID, NoOfRows, Position) values (
+        (select Tests.TestID from Tests where Name=@testName),
+        (select Tables.TableID from Tables where Name=@tableName),
+        @rows,
+        @pos
+    )
+GO
+
+create or alter procedure connectViewToTest (@viewName varchar(50), @testName varchar(50)) as
+    if @viewName not in (select Name from Views) begin
+        print 'View not present in Views'
+        return
+    end
+    if @testName not in (select Name from Tests) begin
+        print 'Tests not present in Tests'
+        return
+    end
+    insert into TestViews (TestID, ViewID) values (
+        (select Tests.TestID from Tests where Name=@testName),
+        (select Views.ViewID from Views where Name=@viewName)
+    )
+GO
+
+
+create or alter procedure runTest (@testName varchar(50)) as
+    if @testName not in (select Name from Tests) begin
+        print 'test not in Tests'
+        return
+    end
+    declare @command varchar(100)
+    declare @testStartTime datetime2
+    declare @startTime datetime2
+    declare @endTime datetime2
+    declare @table varchar(50)
+    declare @rows int
+    declare @pos int
+    declare @view varchar(50)
+    declare @testId int
+    select @testId=TestID from Tests where Name=@testName
+    declare @testRunId int
+    set @testRunId = (select max(TestRunID)+1 from TestRuns)
+    if @testRunId is null
+        set @testRunId = 0
+    declare tableCursor cursor scroll for
+        select T1.Name, T2.NoOfRows, T2.Position
+        from Tables T1 join TestTables T2 on T1.TableID = T2.TableID
+        where T2.TestID = @testId
+        order by T2.Position
+    declare viewCursor cursor for
+        select V.Name
+        from Views V join TestViews TV on V.ViewID = TV.ViewID
+        where TV.TestID = @testId
+
+    set @testStartTime = sysdatetime()
+    open tableCursor
+    fetch last from tableCursor into @table, @rows, @pos
+    while @@FETCH_STATUS = 0 begin
+        exec ('delete from '+ @table)
+        fetch prior from tableCursor into @table, @rows, @pos
+    end
+    close tableCursor
+
+    open tableCursor
+    SET IDENTITY_INSERT TestRuns ON
+    insert into TestRuns (TestRunID, Description, StartAt)values (@testRunId, 'Tests results for: ' + @testName, @testStartTime)
+    SET IDENTITY_INSERT TestRuns OFF
+    fetch tableCursor into @table, @rows, @pos
+    while @@FETCH_STATUS = 0 begin
+        set @command = 'populateTable' + @table
+        if @command not in (select ROUTINE_NAME from INFORMATION_SCHEMA.ROUTINES) begin
+            print @command + 'does not exist'
+            return
+        end
+        set @startTime = sysdatetime()
+        exec @command @rows
+        set @endTime = sysdatetime()
+        insert into TestRunTables (TestRunID, TableId, StartAt, EndAt) values (@testRunId, (select TableID from Tables where Name=@table), @startTime, @endTime)
+        fetch tableCursor into @table, @rows, @pos
+    end
+    close tableCursor
+    deallocate tableCursor
+
+    open viewCursor
+    fetch viewCursor into @view
+    while @@FETCH_STATUS = 0 begin
+        set @command = 'select * from ' + @view
+        set @startTime = sysdatetime()
+        exec (@command)
+        set @endTime = sysdatetime()
+        insert into TestRunViews (TestRunID, ViewID, StartAt, EndAt) values (@testRunId, (select ViewID from Views where Name=@view), @startTime, @endTime)
+        fetch viewCursor into @view
+    end
+    close viewCursor
+    deallocate viewCursor
+
+    update TestRuns
+    set EndAt=sysdatetime()
+    where TestRunID = @testRunId
+GO
+
+-- Test 1
+-- a table with a single-column primary key and no foreign keys
+-- a view with a SELECT statement operating on one table
+
+create view ProductCategoriesTestView as
+    select * from PRODUCT_CATEGORIES_TEST
+GO
+
+EXEC addToTables 'PRODUCT_CATEGORIES_TEST'
+EXEC addToViews 'ProductCategoriesTestView'
+EXEC addToTests 'Test1'
+EXEC connectTableToTest 'PRODUCT_CATEGORIES_TEST', 'Test1', 1000, 1
+EXEC connectViewToTest 'ProductCategoriesTestView', 'Test1'
+EXEC runTest 'Test1'
+GO
+
+-- Test 2
+-- a table with a single-column primary key and at least one foreign key
+-- a view with a SELECT statement that operates on at least 2 different tables and contains at least one JOIN operator
+
+CREATE OR ALTER VIEW ProductsView AS
+    SELECT ProductID as 'Product ID', CustomerName as 'Customer Name'
+    FROM PRODUCTS_TEST P INNER JOIN CUSTOMERS_TEST C ON P.CustomerID = C.CustomerID
+GO
+
+EXEC addToTables 'CUSTOMERS_TEST'
+EXEC addToTables 'PRODUCTS_TEST'
+EXEC addToViews 'ProductsView'
+EXEC addToTests 'Test2'
+EXEC connectTableToTest 'CUSTOMERS_TEST', 'Test2', 1000, 2
+EXEC connectTableToTest 'PRODUCTS_TEST', 'Test2', 1000, 3
+EXEC connectViewToTest 'ProductsView', 'Test2'
+EXEC runTest 'Test2'
+GO
+
+-- Test 3
+-- a table with a multicolumn primary key
+-- a view with a SELECT statement that has a GROUP BY clause, operates on at least 2 different tables and contains at least one JOIN operator
+
+create view EmployeesPerSectionTestView as
+	select StoreSectionName as 'Section Name', count(EmployeeID) as 'Number of employees'
+	from EMPLOYEES_PER_SECTION_TEST E inner join STORE_SECTION_TEST S on E.StoreSectionID = S.StoreSectionID
+	group by StoreSectionName
+go
+
+EXEC addToTables 'STORE_SECTION_TEST'
+EXEC addToTables 'EMPLOYEES_TEST'
+EXEC addToTables 'EMPLOYEES_PER_SECTION_TEST'
+EXEC addToViews 'EmployeesPerSectionTestView'
+EXEC addToTests 'Test3'
+EXEC connectTableToTest 'STORE_SECTION_TEST', 'Test3', 1000, 4
+EXEC connectTableToTest 'EMPLOYEES_TEST', 'Test3', 1000, 5
+EXEC connectTableToTest 'EMPLOYEES_PER_SECTION_TEST', 'Test3', 1000, 6
+EXEC connectViewToTest 'EmployeesPerSectionTestView', 'Test3'
+EXEC runTest 'Test3'
+GO
+
+--
+
+EXEC runTest 'Test1'
+EXEC runTest 'Test2'
+EXEC runTest 'Test3'
+
+SELECT * FROM TestRuns
+SELECT * FROM TestRunTables
+SELECT * FROM TestRunViews
