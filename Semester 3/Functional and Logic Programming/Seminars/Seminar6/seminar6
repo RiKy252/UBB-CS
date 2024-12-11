@@ -1,0 +1,90 @@
+MAPCAR
+
+
+;1.
+;    (1 2 3) => (3 6 9)
+;    (defun triple (x) (* 3 x))
+;
+;    (mapcar #'triple '(1 2 3))      --> # to tell that 'triple' is the name of a function
+;        -> this is equivalent to:
+;        (list (triple 1) (triple 2) (triple 3))
+;        (list 3 6 9)
+;        (3 6 9)
+
+;    (1 (a (2 b)) 3 4 2)
+
+;    triple_l(x) = 3*x, if x is number
+;                x, if x is a nonnumerical atom
+;                Union(i=1,n) triple_l(xi), if x-list, x=x1 x2 .. xn
+
+(defun triple_l (x)
+        (cond
+            ((numberp x) (* 3 x))
+            ((atom x) x)
+            (t (mapcar #'triple_l x))
+        )
+)
+
+
+;2. Product of numerical elems in a nonlinear list
+
+;   Ex (1 a b 2 (1 5 2) 1 1)
+
+;    prod(l) = l, if l-number
+;              1, if l-nonnumerical atom
+;              Product(i=1,n) prod(li), if l=l1 l2 .. ln
+
+;              => prod(l1) * prod(l2) * .. * prod(ln)
+
+(defun prod (l)
+        (cond
+            ((numberp l) l)
+            ((atom l) 1)
+            (t (apply '* (mapcar '#prod l)))        => apply does the multiplication
+        )
+)
+
+
+;3. Compute the number of nodes from the even levels of an n-ary tree repres as (root (subtree1) (subtree2) .. (subtree n)).
+;  Root level is 1
+
+;   Ex: (A (B (D (G) (H)) (E (J))) (C (F (J (L)) (K)))) => 7
+;        0  1  0  1   1    0  1     1  0  1  0    1
+
+;                A 
+;            B        C  
+;          D    E     F 
+;         G H   I    J K 
+;                    L 
+
+;    count(tree, c) = 0, if tree is an atom and c is odd (c is the level)
+;                     1, if tree is an atom and c is even 
+;                     Sum(i=1,n) count(tree_i, c+1), if tree is a list with n elements
+
+(defun count (tree c)
+        (cond
+            ((and (atom tree) (=(mod c 2) 1)) 0)
+            ((atom tree) 1)
+            (t (apply '+ (mapcar #'(lambda (ti) (count ti (+ c 1))))) tree)
+        )
+)
+
+
+;4. Given a nonlinear lisst, compute the number of sublists (in the initial list) where the last numerical atom is 5 (on any level)
+
+;    Ex: (A 5 (B C D) 2 1 (G (5 H) 7 D) 11 14) = 3
+;        1                2  3
+;    => (5 2 1 5 7 11 14)
+
+;    transform(x) = [x], if x number
+;                   [], x nonnumerical atom
+;                   append(transform(x1), transform(x2) .. transform(xn)), if x is a list with n elements
+
+(defun transform(x)
+        (cond
+            ((null x) ())
+            ((numberp x) (list x))
+            ((atom x) NIL)
+            (t (apply 'append (mapcar #'transform x)))
+        )
+)
