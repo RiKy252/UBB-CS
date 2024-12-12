@@ -1,0 +1,65 @@
+Example for the practical test: (1h 15m)
+
+Part I:
+3 questions
+
+Part II:
+create a database with given information
+
+I:
+1.
+-- C3 >= 100
+-- or
+-- C1 LIKE '%Pisica%'
+
+C2				Sum(C3)					Avg(C3)
+
+TW				300						150
+MV				600						120
+
+
+2.
+-- FK1 = FK2
+
+FK1				FK2					C3+C4
+1				1					
+2				2					
+3				3					
+4				4					
+
+-- C5 LIKE '%Q%'
+
+FK1				FK2				C5
+1				2
+1				3
+2				1
+2				3
+3				1
+3				2
+4				2				
+
+inner join on these two tables with r1.fk1 = r2.fk1 and r1.fk2 = r2.fk2 -> 0 records
+
+3.
+@total = 0 = sum(i.C3 - d.C3)
+
+C3 = 300
+FK1 < FK2
+-> (300-50) + (300-50) + (300-100) = 250 + 250 + 200 = 700
+
+
+II: 1)
+
+TRAIN TYPES 						 TRAINS							STATIONS						ROUTES						SCHEDULES
+TTid int -----------------				Tid	int	____						Sid int							Rid int						Rid (PK) int
+Name varchar			|			 	 Name varchar|						SName -UNIQUE varchar			RName -UNIQUE varchar		Sid (PK) int
+Description varchar	---------------------TTid (1:n) int	|													-----	Tid (1:n) int 					Arrival time
+												|													|	  							Departure time
+												|													|	  
+												---------------------------------------------------------------------
+
+
+
+
+
+
