@@ -5,6 +5,7 @@ import Model.ADTs.MyIDictionary;
 import Model.Expressions.Exp;
 import Model.PrgState;
 import Model.Types.StringType;
+import Model.Types.Type;
 import Model.Values.StringValue;
 import Model.Values.Value;
 import MyException.MyException;
@@ -45,5 +46,13 @@ public class CloseRFile implements IStmt {
             throw new MyException("File could not be found!");
         }
         return null;
+    }
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        Type typeExp = exp.typeCheck(typeEnv);
+        if (typeExp.equals(new StringType()))
+            return typeEnv;
+        else
+            throw new MyException("closeFile expression is not of type string!");
     }
 }

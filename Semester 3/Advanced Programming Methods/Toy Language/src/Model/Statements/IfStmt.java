@@ -1,10 +1,12 @@
 package Model.Statements;
 
 import Model.ADTs.IHeap;
+import Model.ADTs.MyDictionary;
 import Model.ADTs.MyIDictionary;
 import Model.Expressions.Exp;
 import Model.PrgState;
 import Model.Types.BoolType;
+import Model.Types.Type;
 import Model.Values.BoolValue;
 import Model.Values.Value;
 import MyException.*;
@@ -44,5 +46,16 @@ public class IfStmt implements IStmt {
     @Override
     public IStmt deepcopy() {
         return new IfStmt(exp.deepcopy(), thenS.deepcopy(), elseS.deepcopy());
+    }
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        Type typeExp = exp.typeCheck(typeEnv);
+        if (typeExp.equals(new BoolType())) {
+            thenS.typeCheck(typeEnv.copy());
+            elseS.typeCheck(typeEnv.copy());
+            return typeEnv;
+        }
+        else
+            throw new MyException("The condition of If Stmt is not a bool type!");
     }
 }

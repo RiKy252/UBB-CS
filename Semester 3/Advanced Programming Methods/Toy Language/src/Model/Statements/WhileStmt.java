@@ -5,6 +5,7 @@ import Model.ADTs.MyIDictionary;
 import Model.Expressions.Exp;
 import Model.PrgState;
 import Model.Types.BoolType;
+import Model.Types.Type;
 import Model.Values.BoolValue;
 import Model.Values.Value;
 import MyException.MyException;
@@ -36,5 +37,15 @@ public class WhileStmt implements IStmt {
             state.getStack().push(stmt);
         }
         return null;
+    }
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        Type typeExp = exp.typeCheck(typeEnv);
+        if (typeExp.equals(new BoolType())) {
+            stmt.typeCheck(typeEnv.copy());
+            return typeEnv;
+        }
+        else
+            throw new MyException("The condition of While Stmt is not a bool type!");
     }
 }

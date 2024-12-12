@@ -3,6 +3,7 @@ package Model.Expressions;
 import Model.ADTs.IHeap;
 import Model.Types.BoolType;
 import Model.ADTs.MyIDictionary;
+import Model.Types.Type;
 import Model.Values.BoolValue;
 import Model.Values.Value;
 import MyException.*;
@@ -50,5 +51,22 @@ public class LogicExp implements Exp {
     @Override
     public Exp deepcopy() {
         return new LogicExp(e1.deepcopy(), e2.deepcopy(), op);
+    }
+    @Override
+    public Type typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        Type typ1, typ2;
+        typ1 = e1.typeCheck(typeEnv);
+        typ2 = e2.typeCheck(typeEnv);
+        if (typ1.equals(new BoolType())) {
+            if (typ2.equals(new BoolType())) {
+                return new BoolType();
+            }
+            else {
+                throw new MyException("Second operand is not a boolean!");
+            }
+        }
+        else {
+            throw new MyException("First operand is not a boolean!");
+        }
     }
 }

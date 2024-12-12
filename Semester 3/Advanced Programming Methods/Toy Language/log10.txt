@@ -1,15 +1,4 @@
-Stack:
-int v;
-v = 4;
-while (v > 0) execute print(v);
-v = v - 1;
-print(v)
-Symbolic table:
-Out:
-File table:
-Heap:
-
-
+ID: 10
 Stack:
 int v
 v = 4;
@@ -22,6 +11,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 v = 4;
 while (v > 0) execute print(v);
@@ -34,6 +24,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 v = 4
 while (v > 0) execute print(v);
@@ -46,6 +37,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 while (v > 0) execute print(v);
 v = v - 1;
@@ -57,6 +49,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 while (v > 0) execute print(v);
 v = v - 1
@@ -68,6 +61,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 print(v);
 v = v - 1
@@ -81,6 +75,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 print(v)
 v = v - 1
@@ -94,6 +89,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 v = v - 1
 while (v > 0) execute print(v);
@@ -107,6 +103,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 while (v > 0) execute print(v);
 v = v - 1
@@ -119,6 +116,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 print(v);
 v = v - 1
@@ -133,6 +131,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 print(v)
 v = v - 1
@@ -147,6 +146,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 v = v - 1
 while (v > 0) execute print(v);
@@ -161,6 +161,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 while (v > 0) execute print(v);
 v = v - 1
@@ -174,6 +175,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 print(v);
 v = v - 1
@@ -189,6 +191,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 print(v)
 v = v - 1
@@ -204,6 +207,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 v = v - 1
 while (v > 0) execute print(v);
@@ -219,6 +223,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 while (v > 0) execute print(v);
 v = v - 1
@@ -233,6 +238,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 print(v);
 v = v - 1
@@ -249,6 +255,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 print(v)
 v = v - 1
@@ -265,6 +272,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 v = v - 1
 while (v > 0) execute print(v);
@@ -281,6 +289,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 while (v > 0) execute print(v);
 v = v - 1
@@ -296,6 +305,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 print(v)
 Symbolic table:
@@ -309,6 +319,7 @@ File table:
 Heap:
 
 
+ID: 10
 Stack:
 
 Symbolic table:

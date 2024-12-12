@@ -6,6 +6,7 @@ import Model.Expressions.Exp;
 import Model.PrgState;
 import Model.Types.IntType;
 import Model.Types.StringType;
+import Model.Types.Type;
 import Model.Values.IntValue;
 import Model.Values.StringValue;
 import Model.Values.Value;
@@ -59,5 +60,17 @@ public class ReadFile implements IStmt {
         }
         symTable.update(varName, new IntValue(answer));
         return null;
+    }
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        if (!typeEnv.isDefined(varName))
+            throw new MyException("Variable " + varName + " is not declared!");
+        Type varType = typeEnv.lookup(varName);
+        if (!varType.equals(new IntType()))
+            throw new MyException("Variable " + varName + " is not of type int!");
+        Type expType = exp.typeCheck(typeEnv);
+        if (!expType.equals(new StringType()))
+            throw new MyException("Expression " + exp + " does not evaluate to a string!");
+        return typeEnv;
     }
 }

@@ -3,6 +3,8 @@ package Model.Expressions;
 
 import Model.ADTs.IHeap;
 import Model.ADTs.MyIDictionary;
+import Model.Types.RefType;
+import Model.Types.Type;
 import Model.Values.RefValue;
 import Model.Values.Value;
 import MyException.MyException;
@@ -36,5 +38,16 @@ public class ReadHeapExp implements Exp {
     @Override
     public Exp deepcopy() {
         return new ReadHeapExp(exp.deepcopy());
+    }
+    @Override
+    public Type typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        Type typ = exp.typeCheck(typeEnv);
+        if (typ instanceof RefType) {
+            RefType refTyp = (RefType) typ;
+            return refTyp.getInner();
+        }
+        else {
+            throw new MyException("The readHeap argument is not a Ref Type");
+        }
     }
 }

@@ -1,6 +1,8 @@
 package Model.Statements;
 
+import Model.ADTs.MyIDictionary;
 import Model.PrgState;
+import Model.Types.Type;
 import MyException.MyException;
 
 public class NopStmt implements IStmt {
@@ -16,5 +18,9 @@ public class NopStmt implements IStmt {
     @Override
     public IStmt deepcopy() {
         return new NopStmt();
+    }
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        return typeEnv;
     }
 }

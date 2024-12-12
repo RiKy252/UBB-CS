@@ -5,6 +5,7 @@ import Model.ADTs.MyIDictionary;
 import Model.Expressions.Exp;
 import Model.PrgState;
 import Model.Types.RefType;
+import Model.Types.Type;
 import Model.Values.RefValue;
 import Model.Values.Value;
 import MyException.MyException;
@@ -51,5 +52,14 @@ public class NewStmt implements IStmt {
     @Override
     public String toString() {
         return "new(" + varName + ", " + exp.toString() + ")";
+    }
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        Type typeVar = typeEnv.lookup(varName);
+        Type typeExp = exp.typeCheck(typeEnv);
+        if (typeVar.equals(new RefType(typeExp)))
+            return typeEnv;
+        else
+            throw new MyException("New Stmt: right hand side and left hand side have different types!");
     }
 }

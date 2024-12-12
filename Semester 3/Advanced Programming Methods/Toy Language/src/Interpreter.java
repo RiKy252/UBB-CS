@@ -27,6 +27,7 @@ public class Interpreter {
             IStmt ex1 = new CompStmt(new VarDeclStmt("v", new IntType()),
                     new CompStmt(new AssignStmt("v", new ValueExp(new IntValue(2))),
                             new PrintStmt(new VarExp("v"))));
+            ex1.typeCheck(new MyDictionary<>());
             PrgState program1 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new Heap<>(), ex1);
             IRepo repository1 = new Repo(program1, "log1.txt");
             Controller controller1 = new Controller(repository1);
@@ -38,6 +39,7 @@ public class Interpreter {
                                     new ArithExp(new ValueExp(new IntValue(3)), new ValueExp(new IntValue(5)), 3), 1)),
                                     new CompStmt(new AssignStmt("b", new ArithExp(new VarExp("a"), new ValueExp(new IntValue(1)), 1)),
                     new PrintStmt(new VarExp("b"))))));
+            ex2.typeCheck(new MyDictionary<>());
             PrgState program2 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new Heap<>(), ex2);
             IRepo repository2 = new Repo(program2, "log2.txt");
             Controller controller2 = new Controller(repository2);
@@ -48,6 +50,7 @@ public class Interpreter {
                                     new CompStmt(new IfStmt(new VarExp("a"),new AssignStmt("v",new ValueExp(new
                                             IntValue(2))), new AssignStmt("v", new ValueExp(new IntValue(3)))), new PrintStmt(new
                                             VarExp("v"))))));
+            ex3.typeCheck(new MyDictionary<>());
             PrgState program3 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new Heap<>(), ex3);
             IRepo repository3 = new Repo(program3, "log3.txt");
             Controller controller3 = new Controller(repository3);
@@ -60,6 +63,7 @@ public class Interpreter {
                                                     new CompStmt(new PrintStmt(new VarExp("varc")),
                                                             new CompStmt(new ReadFile(new VarExp("varf"), "varc"),
                                                                     new CompStmt(new PrintStmt(new VarExp("varc")), new CloseRFile(new VarExp("varf"))))))))));
+            ex4.typeCheck(new MyDictionary<>());
             PrgState program4 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new Heap<>(), ex4);
             IRepo repository4 = new Repo(program4, "log4.txt");
             Controller controller4 = new Controller(repository4);
@@ -71,6 +75,7 @@ public class Interpreter {
                                             new CompStmt(new VarDeclStmt("res", new BoolType()),
                                                     new CompStmt(new AssignStmt("res", new RelationalExp(new VarExp("a"),new VarExp("b"), ">")),
                                                             new PrintStmt(new VarExp("res"))))))));
+            ex5.typeCheck(new MyDictionary<>());
             PrgState program5 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new Heap<>(), ex5);
             IRepo repository5 = new Repo(program5,"log5.txt");
             Controller controller5 = new Controller(repository5);
@@ -81,6 +86,7 @@ public class Interpreter {
                             new CompStmt(new VarDeclStmt("a", new RefType(new RefType(new IntType()))),
                                     new CompStmt(new NewStmt("a", new VarExp("v")),
                                             new CompStmt(new PrintStmt(new VarExp("v")), new PrintStmt(new VarExp("a")))))));
+            ex6.typeCheck(new MyDictionary<>());
             PrgState program6 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new Heap<>(), ex6);
             IRepo repository6 = new Repo(program6, "log6.txt");
             Controller controller6 = new Controller(repository6);
@@ -92,6 +98,7 @@ public class Interpreter {
                                     new CompStmt(new NewStmt("a", new VarExp("v")),
                                             new CompStmt(new PrintStmt(new ReadHeapExp(new VarExp("v"))),
                                                     new PrintStmt(new ArithExp(new ReadHeapExp(new ReadHeapExp(new VarExp("a"))), new ValueExp(new IntValue(5)), 1)))))));
+            ex7.typeCheck(new MyDictionary<>());
             PrgState program7 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new Heap<>(), ex7);
             IRepo repository7 = new Repo(program7, "log7.txt");
             Controller controller7 = new Controller(repository7);
@@ -102,6 +109,7 @@ public class Interpreter {
                             new CompStmt(new PrintStmt(new ReadHeapExp(new VarExp("v"))),
                                     new CompStmt(new WriteHeapStmt("v", new ValueExp(new IntValue(30))),
                                             new PrintStmt(new ArithExp(new ReadHeapExp(new VarExp("v")), new ValueExp(new IntValue(5)), 1))))));
+            ex8.typeCheck(new MyDictionary<>());
             PrgState program8 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new Heap<>(), ex8);
             IRepo repository8 = new Repo(program8, "log8.txt");
             Controller controller8 = new Controller(repository8);
@@ -113,6 +121,7 @@ public class Interpreter {
                                     new CompStmt(new NewStmt("a", new VarExp("v")),
                                             new CompStmt(new NewStmt("v", new ValueExp(new IntValue(30))),
                                                     new PrintStmt(new ReadHeapExp(new ReadHeapExp(new VarExp("a")))))))));
+            ex9.typeCheck(new MyDictionary<>());
             PrgState program9 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new Heap<>(), ex9);
             IRepo repository9 = new Repo(program9, "log9.txt");
             Controller controller9 = new Controller(repository9);
@@ -124,6 +133,7 @@ public class Interpreter {
                                     new CompStmt(new PrintStmt(new VarExp("v")), new AssignStmt("v",
                                             new ArithExp(new VarExp("v"), new ValueExp(new IntValue(1)), 2)))),
                                     new PrintStmt(new VarExp("v")))));
+            ex10.typeCheck(new MyDictionary<>());
             PrgState program10 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new Heap<>(), ex10);
             IRepo repository10 = new Repo(program10, "log10.txt");
             Controller controller10 = new Controller(repository10);
@@ -142,6 +152,7 @@ public class Interpreter {
                                             ), new CompStmt(
                                                     new PrintStmt(new VarExp("v")), new PrintStmt(new ReadHeapExp(new VarExp("a")))
                                             ))))));
+            ex11.typeCheck(new MyDictionary<>());
             PrgState program11 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new Heap<>(), ex11);
             IRepo repository11 = new Repo(program11, "log11.txt");
             Controller controller11 = new Controller(repository11);

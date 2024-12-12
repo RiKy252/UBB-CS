@@ -6,6 +6,7 @@ import Model.ADTs.MyIDictionary;
 import Model.ADTs.MyIList;
 import Model.ADTs.MyIStack;
 import Model.PrgState;
+import Model.Types.Type;
 import Model.Values.Value;
 import MyException.MyException;
 
@@ -30,5 +31,10 @@ public class PrintStmt implements IStmt {
     @Override
     public IStmt deepcopy() {
         return new PrintStmt(exp.deepcopy());
+    }
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        exp.typeCheck(typeEnv);
+        return typeEnv;
     }
 }
