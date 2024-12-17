@@ -1498,3 +1498,142 @@ EXEC runTest 'Test3'
 SELECT * FROM TestRuns
 SELECT * FROM TestRunTables
 SELECT * FROM TestRunViews
+
+
+--Lab5 HW
+
+-- Ta: Customers
+CREATE TABLE L5Customers (
+    customerID INT,
+    loyaltyPoints INT UNIQUE,
+    age INT,
+    PRIMARY KEY(customerID)
+);
+
+-- Tb: Products
+CREATE TABLE L5Products (
+    productID INT,
+    price FLOAT,
+    stock INT,
+    PRIMARY KEY(productID)
+);
+
+-- Tc: Orders
+CREATE TABLE L5Orders (
+    orderID INT,
+    customerID INT,
+    productID INT,
+    quantity INT,
+    PRIMARY KEY(orderID),
+    FOREIGN KEY(customerID) REFERENCES Customers(customerID),
+    FOREIGN KEY(productID) REFERENCES Products(productID)
+);
+
+SELECT * FROM L5Customers;
+SELECT * FROM L5Products;
+SELECT * FROM L5Orders;
+
+-- Populate 
+CREATE OR ALTER PROCEDURE populateL5Customers(@rows INT) AS
+BEGIN
+	DELETE FROM L5Customers
+    WHILE @rows > 0
+    BEGIN
+        INSERT INTO L5Customers(customerID, loyaltyPoints, age)
+        VALUES (@rows, @rows * 10, (@rows * 3) % 100 + 1);
+        SET @rows = @rows - 1;
+    END
+END;
+GO
+
+
+CREATE OR ALTER PROCEDURE populateL5Products(@rows INT) AS
+BEGIN
+	DELETE FROM L5Products
+    WHILE @rows > 0
+    BEGIN
+        INSERT INTO L5Products(productID, price, stock)
+        VALUES (@rows, @rows * 1.25, (@rows * 5) % 200); 
+        SET @rows = @rows - 1;
+    END
+END;
+GO
+
+
+CREATE OR ALTER PROCEDURE populateL5Orders(@rows INT) AS
+BEGIN
+    DELETE FROM L5Orders;
+    WHILE @rows > 0
+    BEGIN
+        INSERT INTO L5Orders(orderID, customerID, productID, quantity)
+        VALUES (@rows, @rows, @rows, (@rows * 2) % 10 + 1); -- Quantity between 1 and 10
+        SET @rows = @rows - 1;
+    END
+END;
+GO
+
+EXEC populateL5Customers 1000;
+EXEC populateL5Products 1000;
+EXEC populateL5Orders 1000;
+
+-- a)
+
+-- Clustered index scan
+-- 0.007345
+SELECT customerID AS target_customer
+FROM L5Customers
+ORDER BY customerID DESC;
+
+-- Clustered index seek
+-- 0.0033579
+SELECT age AS CustomerAge
+FROM L5Customers
+WHERE customerID > 0 AND customerID < 70;
+
+-- Non-clustered Index Scan
+-- 0.0066042
+SELECT customerID AS target_customer
+FROM L5Customers;
+
+-- Non-clustered Index Seek
+-- 0.0032839
+SELECT loyaltyPoints
+FROM L5Customers
+WHERE loyaltyPoints > 20 AND loyaltyPoints < 50;
+
+-- Key Lookup
+-- 0.0032831
+SELECT loyaltyPoints
+FROM L5Customers
+WHERE loyaltyPoints = 100 AND age > 30;
+
+-- b)
+-- Without index: 0.007345
+-- With index: 0.0065704
+SELECT *
+FROM L5Products
+WHERE price = 50;
+
+CREATE NONCLUSTERED INDEX index_price ON L5Products(price);
+DROP INDEX index_price ON L5Products;
+
+-- c)
+-- 
+CREATE OR ALTER VIEW L5CustomerOrdersView AS
+    SELECT L5Customers.customerID, L5Customers.age, L5Orders.quantity
+    FROM L5Customers
+    JOIN L5Orders ON L5Customers.customerID = L5Orders.customerID
+    WHERE L5Customers.loyaltyPoints > 50;
+GO
+
+SELECT * FROM L5CustomerOrdersView
+
+CREATE NONCLUSTERED INDEX index_loyalty ON L5Customers(loyaltyPoints);
+DROP INDEX index_loyalty ON L5Customers;
+
+
+EXEC sp_helpindex L5Customers;
+EXEC sp_helpindex L5Products;
+EXEC sp_helpindex L5Orders;
+
+SET STATISTICS TIME ON;
