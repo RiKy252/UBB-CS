@@ -1,0 +1,75 @@
+; cadr gets the second element of a list (for this representation is the number of subtrees)
+; cddr gets the list from the 3rd element (for this representation to skip the number of subtrees)
+
+; This returns the left subtree of a tree represented in the first form
+; traverseLeft(l1l2...ln, vertices, edges) = [], if n = 0
+;                                    [], if vertices = edges + 1
+;                                    {l1} U {l2} U traverseLeft(l3...lk, vertices + 1, edges + l2), otherwise
+
+(defun traverseLeft(tree vertices edges)
+  (cond
+   ((null tree) nil)
+   ((= vertices (+ 1 edges)) nil)
+   (t (cons (car tree)
+            (cons (cadr tree)
+                  (traverseLeft (cddr tree) (+ 1 vertices) (+ (cadr tree) edges))
+                  )
+            )
+      )
+   )
+)
+
+; This is the main function used to return the left subtree by initialising the vertices and the edges with 0 to count
+; left(l1l2...ln) = traverseLeft(l1l2...ln, 0, 0) 
+
+(defun left (tree)
+  (traverseLeft (cddr tree) 0 0)
+)
+
+; This returns the right subtree of a tree represented in the first form
+; traverseRight(l1l2...ln, vertices, edges) = [], if n = 0
+;                                     l1..ln, if vertices = edges + 1
+;                                     traverseRight(l3...ln, vertices + 1, edges + l2), otherwise
+(defun traverseRight (tree vertices edges)
+  (cond
+   ((null tree) nil)
+   ((= vertices (+ 1 edges)) tree)
+   (t (traverseRight (cddr tree) (+ 1 vertices) (+ (cadr tree) edges)))
+  )
+)
+
+; This is the main function used to return the right subtree by initialising the vertices and edges with 0 to count
+; right(l1l2...ln) = traverseRight(l1l2...ln, 0, 0)
+
+(defun right (tree)
+  (traverseRight (cddr tree) 0 0)
+)
+
+; hasNode(node, l1l2..ln) = null, if n = 0
+;                          = true, if node = l1
+;                          = true, if hasNode(left(tree)) || hasNode(right(tree))
+;                          = false, otherwise
+
+(defun hasNode (node tree)
+  (cond
+   ((null tree) nil)
+   ((eq node (car tree)) t)
+   ((or (hasNode node (left tree)) (hasNode node (right tree))))
+  )
+)
+
+
+; findPath(node, l1l2..ln) = (l1), if node = l1
+;                          = (l1) U findPath(node, left(tree)), if hasNode(node, left(tree))
+;                          = (l1) U findPath(node, right(tree)), if hasNode(node, right(tree))
+;                          = null, otherwise
+
+(defun findPath (node tree)
+  (cond
+   ((null tree) nil)
+   ((eq node (car tree)) (list (car tree)))
+   ((hasNode node (left tree)) (append (list (car tree)) (findPath node (left tree))))
+   ((hasNode node (right tree)) (append (list (car tree)) (findPath node (right tree))))
+   (nil)
+  )
+)

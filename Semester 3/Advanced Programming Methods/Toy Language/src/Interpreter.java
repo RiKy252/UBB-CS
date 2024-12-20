@@ -175,3 +175,4 @@ public class Interpreter {
         }
     }
 }
+// TODO Daca un exemplu e gresit, sa apara restul dar in locul exemplului gresit sa apara altceva: o eroare

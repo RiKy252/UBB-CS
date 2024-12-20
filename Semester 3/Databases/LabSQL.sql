@@ -1631,9 +1631,3 @@ SELECT * FROM L5CustomerOrdersView
 CREATE NONCLUSTERED INDEX index_loyalty ON L5Customers(loyaltyPoints);
 DROP INDEX index_loyalty ON L5Customers;
 
-
-EXEC sp_helpindex L5Customers;
-EXEC sp_helpindex L5Products;
-EXEC sp_helpindex L5Orders;
-
-SET STATISTICS TIME ON;

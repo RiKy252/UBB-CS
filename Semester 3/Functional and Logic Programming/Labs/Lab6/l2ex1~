@@ -1,0 +1,65 @@
+```
+; This is an auxiliary function used to return the left subtree from a V1 representation of an binary tree
+; V1 representation: (root nr-subtrees representation of subtree-1  representation of subtree-2)
+; traverse_left(l1l2...lk, nv, ne) = empty list, if l is empty
+;                                    empty list, if nv = ne+1
+;                                    {l1} U {l2} U traverse_left(l3...lk, nv+1, ne+l2), otherwise
+(defun traverse_left(tree nv ne)
+  (cond
+   ((null tree) nil)
+   ((= nv (+ 1 ne)) nil)
+   (t (cons (car tree)
+            (cons (cadr tree)
+                  (traverse_left (cddr tree) (+ 1 nv) (+ (cadr tree) ne))
+                  )
+            )
+      )
+   )
+)
+
+; This is the main function used to return the left subtree
+; We call the function traverse_left with initialized arguments: tree, nv = 0, ne = 0
+; This is so we correctly count the number of vertices and the number of edges at every step
+; left(l1l2...lk) = traverse_left(l1l2...lk, 0, 0) 
+(defun left (tree)
+  (traverse_left (cddr tree) 0 0)
+)
+
+; This is an auxiliary function used to return the right subtree from the same V1 representation of an binary tree
+; traverse_right(l1l2...lk, nv, ne) = empty list, if l is empty
+;                                     l1l2...lk, if nv = ne+1
+;                                     traverse_right(l3...lk, nv+1, ne+l2), otherwise
+(defun traverse_right (tree nv ne)
+  (cond
+   ((null tree) nil)
+   ((= nv (+ 1 ne)) tree)
+   (t (traverse_right (cddr tree) (+ 1 nv) (+ (cadr tree) ne)))
+  )
+)
+
+; This is the main function used to return the right subtree
+; We call the function traverse_right with initialized arguments: tree, nv = 0, ne = 0
+; This is so we correctly count the number of vertices and the number of edges at every step
+; right(l1l2...lk) = traverse_right(l1l2...lk, 0, 0)
+(defun right (tree)
+  (traverse_right (cddr tree) 0 0)
+)
+
+(defun has-node (node tree)
+  (cond
+   ((null tree) nil)
+   ((eq node (car tree)) t)
+   ((or (has-node node (left tree)) (has-node node (right tree))))
+  )
+)
+
+(defun find-path (node tree)
+  (cond
+   ((null tree) nil)
+   ((eq node (car tree)) (list (car tree)))
+   ((has-node node (left tree)) (append (list (car tree)) (find-path node (left tree))))
+   ((has-node node (right tree)) (append (list (car tree)) (find-path node (right tree))))
+   (nil)
+  )
+)
+```
