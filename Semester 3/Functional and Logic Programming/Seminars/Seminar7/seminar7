@@ -1,0 +1,74 @@
+; Write a function that returns the depth of a tree repre as (node (subtree 1)(subtree 2)...(subtree n)) using MAP functions
+
+;     A
+;  B     C
+;        D
+
+; getDepth(x) = 0, if x is atom
+;             = 1 + max(getDetph(xi)), i = 1..n
+
+(defun getDepth( x )
+  (cond
+   ((atom x) 0)
+   ((null x) 0)
+   (t       (+ 1 (apply #'max (mapcar #'getDepth x))))
+  )
+)
+
+; Write a function that removes all elements multiple of n from a non-linear list using MAP
+
+; eliminationN(l, m) = (), if l = number and l % m = 0
+;                    = (l), if l = atom
+;                    = append(eliminationN(li, m)), if l = list, i = 1..n, l = l1l2..ln
+
+; mainElimination(l, m) = r1, if r = eliminationN(l, m)
+
+(defun eliminationN ( l m )
+  (cond
+   ( (and (numberp l) (= (mod l m) 0))         nil )
+   ( (atom l)                                  (list l) )
+   ( t                                         (list (apply #'append (mapcar #'(lambda(x)(eliminationN x m)) l))) )
+  )
+)
+
+; Write a Prolog program to generate all subsets of a set, with the property that the difference between any 2 consecutive elements is a multiple of 3. Subsets must have at least 2 elements
+; Ex: [3, 6, 12, 4, 5, 10, 13] => [[3, 6, 12], [3, 6], [3, 12], [6, 12], [4, 10, 13], [4, 13], [10, 13]]
+
+; generate(l1l2..ln) = [], if n = 0
+;                    = l1 U generate(l2l3..ln), n > 0
+;                    = generate(l2l3..ln), n > 0
+; generate(L - list, R - list)
+; fm(i, o)
+
+; Prolog program
+; generate([], []).
+; generate([H|T], [H|NT]):-
+;   generate(T, NT).
+
+; div3(l1l2..ln) = true, n = 2 and |l1 - l2| % 3 = 0
+;                = div3(l2l3..ln), n > 2 and |l1 - l2| % 3 = 0
+;                = false, otherwise
+; div3(L - list)
+; fm(i)
+
+; Prolog program
+; div3([H1, H2]):-
+;  D is abs(H1 - H2),
+;  D mod 3 == 0.
+
+; div3([H1, H2|T]):-
+;  D is abs(H1 - H2),
+;  D mod 3 == 0,
+;  div3([H2|T]).
+
+; sol(l1l2..ln) = s1s2..sn, if s = generate(l) and div3(s) = true
+; sol(L - list, R - list)
+; fm(i, o)
+
+; Prolog program
+; sol(L, R):-
+;  generate(L, S),
+;  div3(S),
+;  R = S.
+
+; findall(X, sol(L, X), R).
