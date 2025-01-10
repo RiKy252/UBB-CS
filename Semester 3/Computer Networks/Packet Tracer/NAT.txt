@@ -1,0 +1,17 @@
+Router CLI:
+
+enable
+config t
+
+access-list 1 permit 192.168.1.0 0.0.0.255 (inside network to be nat-ted, with !mask)
+ip nat inside source list 1 interface s2/0 overload (specify the interface to get that ip outside)
+
+interface s2/0
+ip nat outside
+
+exit
+
+interface fa0/0
+ip nat inside
+
+exit
