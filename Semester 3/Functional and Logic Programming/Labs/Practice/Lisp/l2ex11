@@ -1,0 +1,53 @@
+; 11. Return the level (and coresponded list of nodes) with maximum number of nodes for a tree of type
+; (2). The level of the root element is 0.
+
+(defun nrLevelsHelper (x curr)
+  (cond
+    ((null x) curr)
+    (t (max (nrLevelsHelper (leftSubtree x) (+ curr 1)) (nrLevelsHelper (rightSubtree x) (+ curr 1))))
+  )
+)
+
+(defun nrLevels (x)
+  (nrLevelsHelper x 0)
+)
+
+; kthLevelHelper(x, k) = { nil, x null
+;                        { append(kthLevelHelper(leftSubtree(x), k-1), kthLevelHelper(rightSubtree(x), k-1))
+;                        { 
+(defun kthLevelHelper (x k)
+  (cond
+    ((null x) nil)
+    ((> k 0) (append (kthLevelHelper (leftSubtree x) (- k 1)) (kthLevelHelper (rightSubtree x) (- k 1))))
+    ((= k 0) (list (car x)))
+  )
+)
+
+(defun get1 (a) 1)
+(defun listLength (x)
+  (apply #'+ (mapcar #'get1 x))
+)
+
+(print (length '(1 4 10 a b)))
+
+
+(defun maxNrNodesLevelHelper (x curr maxLvl)
+  (let ((kthLevel (kthLevelHelper x curr)))
+    (cond
+      ((= curr maxLvl) kthLevel)
+      
+      (t (let ((bestLevelBelow (maxNrNodesLevelHelper x (+ curr 1) maxLvl)))
+        (if (>= (length kthLevel) (length bestLevelBelow))
+          kthLevel
+          bestLevelBelow
+        )
+      ))
+    )
+  )
+)
+
+(defun maxNrNodesLevel (x)
+  (maxNrNodesLevelHelper x 0 (- (nrLevels x) 1))
+)
+
+(print (maxNrNodesLevel '(A 2 B 1 B2 0 C 2 D 0 E 1 F 1 G 0)))
