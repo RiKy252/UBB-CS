@@ -3,8 +3,10 @@ x = vector of data
 x bar = average / mean of the data
 n = number of elements in x
 v bar = population standard deviation
+z = inv
 z index(1 - alpha / 2) = quantile of order 1 - alpha / 2 of the law N(0, 1).
 s = sample standard deviation -> std(x)
+s^2 = var(x)
 
 for A.
 x is not matrix, it is a statistical distribution
