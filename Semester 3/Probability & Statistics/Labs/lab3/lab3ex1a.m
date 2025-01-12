@@ -3,6 +3,10 @@ pkg load statistics
 % normal distribution
 
 % a)
+% normcdf(X, MU, SIGMA)
+% X is given
+% MU = mean parameter (ask user)
+% SIGMA = standard deviation (ask user)
 
 x = input("Please enter the value for the mean parameter: ");
 y = input("Please enter the value for the standard deviation parameter: ");
