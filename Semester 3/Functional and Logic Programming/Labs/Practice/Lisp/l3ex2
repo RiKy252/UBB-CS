@@ -1,0 +1,13 @@
+; Sum of numeric atoms in a non-linear list
+
+; sumNumericalAtoms(l) = l, if l = num
+;                      = 0, if l != num
+;                      = sumNumericalAtoms(l1) + sumNumericalAtoms(l2) + ... + sumNumericalAtoms(ln), if l = list 
+
+(defun sumNumericalAtoms ( l )
+  (cond
+   ( (numberp l)             l )
+   ( (listp l)               (apply '+ (mapcar #'sumNumericalAtoms l)) )
+   ( t                       0 )
+  )
+)
