@@ -1,0 +1,22 @@
+( defun f ( l1 l2 )
+  ( append (f (car l1) l2)
+  (cond
+   ( (null l1) (cdr l2) )
+   ( t         (list (f (car l1) l2) (car l2)) )
+  ))
+)
+; rewrite without double recursive call
+
+( defun fct ( l1 l2 )
+  (let ((result (fct (car l1) l2)))
+    ( append result l2 )
+   )
+)
+
+
+(DEFUN F (L1 L2)
+  (LET ((RESULT (F (CAR L1) L2)))  
+    (APPEND RESULT
+            (COND
+              ((NULL L1) (CDR L2))
+              (T (LIST RESULT (CAR L2)))))))

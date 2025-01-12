@@ -1,0 +1,29 @@
+(defun fct ( f l )
+  (cond
+   ( (null l)                 nil )
+   ( (funcall f (car l))      (cons (funcall f (car l)) (fct f (cdr l))) )
+   ( t                        nil )
+  )
+)
+
+; avoid double call (funcall f (car l))
+
+(defun sol ( f l )
+  ( let ((result (funcall f (car l))))
+    (cond
+     ( (null l)         nil )
+     ( result           (cons result (fct f (cdr l))) )
+     ( t                nil )
+    ))
+)
+
+
+(defun sol2 ( f l )
+  ( (lambda (a)
+      (cond
+       ( (null l)               nil )
+       ( a                      (cons a (sol2 f (cdr l))) )
+       ( t                      nil )
+      )) (funcall f (car l))
+    )  
+)
