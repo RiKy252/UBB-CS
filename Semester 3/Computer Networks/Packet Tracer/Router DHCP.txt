@@ -1,0 +1,28 @@
+config t
+ip dhcp pool <name_of_pool>
+
+Ex: ip dhcp pool lan
+
+ 
+
+#define the network range
+
+network 192.168.0.0 255.255.255.0
+
+ 
+
+#define the default gateway (if any) that should be passed to the clients
+
+default-router 192.168.0.1
+
+ 
+
+#define the DNS server (if any) that should be passed to the clients
+
+dns-server 192.168.0.3
+
+ 
+
+#exit dhcp pool configuration
+
+exit
