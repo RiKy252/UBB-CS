@@ -73,7 +73,64 @@ printf("The rejection region for this t-test is (%4.3f, %4.3f).\n", RR);
 printf("The observed value of the test statistic is %4.3f.\n", stats.tstat);
 printf("The P-value of our test is %4.3f.\n", p);
 
+printf("\n\n");
+
 % 2a) vartest2 -> variances are equal or are different
 % 2b) you choose in the
 % cheatsheet the situation depending on a) ttest2
+
+clear all;
+
+alpha = input("Please give the significance level: ");
+premium = [22.4, 21.7, 24.5, 23.4, 21.6, 23.3, 22.4, 21.6, 24.8, 20.0];
+regular = [17.7, 14.8, 19.6, 19.6, 12.1, 14.8, 15.4, 12.6, 14.0, 12.2];
+
+n1 = length(premium);
+n2 = length(regular);
+
+% a)
+% H0: sigma1 = sigma2 (variances are equal)
+% H1: sigma1 != sigma2 (variances are not equal)
+% two-tailed test (default value for tail)
+
+[h, pval, ci, stats] = vartest2(premium, regular, "alpha", alpha);
+
+if h == 1
+  printf("The null hypothesis is rejected: variances are not equal.\n");
+else
+  printf("The null hypothesis is not rejected: variances are equal.\n");
+endif
+
+% Constructing rejection region:
+
+z2_lower = finv(alpha / 2, n1 - 1, n2 - 1);
+z2_upper = finv(1 - alpha / 2, n1 - 1, n2 - 1);
+
+RR2 = [z2_lower z2_upper];
+
+printf("The rejection region for this vartest2 is (%4.3f, %4.3f).\n", RR2);
+printf("The observed value of the vartest2 statistic is %4.3f.\n", stats.fstat);
+printf("The P-value of our test is %4.3f.\n", pval);
+
+% b)
+
+% H0: miu1 = miu2
+% H1: miu1 > miu2 -> right-tailed test
+
+[h1, pval1, ci1, stats1] = ttest2(premium, regular, "alpha", alpha, "tail", "right", "vartype", "equal");
+
+% Rejection region (right-tailed test)
+
+z3 = tinv(1 - alpha, stats1.df);
+RR3 = [z3 inf];
+
+if h1 == 0
+  printf("Gas mileage DO NOT SEEM to be higher on average when using premium gasoline!\n");
+else
+  printf("Gas mileage SEEM to be higher on average when using premium gasoline!\n");
+endif
+
+printf("The rejection region for this ttest2 is (%4.3f, %4.3f).\n", RR3);
+printf("The observed value of the ttest2 statistic is %4.3f.\n", stats1.tstat);
+printf("The P-value of our test is %4.3f.\n", pval1);
 

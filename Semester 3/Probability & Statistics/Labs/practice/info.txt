@@ -1,0 +1,22 @@
+sigma = variance
+mean = average
+
+test.pdf file:
+1. 
+ztest => test for mean when sigma is known (variance)
+ttest => test for mean when sigma is unknown
+
+2.
+n = length(data);
+s2 = var(data, 1);  % Sample variance
+sigma0_squared = 10;  % Hypothesized variance
+chi2_stat = (n - 1) * s2 / sigma0_squared;
+p_value = 1 - chi2cdf(chi2_stat, n - 1);  % Right-tailed p-value
+p_value = chi2cdf(chi2_stat, n - 1); % Left-tailed p-value
+
+3.
+ttest2 => ttest for 2 sets of data for mean
+
+4.
+vartest2 => comparing the variances of two independent samples (check if they are equal or different)
+
