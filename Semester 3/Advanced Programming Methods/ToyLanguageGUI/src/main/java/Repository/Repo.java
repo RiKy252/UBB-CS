@@ -61,7 +61,7 @@ public class Repo implements IRepo {
     @Override
     public List<IStmt> allExamples() {
         List<IStmt> examples = new ArrayList<>();
-        IStmt ex1 = new CompStmt(new VarDeclStmt("v", new IntType()),
+        IStmt ex1 = new CompStmt(new VarDeclStmt("v", new BoolType()),
                 new CompStmt(new AssignStmt("v", new ValueExp(new IntValue(2))),
                         new PrintStmt(new VarExp("v"))));
 
