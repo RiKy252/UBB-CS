@@ -1,0 +1,26 @@
+% insertEl(e, l1..ln) = e U l1..ln, n >= 0
+%                       l1 U insertEl(e, l2..ln), n > 0
+% insertEl(E - elem, L - list, R - list) -> (i, i, o)
+
+SUBSETS
+
+% subsets(l1l2..ln) = [], if n = 0
+%                     l1 U subsets(l2..ln), n > 0
+%                     subsets(l2..ln), n > 0
+
+PERMUTATIONS
+
+% perm(l1l2..ln) = [], n = 0
+%                        = insertEl(l1, perm(l2l3..ln)), n > 0
+
+ARRANGEMENTS
+
+% arr(l1..ln, k) = l1, if k = 1, n >= 1
+%                  arr(l2..ln, k), k >= 1, n > 1
+%                  insertEl(l1, arr(l2..ln, k - 1)), if k > 1
+
+COMBINATIONS
+
+% comb(l1l2..ln, k) = l1, if k = 1, n >= 1
+%                     comb(l2..ln, k), if k >= 1, n > 1
+%                     l1 U comb(l2..ln, k - 1), k > 1
