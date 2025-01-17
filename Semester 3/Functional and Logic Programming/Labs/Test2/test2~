@@ -1,0 +1,21 @@
+; myAppend(l1l2..ln, v1v2..vm) = v1v2..vn, if n = 0
+;                              = {l1} U myAppend(l2l3..ln, v1v2..vm), otherwise
+
+(defun myAppend ( l v )
+  (cond
+   ( (null l)             v )
+   ( t                    (cons (car l) (myAppend (cdr l) v)) )
+  )
+)
+
+; myReverse(l1l2..ln) = nil, if n = 0
+;                     = myReverse(l2l3..ln) U {l1}, if atom(l1)
+;                     = myReverse(l2l3..ln) U list(myReverse(l1)), otherwise (if listp(l1))
+
+(defun myReverse ( l )
+  (cond
+   ( (null l)           nil )
+   ( (atom (car l))     (myAppend (myReverse (cdr l)) (list (car l))) )
+   ( t                  (myAppend (myReverse (cdr l)) (list (myReverse (car l)))) )
+  )
+)
