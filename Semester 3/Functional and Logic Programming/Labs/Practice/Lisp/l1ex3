@@ -1,0 +1,109 @@
+; l1ex3
+; a) Insert into a linear list a given atom A after 2nd, 4th, 6th, ... element
+
+; insertEl(l1l2..ln, e, pos) = nil, if n = 0
+;                            = {l1} U {e} U insertEl(l2l3..ln, e, pos + 1), if pos % 2 = 0
+;                            = {l1} U insertEl(l2l3..ln, e, pos + 1), otherwise
+
+(defun insertEl ( l e pos )
+  (cond
+   ( (null l)                                   nil )
+   ( (= (mod pos 2) 0)                          (append (list (car l)) (list e) (insertEl (cdr l) e (+ pos 1))) )
+   ( t                                          (cons (car l) (insertEl (cdr l) e (+ pos 1))) )
+  )
+)
+
+; mainInsert(l e) = insertEl(l e 1)
+
+(defun mainInsert ( l e )
+  ( insertEl l e 1 )
+)
+
+; b) Get all atoms on any level in reverse order
+
+; rev(l1l2..ln) = nil, if n = 0
+;               = rev(l2l3..ln) U {l1}, if atom(l1)
+;               = rev(l2l3..ln) U list(rev(l1)), if listp(l1)
+
+(defun rev ( l )
+  (cond
+  ( (null l)                 nil )
+  ( (atom (car l))           (append (rev (cdr l)) (list (car l))) )
+  ( (listp (car l))          (append (rev (cdr l)) (list (rev (car l)))) )
+))
+
+; getAtoms(l1l2..ln) = nil, if n = 0
+;                    = {l1} U getAtoms(l2l3..ln), if atom(l1)
+;                    = getAtoms(l1) U getAtoms(l2l3..ln), if listp(l1)
+
+(defun getAtoms ( l )
+  (cond
+   ( (null l)             nil )
+   ( (atom (car l))       (cons (car l) (getAtoms (cdr l))) )
+   ( (listp (car l))      (append (getAtoms (car l)) (getAtoms (cdr l))) )
+  )
+)
+
+; getAtomsRev(l1l2..ln) = getAtoms(rev(l1l2..ln))
+
+(defun getAtomsRev ( l )
+  ( getAtoms (rev l) )
+)
+
+; c) GCD of all numbers in a non-linear list
+
+; myGcd(a, b) = a, if b = 0
+;             = b, a % b = 0
+;             = GCD(b, a % b), otherwise
+
+(defun myGcd (a b)
+  (cond
+   ( (= b 0)                  a )
+   ( (= (mod a b) 0)          b )
+   ( t                        (gcd b (mod a b )) )
+  )
+)
+
+; transformLinear(l1l2..ln) = nil, if n = 0
+;                           = transformLinear(l1) U transformLinear(l2l3..ln), if listp(l1)
+;                           = {l1} U transformLinear(l2l3..ln), otherwise
+
+(defun transformLinear ( l )
+  (cond
+   ( (null l)                     nil )
+   ( (listp (car l))              (append (transformLinear (car l)) (transformLinear (cdr l))) )
+   ( t                            (cons (car l) (transformLinear (cdr l))) )
+  )
+)
+
+; gcdOnList(l1l2..ln) = 0, if n = 0
+;                     = myGcd(l1, gcdOnList(l2l3..ln)), otherwise
+
+(defun gcdOnList ( l )
+  (cond
+   ( (null l)            0 )
+   ( t                   (myGcd (car l) (gcdOnList (cdr l))) )
+  )
+)
+
+; mainGcdOnList(l) = gcdOnList(transformLinear(l))
+
+(defun mainGcdOnList ( l )
+  ( gcdOnList (transformLinear l) )
+)
+
+; d) Nr occurences of an atom in a non-linear list
+
+; nrOcc(e, l1l2..ln) = 0, if n = 0
+;                     = 1 + nrOcc(l2l3..ln), if atom(l1) and l1 = e
+;                     = nrOcc(l2l3..ln), if atom(l1)
+;                     = nrOcc(e, l1) + nrOcc(e, l2l3..ln), otherwise
+
+(defun nrOcc ( e l )
+  (cond
+   ( (null l)                                                 0 )
+   ( (and (atom (car l)) (equal (car l) e))                   (+ 1 (nrOcc e (cdr l))) )
+   ( (atom (car l))                                           (nrOcc e (cdr l)) )
+   ( t                                                        (+ (nrOcc e (car l)) (nrOcc e (cdr l))) )
+  )
+)
