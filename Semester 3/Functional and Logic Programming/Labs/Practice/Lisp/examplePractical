@@ -1,0 +1,37 @@
+; Delete from a non-linear list all linear sublists with even number of elements
+
+; countElem(l1l2..ln) = 0, if n = 0
+;                     = 1 + countElem(l2l3..ln), otherwise
+
+(defun countElem ( l )
+  (cond
+   ( (null l)           0 )
+   ( t                  (+ 1 (countElem (cdr l))) )
+  )
+)
+
+; isLinear(l1l2..ln) = 1, if n = 0
+;                    = isLinear(l2l3..ln), if atom(l1)
+;                    = 0, otherwise
+
+(defun isLinear ( l )
+  (cond
+   ( (null l)              1 )
+   ( (atom (car l))        (isLinear (cdr l)) )
+   ( t                     0)
+  )
+)
+
+; deleteAtoms(l1l2..ln) = nil, if n = 0
+;                       = l1 U deleteAtoms(l2l3..ln), if atom(l1)
+;                       = deleteAtoms(l2l3..ln), if isLinear(l1) and countElem(l1) % 2 = 0
+;                       = deleteAtoms(l1) U deleteAtoms(l2l3..ln), otherwise
+
+(defun deleteAtoms ( l )
+  (cond
+   ( (null l)                                                      nil )
+   ( (atom (car l))                                                (cons (car l) (deleteAtoms (cdr l))) )
+   ( (and (= (isLinear (car l)) 1) (= (mod (countElem (car l)) 2) 0))    (deleteAtoms (cdr l)) )
+   ( t                                                             (cons (deleteAtoms (car l)) (deleteAtoms (cdr l))) )
+  )
+)
