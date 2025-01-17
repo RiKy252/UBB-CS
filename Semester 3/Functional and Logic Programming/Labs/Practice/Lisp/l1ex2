@@ -1,0 +1,94 @@
+; l1ex2
+; a) Return dot product of two vectors
+
+; dotProduct(l1l2..ln, v1v2..vn) = 0, if n = 0
+;                                = l1 * v1 + dotProduct(l2l3..ln, v2v3..vn), otherwise
+
+(defun dotProduct ( l v )
+  (cond
+   ( (null l)          0 )
+   ( (null v)          0 )
+   ( t                 (+ (* (car l) (car v)) (dotProduct (cdr l) (cdr v))) )
+  )
+)
+
+; b) Return depth of a list. Depth of a linear list = 1
+
+; myMax(a, b) = a, if a > b
+;             = b, otherwise
+
+(defun myMax ( a b )
+  (cond
+   ( (> a b)        a )
+   ( t              b )
+  )
+)
+
+; depth(l1l2..ln, c) = c, if n = 0
+;                    = max(depth(l1, c + 1), depth(l2l3..ln, c)), if l1 is a list
+;                    = depth(l2l3..ln, c), otherwise
+
+(defun depth ( l c )
+  (cond
+   ( (null l)                 c )
+   ( (listp (car l))          (myMax (depth (car l) (+ c 1)) (depth (cdr l) c)) )
+   ( t                        (depth (cdr l) c) )
+  )
+)
+
+; mainDepth(l1l2..ln) = depth(l1l2..ln, 1)
+
+(defun mainDepth ( l )
+  ( depth l 1 )
+)
+
+; c) Sort a linear list without keeping the double values
+
+; insertEl(e, l1l2..ln) = (e), if n = 0
+;                       = {e} U l1l2..ln, if e < l1
+;                       = l1l2..ln, if l1 = e
+;                       = {l1} U insertEl(e, l2l3..ln), otherwise
+
+(defun insertEl ( e l )
+  (cond
+  ( (null l)               (list e) )
+  ( (< e (car l))          (cons e l) )
+  ( (equal e (car l))       l )
+  ( t                      (cons (car l) (insertEl e (cdr l))) )
+))
+
+; sortare(l1l2..ln) = [], n = 0
+;                   = insertEl(l1, sortare(l2l3..ln)), otherwise
+
+(defun sortare ( l )
+  (cond
+   ( (null l)         nil )
+   ( t                (insertEl (car l) (sortare (cdr l))) )
+  )
+)
+
+; d) Intersection of two sets
+
+; contains(l1l2..ln, e) = null, if n = 0
+;                       = true, if l1 = e
+;                       = contains(e, l2l3..ln), otherwise
+
+(defun contains ( l e )
+  (cond
+   ( (null l)                          nil )
+   ( (equal e (car l))                 t )
+   ( t                                 (contains (cdr l) e) )
+  )
+)
+
+; inters(l1l2..ln, v1v2..vm) = nil, n = 0 or m = 0
+;                            = {l1} U inters(l2l3..ln, v1v2..vm), if contains(v1v2..vm, l1)
+;                            = inters(l2l3..ln, v1v2..vm), otherwise
+
+(defun inters ( l v )
+  (cond
+   ( (or (null l) (null v))               nil )
+   ( (contains v (car l))                 (cons (car l) (inters (cdr l) v)) )
+   ( t                                    (inters (cdr l) v) )
+  )
+)
