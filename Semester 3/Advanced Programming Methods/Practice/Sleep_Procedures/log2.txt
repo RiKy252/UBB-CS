@@ -1,0 +1,50 @@
+ID: 2
+Stack:
+int a
+int b;
+a = 2 + 3 * 5;
+b = a + 1;
+print(b)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+ID: 2
+Stack:
+int b;
+a = 2 + 3 * 5;
+b = a + 1;
+print(b)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+ID: 2
+Stack:
+int a
+int b;
+a = 2 + 3 * 5;
+b = a + 1;
+print(b)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+ID: 2
+Stack:
+int b;
+a = 2 + 3 * 5;
+b = a + 1;
+print(b)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+

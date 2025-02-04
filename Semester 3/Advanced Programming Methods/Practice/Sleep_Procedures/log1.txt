@@ -1,0 +1,11 @@
+ID: 1
+Stack:
+int v
+v = 2;
+print(v)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+

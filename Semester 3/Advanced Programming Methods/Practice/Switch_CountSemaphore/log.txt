@@ -1,0 +1,780 @@
+ID: 1
+Stack:
+Ref (int) v1
+int cnt;
+new(v1, 1);
+createSemaphore(cnt, readHeap(v1));
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+print(readHeap(v1));
+release(cnt));
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt));
+acquire(cnt);
+print(readHeap(v1) - 1);
+release(cnt)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+ID: 1
+Stack:
+int cnt;
+new(v1, 1);
+createSemaphore(cnt, readHeap(v1));
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+print(readHeap(v1));
+release(cnt));
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt));
+acquire(cnt);
+print(readHeap(v1) - 1);
+release(cnt)
+Symbolic table:
+v1->(0, int)
+Out:
+File table:
+Heap:
+
+
+ID: 1
+Stack:
+int cnt
+new(v1, 1);
+createSemaphore(cnt, readHeap(v1));
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+print(readHeap(v1));
+release(cnt));
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt));
+acquire(cnt);
+print(readHeap(v1) - 1);
+release(cnt)
+Symbolic table:
+v1->(0, int)
+Out:
+File table:
+Heap:
+
+
+ID: 1
+Stack:
+new(v1, 1);
+createSemaphore(cnt, readHeap(v1));
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+print(readHeap(v1));
+release(cnt));
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt));
+acquire(cnt);
+print(readHeap(v1) - 1);
+release(cnt)
+Symbolic table:
+cnt->0
+v1->(0, int)
+Out:
+File table:
+Heap:
+
+
+ID: 1
+Stack:
+new(v1, 1)
+createSemaphore(cnt, readHeap(v1));
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+print(readHeap(v1));
+release(cnt));
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt));
+acquire(cnt);
+print(readHeap(v1) - 1);
+release(cnt)
+Symbolic table:
+cnt->0
+v1->(0, int)
+Out:
+File table:
+Heap:
+
+
+ID: 1
+Stack:
+createSemaphore(cnt, readHeap(v1));
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+print(readHeap(v1));
+release(cnt));
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt));
+acquire(cnt);
+print(readHeap(v1) - 1);
+release(cnt)
+Symbolic table:
+cnt->0
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->1
+
+
+ID: 1
+Stack:
+createSemaphore(cnt, readHeap(v1))
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+print(readHeap(v1));
+release(cnt));
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt));
+acquire(cnt);
+print(readHeap(v1) - 1);
+release(cnt)
+Symbolic table:
+cnt->0
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->1
+
+
+ID: 1
+Stack:
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+print(readHeap(v1));
+release(cnt));
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt));
+acquire(cnt);
+print(readHeap(v1) - 1);
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->1
+
+
+ID: 1
+Stack:
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+print(readHeap(v1));
+release(cnt))
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt));
+acquire(cnt);
+print(readHeap(v1) - 1);
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->1
+
+
+ID: 1
+Stack:
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt));
+acquire(cnt);
+print(readHeap(v1) - 1);
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->1
+
+
+ID: 2
+Stack:
+acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->1
+
+
+ID: 1
+Stack:
+fork(acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt))
+acquire(cnt);
+print(readHeap(v1) - 1);
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->1
+
+
+ID: 2
+Stack:
+acquire(cnt)
+writeHeap(v1, readHeap(v1) * 10);
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->1
+
+
+ID: 1
+Stack:
+acquire(cnt);
+print(readHeap(v1) - 1);
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->1
+
+
+ID: 2
+Stack:
+writeHeap(v1, readHeap(v1) * 10);
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->1
+
+
+ID: 3
+Stack:
+acquire(cnt);
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->1
+
+
+ID: 1
+Stack:
+acquire(cnt)
+print(readHeap(v1) - 1);
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->1
+
+
+ID: 2
+Stack:
+writeHeap(v1, readHeap(v1) * 10)
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->1
+
+
+ID: 3
+Stack:
+acquire(cnt)
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->1
+
+
+ID: 1
+Stack:
+acquire(cnt)
+print(readHeap(v1) - 1);
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->10
+
+
+ID: 2
+Stack:
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->10
+
+
+ID: 3
+Stack:
+acquire(cnt)
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->10
+
+
+ID: 1
+Stack:
+acquire(cnt)
+print(readHeap(v1) - 1);
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->10
+
+
+ID: 2
+Stack:
+print(readHeap(v1))
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->10
+
+
+ID: 3
+Stack:
+acquire(cnt)
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+File table:
+Heap:
+1->10
+
+
+ID: 1
+Stack:
+acquire(cnt)
+print(readHeap(v1) - 1);
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+File table:
+Heap:
+1->10
+
+
+ID: 2
+Stack:
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+File table:
+Heap:
+1->10
+
+
+ID: 3
+Stack:
+acquire(cnt)
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+File table:
+Heap:
+1->10
+
+
+ID: 1
+Stack:
+acquire(cnt)
+print(readHeap(v1) - 1);
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+File table:
+Heap:
+1->10
+
+
+ID: 2
+Stack:
+
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+File table:
+Heap:
+1->10
+
+
+ID: 3
+Stack:
+acquire(cnt)
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+File table:
+Heap:
+1->10
+
+
+ID: 1
+Stack:
+print(readHeap(v1) - 1);
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+File table:
+Heap:
+1->10
+
+
+ID: 3
+Stack:
+acquire(cnt)
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+File table:
+Heap:
+1->10
+
+
+ID: 1
+Stack:
+print(readHeap(v1) - 1)
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+File table:
+Heap:
+1->10
+
+
+ID: 3
+Stack:
+acquire(cnt)
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+File table:
+Heap:
+1->10
+
+
+ID: 1
+Stack:
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+9
+File table:
+Heap:
+1->10
+
+
+ID: 3
+Stack:
+acquire(cnt)
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+9
+File table:
+Heap:
+1->10
+
+
+ID: 1
+Stack:
+
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+9
+File table:
+Heap:
+1->10
+
+
+ID: 3
+Stack:
+writeHeap(v1, readHeap(v1) * 10);
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+9
+File table:
+Heap:
+1->10
+
+
+ID: 3
+Stack:
+writeHeap(v1, readHeap(v1) * 10)
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+9
+File table:
+Heap:
+1->10
+
+
+ID: 3
+Stack:
+writeHeap(v1, readHeap(v1) * 2);
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+9
+File table:
+Heap:
+1->100
+
+
+ID: 3
+Stack:
+writeHeap(v1, readHeap(v1) * 2)
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+9
+File table:
+Heap:
+1->100
+
+
+ID: 3
+Stack:
+print(readHeap(v1));
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+9
+File table:
+Heap:
+1->200
+
+
+ID: 3
+Stack:
+print(readHeap(v1))
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+9
+File table:
+Heap:
+1->200
+
+
+ID: 3
+Stack:
+release(cnt)
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+9
+200
+File table:
+Heap:
+1->200
+
+
+ID: 3
+Stack:
+
+Symbolic table:
+cnt->1
+v1->(1, int)
+Out:
+10
+9
+200
+File table:
+Heap:
+1->200
+
+

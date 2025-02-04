@@ -1,0 +1,127 @@
+ID: 3
+Stack:
+bool a
+int v;
+a = true;
+if (a) then { v = 2 } else { v = 3 };
+print(v)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+ID: 3
+Stack:
+int v;
+a = true;
+if (a) then { v = 2 } else { v = 3 };
+print(v)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+ID: 3
+Stack:
+bool a
+int v;
+a = true;
+if (a) then { v = 2 } else { v = 3 };
+print(v)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+ID: 3
+Stack:
+int v;
+a = true;
+if (a) then { v = 2 } else { v = 3 };
+print(v)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+ID: 3
+Stack:
+bool a
+int v;
+a = true;
+if (a) then { v = 2 } else { v = 3 };
+print(v)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+ID: 3
+Stack:
+int v;
+a = true;
+if (a) then { v = 2 } else { v = 3 };
+print(v)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+ID: 3
+Stack:
+bool a
+int v;
+a = true;
+if (a) then { v = 2 } else { v = 3 };
+print(v)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+ID: 3
+Stack:
+bool a
+int v;
+a = true;
+if (a) then { v = 2 } else { v = 3 };
+print(v)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+ID: 3
+Stack:
+bool a
+int v;
+a = true;
+if (a) then { v = 2 } else { v = 3 };
+print(v)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
+ID: 3
+Stack:
+bool a
+int v;
+a = true;
+if (a) then { v = 2 } else { v = 3 };
+print(v)
+Symbolic table:
+Out:
+File table:
+Heap:
+
+
