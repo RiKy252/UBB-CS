@@ -74,7 +74,11 @@ public class LockTable implements ILockTable {
     public String toString() {
         lock.lock();
         try {
-            return this.lockTable.toString();
+            StringBuilder buffer = new StringBuilder();
+            for (Integer key : this.lockTable.keySet()) {
+                buffer.append(key).append("->").append(this.lockTable.get(key)).append("\n");
+            }
+            return buffer.toString();
         } finally {
             lock.unlock();
         }

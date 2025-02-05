@@ -142,50 +142,54 @@ public class Repo implements IRepo {
                                                 new PrintStmt(new VarExp("v")), new PrintStmt(new ReadHeapExp(new VarExp("a")))
                                         ))))));
 
-        IStmt ex12 = new CompStmt(new VarDeclStmt("v1", new RefType(new IntType())),
+        IStmt ex12 = new CompStmt(new VarDeclStmt("a", new RefType(new IntType())),
+                new CompStmt(new NewStmt("a", new ValueExp(new IntValue(20))),
+                        new CompStmt(new ForStmt("v", new ValueExp(new IntValue(0)),
+                                                       new ValueExp(new IntValue(3)),
+                                                       new ArithExp(new VarExp("v"), new ValueExp(new IntValue(1)), 1),
+                                                       new ForkStmt(new CompStmt(
+                                                               new PrintStmt(new VarExp("v")),
+                                                               new AssignStmt("v", new ArithExp(new VarExp("v"),
+                                                                                                   new ReadHeapExp(new VarExp("a")),
+                                                                                                   3))))),
+                                new PrintStmt(new ReadHeapExp(new VarExp("a"))))));
+
+        IStmt ex13 = new CompStmt(new VarDeclStmt("v1", new RefType(new IntType())),
                 new CompStmt(new VarDeclStmt("v2", new RefType(new IntType())),
                         new CompStmt(new VarDeclStmt("x", new IntType()),
-                                new CompStmt(new NewStmt("v1", new ValueExp(new IntValue(20))),
-                                        new CompStmt(new NewStmt("v2", new ValueExp(new IntValue(30))),
-                                                new CompStmt(new NewLockStmt("x"),
-                                                        new CompStmt(new ForkStmt(new CompStmt(new ForkStmt(
-                                                                new CompStmt(new LockStmt("x"),
-                                                                        new CompStmt(new WriteHeapStmt("v1",
-                                                                                new ArithExp(new ReadHeapExp(new VarExp("v1")), new ValueExp(new IntValue(1)), 2)),
-                                                                                new UnlockStmt("x")))), new CompStmt(new LockStmt("x"),
-                                                                        new CompStmt(new WriteHeapStmt("v1", new ArithExp(new ReadHeapExp(new VarExp("v1")), new ValueExp(new IntValue(1)), 1)),
-                                                                                new UnlockStmt("x"))))),
-                                                                new CompStmt(
-                                                                new ForkStmt(new CompStmt(
-                                                                        new ForkStmt(
-                                                                                new WriteHeapStmt("v2", new ArithExp(new ReadHeapExp(new VarExp("v2")), new ValueExp(new IntValue(1)), 1))
-                                                                        ),
-                                                                        new CompStmt(new WriteHeapStmt("v2", new ArithExp(new ReadHeapExp(new VarExp("v2")), new ValueExp(new IntValue(1)), 1)),
-                                                                                new UnlockStmt("x")))),
-                                                                        new CompStmt(new NopStmt(), new CompStmt(new NopStmt(), new CompStmt(new NopStmt(), new CompStmt(new NopStmt(),
-                                                                                new CompStmt(new NopStmt(), new CompStmt(new NopStmt(), new CompStmt(new NopStmt(), new CompStmt(new NopStmt(),
-                                                                                        new CompStmt(new NopStmt(),
+                                new CompStmt(new VarDeclStmt("q", new IntType()),
+                                        new CompStmt(new NewStmt("v1", new ValueExp(new IntValue(20))),
+                                                new CompStmt(new NewStmt("v2", new ValueExp(new IntValue(30))),
+                                                        new CompStmt(new NewLockStmt("x"),
+                                                                new CompStmt(new ForkStmt(new CompStmt(
+                                                                        new ForkStmt(new CompStmt(new LockStmt("x"),
+                                                                                new CompStmt(new WriteHeapStmt("v1", new ArithExp(new ReadHeapExp(new VarExp("v1")),
+                                                                                                                                                          new ValueExp(new IntValue(1)),
+                                                                                                                                                          2)),
+                                                                                        new UnlockStmt("x")))),
+                                                                        new CompStmt(new LockStmt("x"), new CompStmt(new WriteHeapStmt("v1", new ArithExp(new ReadHeapExp(new VarExp("v1")),
+                                                                                                                                                                       new ValueExp(new IntValue(10)),
+                                                                                                                                                                        3)),
+                                                                                new UnlockStmt("x"))
+                                                                ))), new CompStmt(new NewLockStmt("q"),
+                                                                        new CompStmt(new ForkStmt(new CompStmt(
+                                                                                new ForkStmt(new CompStmt(
+                                                                                        new LockStmt("q"), new CompStmt(new WriteHeapStmt("v2", new ArithExp(new ReadHeapExp(new VarExp("v2")),
+                                                                                                                                                                          new ValueExp(new IntValue(5)),
+                                                                                                                                                                          1)),
+                                                                                        new UnlockStmt("q"))
+                                                                                )), new CompStmt(new LockStmt("q"), new CompStmt(new WriteHeapStmt("v2", new ArithExp(new ReadHeapExp(new VarExp("v2")),
+                                                                                                                                                                                   new ValueExp(new IntValue(10)),
+                                                                                                                                                                                   3)),
+                                                                                new UnlockStmt("q")))
+                                                                        )),
+                                                                                new CompStmt(new NopStmt(), new CompStmt(new NopStmt(), new CompStmt(new NopStmt(),
+                                                                                        new CompStmt(new NopStmt(), new CompStmt(new LockStmt("x"),
                                                                                                 new CompStmt(new PrintStmt(new ReadHeapExp(new VarExp("v1"))),
-                                                                                                        new PrintStmt(new ReadHeapExp(new VarExp("v2")))))))))))))))))))));
-
-        IStmt ex13 = new CompStmt(new VarDeclStmt("v", new IntType()), new CompStmt(new AssignStmt("v", new ValueExp(new IntValue(20))),
-                new CompStmt(new ForStmt("v",
-                        new ValueExp(new IntValue(0)),
-                        new ValueExp(new IntValue(3)),
-                        new ArithExp(new VarExp("v"), new ValueExp(new IntValue(1)), 1),
-                        new ForkStmt(new CompStmt(new PrintStmt(new VarExp("v")), new AssignStmt("v", new ArithExp(new VarExp("v"), new ValueExp(new IntValue(1)), 1))))),
-                        new PrintStmt(new ArithExp(new VarExp("v"), new ValueExp(new IntValue(10)), 3)))));
-
-        IStmt ex14 = new CompStmt(new VarDeclStmt("v", new IntType()),
-                new CompStmt(new VarDeclStmt("a", new RefType(new IntType())),
-                        new CompStmt(new NewStmt("a", new ValueExp(new IntValue(20))),
-                                new CompStmt(new ForStmt("v",
-                                        new ValueExp(new IntValue(0)),
-                                        new ValueExp(new IntValue(3)),
-                                        new ArithExp(new VarExp("v"), new ValueExp(new IntValue(1)), 1),
-                                        new ForkStmt(new CompStmt(new PrintStmt(new VarExp("v")), new AssignStmt("v",
-                                                new ArithExp(new VarExp("v"), new ReadHeapExp(new VarExp("a")), 3))))),
-                                        new PrintStmt(new ReadHeapExp(new VarExp("a")))))));
+                                                                                                        new CompStmt(new UnlockStmt("x"),
+                                                                                                                new CompStmt(new LockStmt("q"),
+                                                                                                                        new CompStmt(new PrintStmt(new ReadHeapExp(new VarExp("v2"))),
+                                                                                                                                new UnlockStmt("q"))))))))))))))))))));
 
         examples.add(ex1);
         examples.add(ex2);
@@ -200,7 +204,6 @@ public class Repo implements IRepo {
         examples.add(ex11);
         examples.add(ex12);
         examples.add(ex13);
-        examples.add(ex14);
         return examples;
     }
     @Override

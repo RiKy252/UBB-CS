@@ -5,6 +5,7 @@ import Model.Expressions.Exp;
 import Model.Expressions.RelationalExp;
 import Model.Expressions.VarExp;
 import Model.PrgState;
+import Model.Types.IntType;
 import Model.Types.Type;
 import MyException.MyException;
 
@@ -30,12 +31,25 @@ public class ForStmt implements IStmt {
     @Override
     public PrgState execute(PrgState state) {
         IStmt newStmt =
-                new CompStmt(new AssignStmt(var, exp1), new WhileStmt(new RelationalExp(new VarExp(var), exp2, "<"), new CompStmt(stmt, new AssignStmt(var, exp3))));
+                new CompStmt(new VarDeclStmt("v", new IntType()), new CompStmt(new AssignStmt(var, exp1), new WhileStmt(new RelationalExp(new VarExp(var), exp2, "<"), new CompStmt(stmt, new AssignStmt(var, exp3)))));
         state.getStack().push(newStmt);
         return null;
     }
     @Override
     public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        typeEnv.add(var, new IntType());
+        Type exp1Type = exp1.typeCheck(typeEnv);
+        Type exp2Type = exp2.typeCheck(typeEnv);
+        Type exp3Type = exp3.typeCheck(typeEnv);
+        if (!exp1Type.equals(new IntType())) {
+            throw new MyException("For statement: " + exp1.toString() + " is not of type int");
+        }
+        if (!exp2Type.equals(new IntType())) {
+            throw new MyException("For statement: " + exp2.toString() + " is not of type int");
+        }
+        if (!exp3Type.equals(new IntType())) {
+            throw new MyException("For statement: " + exp3.toString() + " is not of type int");
+        }
         return typeEnv;
     }
 }

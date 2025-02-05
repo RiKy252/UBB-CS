@@ -207,6 +207,48 @@ public class Interpreter {
                 IRepo repository11 = new Repo(program11, "log11.txt");
                 Controller controller11 = new Controller(repository11);
                 menu.addCommand(new RunExampleCommand("11", "Run the following program:\n" + ex11, controller11));
+                IStmt ex14 = new CompStmt(new VarDeclStmt("v1", new RefType(new IntType())),
+                        new CompStmt(new VarDeclStmt("v2", new RefType(new IntType())),
+                                new CompStmt(new VarDeclStmt("x", new IntType()),
+                                        new CompStmt(new VarDeclStmt("q", new IntType()),
+                                                new CompStmt(new NewStmt("v1", new ValueExp(new IntValue(20))),
+                                                        new CompStmt(new NewStmt("v2", new ValueExp(new IntValue(30))),
+                                                                new CompStmt(new NewLockStmt("x"),
+                                                                        new CompStmt(new ForkStmt(new CompStmt(
+                                                                                new ForkStmt(new CompStmt(new LockStmt("x"),
+                                                                                        new CompStmt(new WriteHeapStmt("v1", new ArithExp(new ReadHeapExp(new VarExp("v1")),
+                                                                                                new ValueExp(new IntValue(1)),
+                                                                                                2)),
+                                                                                                new UnlockStmt("x")))),
+                                                                                new CompStmt(new LockStmt("x"), new CompStmt(new WriteHeapStmt("v1", new ArithExp(new ReadHeapExp(new VarExp("v1")),
+                                                                                        new ValueExp(new IntValue(10)),
+                                                                                        3)),
+                                                                                        new UnlockStmt("x"))
+                                                                                ))), new CompStmt(new NewLockStmt("q"),
+                                                                                new CompStmt(new ForkStmt(new CompStmt(
+                                                                                        new ForkStmt(new CompStmt(
+                                                                                                new LockStmt("q"), new CompStmt(new WriteHeapStmt("v2", new ArithExp(new ReadHeapExp(new VarExp("v2")),
+                                                                                                new ValueExp(new IntValue(5)),
+                                                                                                1)),
+                                                                                                new UnlockStmt("q"))
+                                                                                        )), new CompStmt(new LockStmt("q"), new CompStmt(new WriteHeapStmt("v2", new ArithExp(new ReadHeapExp(new VarExp("v2")),
+                                                                                        new ValueExp(new IntValue(10)),
+                                                                                        3)),
+                                                                                        new UnlockStmt("q")))
+                                                                                )),
+                                                                                        new CompStmt(new NopStmt(), new CompStmt(new NopStmt(), new CompStmt(new NopStmt(),
+                                                                                                new CompStmt(new NopStmt(), new CompStmt(new LockStmt("x"),
+                                                                                                        new CompStmt(new PrintStmt(new ReadHeapExp(new VarExp("v1"))),
+                                                                                                                new CompStmt(new UnlockStmt("x"),
+                                                                                                                        new CompStmt(new LockStmt("q"),
+                                                                                                                                new CompStmt(new PrintStmt(new ReadHeapExp(new VarExp("v2"))),
+                                                                                                                                        new UnlockStmt("q"))))))))))))))))))));
+
+                ex14.typeCheck(new MyDictionary<>());
+                PrgState program14 = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new Heap<>(), new LockTable(), ex14);
+                IRepo repository14 = new Repo(program14, "log14.txt");
+                Controller controller14 = new Controller(repository14);
+                menu.addCommand(new RunExampleCommand("14", "Run the following program:\n" + ex14, controller14));
             } catch (MyException e) {
                 menu.addCommand(new RunExampleCommand("11", "Error in example 11: " + e.getMessage(), null));
             }

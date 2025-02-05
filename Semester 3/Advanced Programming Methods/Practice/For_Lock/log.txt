@@ -1,0 +1,4339 @@
+ID: 1
+Stack:
+Ref (int) v1
+Ref (int) v2;
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+Ref (int) v2;
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+v1->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+Ref (int) v2
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+v1->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+v1->(0, int)
+v2->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+int x
+int q;
+new(v1, 20);
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+v1->(0, int)
+v2->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+int q;
+new(v1, 20);
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+int q
+new(v1, 20);
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+new(v1, 20);
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+new(v1, 20)
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->0
+v1->(1, int)
+v2->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+new(v2, 30)
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->0
+v1->(1, int)
+v2->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+newLock(x)
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x))
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+Heap:
+1->20
+2->30
+
+
+ID: 2
+Stack:
+fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+newLock(q)
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+Heap:
+1->20
+2->30
+
+
+ID: 2
+Stack:
+fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x))
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 2
+Stack:
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 3
+Stack:
+lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q))
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 2
+Stack:
+lock(x)
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 3
+Stack:
+lock(x)
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 2
+Stack:
+lock(x)
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 3
+Stack:
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 4
+Stack:
+fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+Nop
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 2
+Stack:
+lock(x)
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 3
+Stack:
+writeHeap(v1, readHeap(v1) - 1)
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 4
+Stack:
+fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q))
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 2
+Stack:
+lock(x)
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 3
+Stack:
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 4
+Stack:
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 5
+Stack:
+lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 1
+Stack:
+Nop
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 2
+Stack:
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 3
+Stack:
+
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 4
+Stack:
+lock(q)
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 5
+Stack:
+lock(q)
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 1
+Stack:
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->4
+Heap:
+1->19
+2->30
+
+
+ID: 2
+Stack:
+writeHeap(v1, readHeap(v1) * 10)
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->4
+Heap:
+1->19
+2->30
+
+
+ID: 4
+Stack:
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->4
+Heap:
+1->19
+2->30
+
+
+ID: 5
+Stack:
+lock(q)
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->4
+Heap:
+1->19
+2->30
+
+
+ID: 1
+Stack:
+Nop
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->4
+Heap:
+1->190
+2->30
+
+
+ID: 2
+Stack:
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->4
+Heap:
+1->190
+2->30
+
+
+ID: 4
+Stack:
+writeHeap(v2, readHeap(v2) * 10)
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->4
+Heap:
+1->190
+2->30
+
+
+ID: 5
+Stack:
+lock(q)
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->4
+Heap:
+1->190
+2->30
+
+
+ID: 1
+Stack:
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->4
+Heap:
+1->190
+2->300
+
+
+ID: 2
+Stack:
+
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->4
+Heap:
+1->190
+2->300
+
+
+ID: 4
+Stack:
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->4
+Heap:
+1->190
+2->300
+
+
+ID: 5
+Stack:
+lock(q)
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->4
+Heap:
+1->190
+2->300
+
+
+ID: 1
+Stack:
+Nop
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->190
+2->300
+
+
+ID: 4
+Stack:
+
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->190
+2->300
+
+
+ID: 5
+Stack:
+lock(q)
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->190
+2->300
+
+
+ID: 1
+Stack:
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->5
+Heap:
+1->190
+2->300
+
+
+ID: 5
+Stack:
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->5
+Heap:
+1->190
+2->300
+
+
+ID: 1
+Stack:
+lock(x)
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->5
+Heap:
+1->190
+2->300
+
+
+ID: 5
+Stack:
+writeHeap(v2, readHeap(v2) + 5)
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->5
+Heap:
+1->190
+2->300
+
+
+ID: 1
+Stack:
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->1
+2->5
+Heap:
+1->190
+2->305
+
+
+ID: 5
+Stack:
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->1
+2->5
+Heap:
+1->190
+2->305
+
+
+ID: 1
+Stack:
+print(readHeap(v1))
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->1
+2->-1
+Heap:
+1->190
+2->305
+
+
+ID: 5
+Stack:
+
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->1
+2->-1
+Heap:
+1->190
+2->305
+
+
+ID: 1
+Stack:
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+File table:
+Lock table:
+1->1
+2->-1
+Heap:
+1->190
+2->305
+
+
+ID: 1
+Stack:
+unlock(x)
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+File table:
+Lock table:
+1->1
+2->-1
+Heap:
+1->190
+2->305
+
+
+ID: 1
+Stack:
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->190
+2->305
+
+
+ID: 1
+Stack:
+lock(q)
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->190
+2->305
+
+
+ID: 1
+Stack:
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+File table:
+Lock table:
+1->-1
+2->1
+Heap:
+1->190
+2->305
+
+
+ID: 1
+Stack:
+print(readHeap(v2))
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+File table:
+Lock table:
+1->-1
+2->1
+Heap:
+1->190
+2->305
+
+
+ID: 1
+Stack:
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+305
+File table:
+Lock table:
+1->-1
+2->1
+Heap:
+1->190
+2->305
+
+
+ID: 1
+Stack:
+
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+305
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->190
+2->305
+
+
+ID: 1
+Stack:
+Ref (int) a
+new(a, 20);
+for(v=0;v<3;v=v + 1){fork(print(v);
+v = v * readHeap(a))};
+print(readHeap(a))
+Symbolic table:
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+new(a, 20);
+for(v=0;v<3;v=v + 1){fork(print(v);
+v = v * readHeap(a))};
+print(readHeap(a))
+Symbolic table:
+a->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+new(a, 20)
+for(v=0;v<3;v=v + 1){fork(print(v);
+v = v * readHeap(a))};
+print(readHeap(a))
+Symbolic table:
+a->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+for(v=0;v<3;v=v + 1){fork(print(v);
+v = v * readHeap(a))};
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+for(v=0;v<3;v=v + 1){fork(print(v);
+v = v * readHeap(a))}
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+int v;
+v = 0;
+while (v < 3) execute fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+int v
+v = 0;
+while (v < 3) execute fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+v = 0;
+while (v < 3) execute fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+v->0
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+v = 0
+while (v < 3) execute fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+v->0
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+while (v < 3) execute fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+v->0
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+while (v < 3) execute fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+v->0
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+fork(print(v);
+v = v * readHeap(a))
+v = v + 1
+while (v < 3) execute fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+v->0
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+v = v + 1
+while (v < 3) execute fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+v->0
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 2
+Stack:
+print(v);
+v = v * readHeap(a)
+Symbolic table:
+a->(1, int)
+v->0
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+while (v < 3) execute fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+v->1
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 2
+Stack:
+print(v)
+v = v * readHeap(a)
+Symbolic table:
+a->(1, int)
+v->0
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+while (v < 3) execute fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+v->1
+Out:
+0
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 2
+Stack:
+v = v * readHeap(a)
+Symbolic table:
+a->(1, int)
+v->0
+Out:
+0
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+fork(print(v);
+v = v * readHeap(a))
+v = v + 1
+while (v < 3) execute fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+v->1
+Out:
+0
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 2
+Stack:
+
+Symbolic table:
+a->(1, int)
+v->0
+Out:
+0
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+v = v + 1
+while (v < 3) execute fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+v->1
+Out:
+0
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 3
+Stack:
+print(v);
+v = v * readHeap(a)
+Symbolic table:
+a->(1, int)
+v->1
+Out:
+0
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+while (v < 3) execute fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+v->2
+Out:
+0
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 3
+Stack:
+print(v)
+v = v * readHeap(a)
+Symbolic table:
+a->(1, int)
+v->1
+Out:
+0
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+while (v < 3) execute fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+v->2
+Out:
+0
+1
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 3
+Stack:
+v = v * readHeap(a)
+Symbolic table:
+a->(1, int)
+v->1
+Out:
+0
+1
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+fork(print(v);
+v = v * readHeap(a))
+v = v + 1
+while (v < 3) execute fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+v->2
+Out:
+0
+1
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 3
+Stack:
+
+Symbolic table:
+a->(1, int)
+v->20
+Out:
+0
+1
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+v = v + 1
+while (v < 3) execute fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+v->2
+Out:
+0
+1
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 4
+Stack:
+print(v);
+v = v * readHeap(a)
+Symbolic table:
+a->(1, int)
+v->2
+Out:
+0
+1
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+while (v < 3) execute fork(print(v);
+v = v * readHeap(a));
+v = v + 1
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+v->3
+Out:
+0
+1
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 4
+Stack:
+print(v)
+v = v * readHeap(a)
+Symbolic table:
+a->(1, int)
+v->2
+Out:
+0
+1
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+print(readHeap(a))
+Symbolic table:
+a->(1, int)
+v->3
+Out:
+0
+1
+2
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 4
+Stack:
+v = v * readHeap(a)
+Symbolic table:
+a->(1, int)
+v->2
+Out:
+0
+1
+2
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+
+Symbolic table:
+a->(1, int)
+v->3
+Out:
+0
+1
+2
+20
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 4
+Stack:
+
+Symbolic table:
+a->(1, int)
+v->40
+Out:
+0
+1
+2
+20
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+Ref (int) v1
+Ref (int) v2;
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+Ref (int) v2;
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+v1->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+Ref (int) v2
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+v1->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+v1->(0, int)
+v2->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+int x
+int q;
+new(v1, 20);
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+v1->(0, int)
+v2->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+int q;
+new(v1, 20);
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+int q
+new(v1, 20);
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+new(v1, 20);
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+new(v1, 20)
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+
+
+ID: 1
+Stack:
+new(v2, 30);
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->0
+v1->(1, int)
+v2->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+new(v2, 30)
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->0
+v1->(1, int)
+v2->(0, int)
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+
+
+ID: 1
+Stack:
+newLock(x);
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+newLock(x)
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x));
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+fork(fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x))
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+newLock(q);
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+Heap:
+1->20
+2->30
+
+
+ID: 2
+Stack:
+fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x));
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+newLock(q)
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+Heap:
+1->20
+2->30
+
+
+ID: 2
+Stack:
+fork(lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x))
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q));
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 2
+Stack:
+lock(x);
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 3
+Stack:
+lock(x);
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+fork(fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q))
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 2
+Stack:
+lock(x)
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 3
+Stack:
+lock(x)
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+Nop;
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 2
+Stack:
+lock(x)
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 3
+Stack:
+writeHeap(v1, readHeap(v1) - 1);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 4
+Stack:
+fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q));
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+Nop
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 2
+Stack:
+lock(x)
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 3
+Stack:
+writeHeap(v1, readHeap(v1) - 1)
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 4
+Stack:
+fork(lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q))
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->20
+2->30
+
+
+ID: 1
+Stack:
+Nop;
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 2
+Stack:
+lock(x)
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 3
+Stack:
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 4
+Stack:
+lock(q);
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 5
+Stack:
+lock(q);
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->3
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 1
+Stack:
+Nop
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 2
+Stack:
+lock(x)
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 3
+Stack:
+
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 4
+Stack:
+lock(q)
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 5
+Stack:
+lock(q)
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->19
+2->30
+
+
+ID: 1
+Stack:
+Nop;
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->5
+Heap:
+1->19
+2->30
+
+
+ID: 2
+Stack:
+writeHeap(v1, readHeap(v1) * 10);
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->5
+Heap:
+1->19
+2->30
+
+
+ID: 4
+Stack:
+lock(q)
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->5
+Heap:
+1->19
+2->30
+
+
+ID: 5
+Stack:
+writeHeap(v2, readHeap(v2) + 5);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->5
+Heap:
+1->19
+2->30
+
+
+ID: 1
+Stack:
+Nop
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->5
+Heap:
+1->19
+2->30
+
+
+ID: 2
+Stack:
+writeHeap(v1, readHeap(v1) * 10)
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->5
+Heap:
+1->19
+2->30
+
+
+ID: 4
+Stack:
+lock(q)
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->5
+Heap:
+1->19
+2->30
+
+
+ID: 5
+Stack:
+writeHeap(v2, readHeap(v2) + 5)
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->5
+Heap:
+1->19
+2->30
+
+
+ID: 1
+Stack:
+Nop;
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->5
+Heap:
+1->190
+2->35
+
+
+ID: 2
+Stack:
+unlock(x)
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->5
+Heap:
+1->190
+2->35
+
+
+ID: 4
+Stack:
+lock(q)
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->5
+Heap:
+1->190
+2->35
+
+
+ID: 5
+Stack:
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->2
+2->5
+Heap:
+1->190
+2->35
+
+
+ID: 1
+Stack:
+Nop
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->190
+2->35
+
+
+ID: 2
+Stack:
+
+Symbolic table:
+q->0
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->190
+2->35
+
+
+ID: 4
+Stack:
+lock(q)
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->190
+2->35
+
+
+ID: 5
+Stack:
+
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->190
+2->35
+
+
+ID: 1
+Stack:
+lock(x);
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->4
+Heap:
+1->190
+2->35
+
+
+ID: 4
+Stack:
+writeHeap(v2, readHeap(v2) * 10);
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->4
+Heap:
+1->190
+2->35
+
+
+ID: 1
+Stack:
+lock(x)
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->4
+Heap:
+1->190
+2->35
+
+
+ID: 4
+Stack:
+writeHeap(v2, readHeap(v2) * 10)
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->-1
+2->4
+Heap:
+1->190
+2->35
+
+
+ID: 1
+Stack:
+print(readHeap(v1));
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->1
+2->4
+Heap:
+1->190
+2->350
+
+
+ID: 4
+Stack:
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->1
+2->4
+Heap:
+1->190
+2->350
+
+
+ID: 1
+Stack:
+print(readHeap(v1))
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->1
+2->-1
+Heap:
+1->190
+2->350
+
+
+ID: 4
+Stack:
+
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+File table:
+Lock table:
+1->1
+2->-1
+Heap:
+1->190
+2->350
+
+
+ID: 1
+Stack:
+unlock(x);
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+File table:
+Lock table:
+1->1
+2->-1
+Heap:
+1->190
+2->350
+
+
+ID: 1
+Stack:
+unlock(x)
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+File table:
+Lock table:
+1->1
+2->-1
+Heap:
+1->190
+2->350
+
+
+ID: 1
+Stack:
+lock(q);
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->190
+2->350
+
+
+ID: 1
+Stack:
+lock(q)
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->190
+2->350
+
+
+ID: 1
+Stack:
+print(readHeap(v2));
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+File table:
+Lock table:
+1->-1
+2->1
+Heap:
+1->190
+2->350
+
+
+ID: 1
+Stack:
+print(readHeap(v2))
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+File table:
+Lock table:
+1->-1
+2->1
+Heap:
+1->190
+2->350
+
+
+ID: 1
+Stack:
+unlock(q)
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+350
+File table:
+Lock table:
+1->-1
+2->1
+Heap:
+1->190
+2->350
+
+
+ID: 1
+Stack:
+
+Symbolic table:
+q->2
+x->1
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+350
+File table:
+Lock table:
+1->-1
+2->-1
+Heap:
+1->190
+2->350
+
+

@@ -99,6 +99,7 @@ public class PrgState {
                 "Symbolic table:\n" + this.symTable.toString() +
                 "Out:\n" + this.out.toString() +
                 "File table:\n" + this.fileTable.toString() +
+                "Lock table:\n" + this.lockTable.toString() +
                 "Heap:\n" + this.heap.toString() + "\n";
     }
 

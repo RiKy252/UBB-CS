@@ -120,42 +120,32 @@ public class Main {
         // MAP Theory 1 feb 2024
 
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
-        String result = numbers.stream()
-                .filter(number -> number % 5 == 0 || number % 4 == 0)
-                .map(number -> "N" + number.toString() + "R")
-                .reduce("", (acc, number) -> acc + number);
-
+        int result = numbers.stream()
+                .filter(n -> n % 3 == 0 || n % 7 == 0)
+                .map(n -> (n - 1) * 10)
+                .reduce(0, (acc, n) -> n + acc) % 5;
         System.out.println(result);
 
     }
 }
 
-interface D{}
-class A implements D{}
-class B extends A implements D{}
-class C extends A implements D{}
-class AMain{
-    D method1(ArrayList<? extends D> list) {
-        if (list.isEmpty())
-            return null;
-        else
-            return list.get(1);
+abstract class A1 { abstract int getS1();}
+class A extends A1 {
+    static int f1;
+    static int s1=0;
+    public A(int a) { f1=a*s1;s1=s1+1; }
+    static int getS() {
+        A ob= new A(10);
+        return ob.getS1();
     }
-    void method2(ArrayList<?> list) {
-        list.add(null);
-    }
-    void method3() {
-        ArrayList<A> listA = new ArrayList<A>();
-        ArrayList<B> listB = new ArrayList<B>();
-        ArrayList<C> listC = new ArrayList<C>();
-        listA.add(new B()); listA.add(new B());
-        listB.add(new B()); listB.add(new B());
-        listC.add(new C()); listC.add(new C());
-        this.method1(listA);
-        this.method1(listB);
-        this.method1(listC);
-        this.method2(listA);
-        this.method2(listB);
-        this.method2(listC);
-    }
+    int getS1() {return f1;}
 }
+// Static method -> cant reference a non-static method
+//               -> same with the fields, can't contain non-static fields, because the static function does not have access
+//                  to instance variables or methods, we can only fix this by creating an object and then extract values
+//                  from the object instance
+
+// Interface -> Methods implemented from an interface must be public.
+// Abstract class -> default access modifier = package-private
+//                   we don't need 'public' or other access modifier in the overridden method unless it reduces the visibility
+//                   -> in this case we have package-private = package-private

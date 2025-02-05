@@ -3,6 +3,7 @@ package Model.Statements;
 import Model.ADTs.ILockTable;
 import Model.ADTs.MyIDictionary;
 import Model.PrgState;
+import Model.Types.IntType;
 import Model.Types.Type;
 import Model.Values.IntValue;
 import Model.Values.Value;
@@ -28,12 +29,16 @@ public class NewLockStmt implements IStmt {
         int newFreeLocation = lockTable.allocate(-1);
         if (symTable.isDefined(var))
             symTable.update(var, new IntValue(newFreeLocation));
-        else
-            symTable.add(var, new IntValue(newFreeLocation));
         return null;
     }
     @Override
     public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        if (typeEnv.isDefined(var)) {
+            if (!typeEnv.lookup(var).equals(new IntType()))
+                throw new MyException("NewLock Stmt: " + var + " is not of type int!");
+        } else {
+            throw new MyException("NewLock Stmt: " + var + " is not defined!");
+        }
         return typeEnv;
     }
 }

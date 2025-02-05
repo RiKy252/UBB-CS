@@ -3,6 +3,7 @@ package Model.Statements;
 import Model.ADTs.ILockTable;
 import Model.ADTs.MyIDictionary;
 import Model.PrgState;
+import Model.Types.IntType;
 import Model.Types.Type;
 import Model.Values.IntValue;
 import Model.Values.Value;
@@ -43,6 +44,12 @@ public class LockStmt implements IStmt {
     }
     @Override
     public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        if (typeEnv.isDefined(var)) {
+            if (!typeEnv.lookup(var).equals(new IntType()))
+                throw new MyException("Lock Stmt: " + var + " is not of type int!");
+        } else {
+            throw new MyException("Lock Stmt: " + var + " is not defined!");
+        }
         return typeEnv;
     }
 }
