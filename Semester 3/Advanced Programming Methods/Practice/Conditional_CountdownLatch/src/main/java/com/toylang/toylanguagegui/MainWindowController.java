@@ -88,10 +88,10 @@ public class MainWindowController {
         controller.getPrograms().forEach(p -> programStatesListView.getItems().add(p.getId()));
 
         if (controller.getPrograms().size() > 0) {
-            heap = controller.getPrograms().getFirst().getHeap();
-            out = controller.getPrograms().getFirst().getOut();
-            fileTable = controller.getPrograms().getFirst().getFileTable();
-            latchTable = controller.getPrograms().getFirst().getLatchTable();
+            heap = controller.getPrograms().get(0).getHeap();
+            out = controller.getPrograms().get(0).getOut();
+            fileTable = controller.getPrograms().get(0).getFileTable();
+            latchTable = controller.getPrograms().get(0).getLatchTable();
         }
 
         if (heap != null) {
@@ -110,7 +110,7 @@ public class MainWindowController {
         }
         PrgState current;
         try {
-            current = controller.getPrograms().getFirst();
+            current = controller.getPrograms().get(0);
             current.getSymTable().toMap().forEach((k, v) -> symbolTableTableView.getItems().add(new Pair<>(k, v)));
             List<IStmt> stmtList = current.getStack().toList();
             for (int i = stmtList.size() - 1; i >= 0; i--) {
