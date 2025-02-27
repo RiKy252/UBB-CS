@@ -9,6 +9,10 @@ Entity: Football Team
 * CoachName
 * HomeStadium
 * Points
+* FoundedYear
 * Wins
 * Draws
 * Losses
+* GoalsScored
+* GoalsConceded
+* Players
