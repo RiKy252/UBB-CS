@@ -1,0 +1,15 @@
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Labs\Lab1\Lab1\bin\Debug\net8.0\Lab1.exe
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Labs\Lab1\Lab1\bin\Debug\net8.0\Lab1.deps.json
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Labs\Lab1\Lab1\bin\Debug\net8.0\Lab1.runtimeconfig.json
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Labs\Lab1\Lab1\bin\Debug\net8.0\Lab1.dll
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Labs\Lab1\Lab1\bin\Debug\net8.0\Lab1.pdb
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Labs\Lab1\Lab1\obj\Debug\net8.0\Lab1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Labs\Lab1\Lab1\obj\Debug\net8.0\Lab1.AssemblyInfoInputs.cache
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Labs\Lab1\Lab1\obj\Debug\net8.0\Lab1.AssemblyInfo.cs
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Labs\Lab1\Lab1\obj\Debug\net8.0\Lab1.csproj.CoreCompileInputs.cache
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Labs\Lab1\Lab1\obj\Debug\net8.0\Lab1.sourcelink.json
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Labs\Lab1\Lab1\obj\Debug\net8.0\Lab1.dll
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Labs\Lab1\Lab1\obj\Debug\net8.0\refint\Lab1.dll
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Labs\Lab1\Lab1\obj\Debug\net8.0\Lab1.pdb
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Labs\Lab1\Lab1\obj\Debug\net8.0\Lab1.genruntimeconfig.cache
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Labs\Lab1\Lab1\obj\Debug\net8.0\ref\Lab1.dll
