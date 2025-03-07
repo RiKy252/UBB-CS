@@ -16,3 +16,4 @@ Entity: Football Team
 * GoalsScored
 * GoalsConceded
 * Players
+* Country
