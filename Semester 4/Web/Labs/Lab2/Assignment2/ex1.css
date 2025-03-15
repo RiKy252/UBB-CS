@@ -1,0 +1,51 @@
+body {
+    overflow: hidden;
+    background-color: #1d1d38;
+}
+
+.triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 40px solid yellow;
+    animation: fly linear infinite;
+}
+
+.triangle:nth-child(1) {
+    top: 20%; left: 5%; animation-duration: 6s; animation-name: fly1;
+}
+.triangle:nth-child(2) {
+    top: 20%; left: 30%; animation-duration: 8s; animation-name: fly2;
+}
+.triangle:nth-child(3) {
+    top: 40%; left: 50%; animation-duration: 10s; animation-name: fly3;
+}
+.triangle:nth-child(4) {
+    top: 60%; left: 60%; animation-duration: 7s; animation-name: fly4;
+}
+.triangle:nth-child(5) {
+    top: 80%; left: 20%; animation-duration: 4s; animation-name: fly5;
+}
+
+@keyframes fly1 {
+    from { transform: translate(0, 0) scale(0.5); }
+    to { transform: translate(100vw, 50vh) scale(1.9); }
+}
+@keyframes fly2 {
+    from { transform: translate(0, 0) scale(0.6); }
+    to { transform: translate(-50vw, 100vh) scale(1.9); }
+}
+@keyframes fly3 {
+    from { transform: translate(0, 0) scale(0.8); }
+    to { transform: translate(70vw, -50vh) scale(0.4); }
+}
+@keyframes fly4 {
+    from { transform: translate(0, 0) scale(1.8); }
+    to { transform: translate(-80vw, -60vh) scale(0.4); }
+}
+@keyframes fly5 {
+    from { transform: translate(0, 0) scale(1.9); }
+    to { transform: translate(90vw, -70vh) scale(0.4); }
+}

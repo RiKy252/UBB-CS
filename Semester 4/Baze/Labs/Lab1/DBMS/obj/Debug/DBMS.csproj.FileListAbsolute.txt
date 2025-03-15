@@ -1,0 +1,10 @@
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\Baze\Labs\Lab1\DBMS\bin\Debug\DBMS.exe.config
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\Baze\Labs\Lab1\DBMS\bin\Debug\DBMS.exe
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\Baze\Labs\Lab1\DBMS\bin\Debug\DBMS.pdb
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\Baze\Labs\Lab1\DBMS\obj\Debug\DBMS.csproj.AssemblyReference.cache
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\Baze\Labs\Lab1\DBMS\obj\Debug\DBMS.Form1.resources
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\Baze\Labs\Lab1\DBMS\obj\Debug\DBMS.Properties.Resources.resources
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\Baze\Labs\Lab1\DBMS\obj\Debug\DBMS.csproj.GenerateResource.cache
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\Baze\Labs\Lab1\DBMS\obj\Debug\DBMS.csproj.CoreCompileInputs.cache
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\Baze\Labs\Lab1\DBMS\obj\Debug\DBMS.exe
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\Baze\Labs\Lab1\DBMS\obj\Debug\DBMS.pdb
