@@ -8,7 +8,6 @@ Entity: Football Team
 * TeamName
 * CoachName
 * HomeStadium
-* Points
 * FoundedYear
 * Wins
 * Draws
