@@ -1,0 +1,73 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{615B9A85-EB08-444A-A7D8-95ECD6A2AC24}|StocksHomepage.csproj|c:\\users\\bolog\\documents\\facultate\\ubb-cs\\semester 4\\iss\\assignments\\assignment 2\\stockshomepage\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{615B9A85-EB08-444A-A7D8-95ECD6A2AC24}|StocksHomepage.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{615B9A85-EB08-444A-A7D8-95ECD6A2AC24}|StocksHomepage.csproj|c:\\users\\bolog\\documents\\facultate\\ubb-cs\\semester 4\\iss\\assignments\\assignment 2\\stockshomepage\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{615B9A85-EB08-444A-A7D8-95ECD6A2AC24}|StocksHomepage.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{615B9A85-EB08-444A-A7D8-95ECD6A2AC24}|StocksHomepage.csproj|c:\\users\\bolog\\documents\\facultate\\ubb-cs\\semester 4\\iss\\assignments\\assignment 2\\stockshomepage\\stock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{615B9A85-EB08-444A-A7D8-95ECD6A2AC24}|StocksHomepage.csproj|solutionrelative:stock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAAAGMAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-24T10:52:31.375Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAIwEAAAAB/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T10:52:33.402Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Stock.cs",
+              "DocumentMoniker": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\Stock.cs",
+              "RelativeDocumentMoniker": "Stock.cs",
+              "ToolTip": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\Stock.cs",
+              "RelativeToolTip": "Stock.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA4AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T11:43:35.381Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

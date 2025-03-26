@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "StocksHomepage (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "StocksHomepage (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
