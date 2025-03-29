@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { useTeams } from "./TeamContext";
 
 export default function PremierLeagueTeams() {
-
   const { teams, setTeams } = useTeams();
 
   const calculatePositions = (teams: any[]) => {
@@ -23,9 +22,11 @@ export default function PremierLeagueTeams() {
       }));
   };
 
-  const [selectedTeams, setSelectedTeams] = useState<string[]>([]); // Track selected teams for deletion
   const [sortedTeams, setSortedTeams] = useState(calculatePositions(teams));
+  const [sortCriteria, setSortCriteria] = useState("points"); // Default sorting by points
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc"); // Default descending order
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedTeams, setSelectedTeams] = useState<string[]>([]); // Track selected teams for deletion
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
   const [newTeam, setNewTeam] = useState({
     name: "",
@@ -41,6 +42,60 @@ export default function PremierLeagueTeams() {
     country: "",
   });
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const teamsPerPage = 10; 
+
+  const getSortedTeams = () => {
+    const filteredTeams = teams.filter((team) =>
+      team.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    return [...filteredTeams].sort((a, b) => {
+      let comparison = 0;
+
+      if (sortCriteria === "points") {
+        const aPoints = a.wins * 3 + a.draws;
+        const bPoints = b.wins * 3 + b.draws;
+        comparison = bPoints - aPoints;
+      } else if (sortCriteria === "wins") {
+        comparison = b.wins - a.wins;
+      } else if (sortCriteria === "goalsScored") {
+        comparison = b.goalsScored - a.goalsScored;
+      } else if (sortCriteria === "goalsConceded") {
+        comparison = a.goalsConceded - b.goalsConceded; // Less is better
+      } else if (sortCriteria === "name") {
+        comparison = a.name.localeCompare(b.name);
+      }
+
+      return sortOrder === "asc" ? -comparison : comparison;
+    });
+  };
+
+  const paginatedTeams = getSortedTeams().slice(
+    (currentPage - 1) * teamsPerPage,
+    currentPage * teamsPerPage
+  );
+
+  const totalPages = Math.ceil(getSortedTeams().length / teamsPerPage);
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
+
+  const handleSortChange = (criteria: string) => {
+    setSortCriteria(criteria);
+  };
+
+  const toggleSortOrder = () => {
+    setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+  };
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
+
   const handleCheckboxChange = (teamName: string) => {
     setSelectedTeams((prev) =>
       prev.includes(teamName)
@@ -54,23 +109,12 @@ export default function PremierLeagueTeams() {
       alert("Please select at least one team to remove.");
       return;
     }
-  
+
     // Remove the selected teams
     const updatedTeams = teams.filter((team) => !selectedTeams.includes(team.name));
     setTeams(updatedTeams);
     setSortedTeams(calculatePositions(updatedTeams));
     setSelectedTeams([]); // Reset selected teams
-  };
-
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const query = event.target.value.toLowerCase();
-    setSearchQuery(query);
-
-    // Filter teams based on the search query
-    const filteredTeams = teams.filter((team) =>
-      team.name.toLowerCase().includes(query)
-    );
-    setSortedTeams(filteredTeams);
   };
 
   const handleAddTeam = () => {
@@ -99,7 +143,7 @@ export default function PremierLeagueTeams() {
     setNewTeam((prev) => ({ ...prev, [name]: value }));
   };
 
-    const handleSaveTeam = () => {
+  const handleSaveTeam = () => {
     // Validate inputs
     if (!newTeam.name.trim()) {
       alert("Team Name cannot be empty.");
@@ -167,7 +211,7 @@ export default function PremierLeagueTeams() {
 
     // Add the new team and recalculate positions
     setTeams((prev) => [...prev, team]);
-    const updatedTeams = calculatePositions([...sortedTeams, team]);
+    const updatedTeams = calculatePositions([...teams, team]);
     setSortedTeams(updatedTeams);
 
     handleCloseModal(); // Close the modal
@@ -200,6 +244,31 @@ export default function PremierLeagueTeams() {
             >
               Remove team
             </button>
+            <div className="relative">
+              <select
+                value={sortCriteria}
+                onChange={(e) => handleSortChange(e.target.value)}
+                className="p-2 rounded bg-gray-800 text-white border border-gray-600"
+              >
+                <option value="points">Points</option>
+                <option value="wins">Wins</option>
+                <option value="goalsScored">Goals Scored</option>
+                <option value="goalsConceded">Goals Conceded</option>
+                <option value="name">Name</option>
+              </select>
+            </div>
+            <button
+              onClick={toggleSortOrder}
+              className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"
+            >
+              {sortOrder === "asc" ? "Ascending" : "Descending"}
+            </button>
+            <button
+              onClick={() => router.push("/statistics")}
+              className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"
+            >
+              View Statistics
+            </button>
           </div>
         </div>
 
@@ -231,7 +300,7 @@ export default function PremierLeagueTeams() {
               </tr>
             </thead>
             <tbody>
-              {sortedTeams.map((team) => {
+              {paginatedTeams.map((team) => {
                 const points = team.wins * 3 + team.draws;
                 const gamesPlayed = team.wins + team.draws + team.losses;
                 const originalPosition = teams.findIndex((t) => t.name === team.name) + 1;
@@ -263,11 +332,34 @@ export default function PremierLeagueTeams() {
             </tbody>
           </table>
         </div>
+      {/* Pagination controls */}
+      <div className="flex justify-center mt-4 gap-4">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className={`px-4 py-2 rounded ${
+              currentPage === 1 ? "bg-gray-500 cursor-not-allowed" : "bg-blue-500 text-white cursor-pointer"
+            }`}
+          >
+            Previous
+          </button>
+          <span className="text-white">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className={`px-4 py-2 rounded ${
+              currentPage === totalPages ? "bg-gray-500 cursor-not-allowed" : "bg-blue-500 text-white cursor-pointer"
+            }`}
+          >
+            Next
+          </button>
+        </div>
       </div>
 
-      
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center">
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" aria-modal="true" role="dialog">
           <div className="bg-white text-black p-6 rounded-lg w-96">
             <h3 className="text-xl font-bold mb-4">Add New Team</h3>
             <div className="flex flex-col gap-2">
@@ -285,13 +377,13 @@ export default function PremierLeagueTeams() {
             </div>
             <div className="flex justify-end gap-4 mt-4">
               <button
-                className="bg-gray-500 text-white px-4 py-2 rounded"
+                className="bg-gray-500 text-white px-4 py-2 rounded cursor-pointer"
                 onClick={handleCloseModal}
               >
                 Cancel
               </button>
               <button
-                className="bg-green-500 text-white px-4 py-2 rounded"
+                className="bg-green-500 text-white px-4 py-2 rounded cursor-pointer"
                 onClick={handleSaveTeam}
               >
                 Save

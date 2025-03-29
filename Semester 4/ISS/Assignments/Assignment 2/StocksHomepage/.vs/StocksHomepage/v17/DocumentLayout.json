@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{615B9A85-EB08-444A-A7D8-95ECD6A2AC24}|StocksHomepage.csproj|c:\\users\\bolog\\documents\\facultate\\ubb-cs\\semester 4\\iss\\assignments\\assignment 2\\stockshomepage\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{615B9A85-EB08-444A-A7D8-95ECD6A2AC24}|StocksHomepage.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{615B9A85-EB08-444A-A7D8-95ECD6A2AC24}|StocksHomepage.csproj|c:\\users\\bolog\\documents\\facultate\\ubb-cs\\semester 4\\iss\\assignments\\assignment 2\\stockshomepage\\homepageview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{615B9A85-EB08-444A-A7D8-95ECD6A2AC24}|StocksHomepage.csproj|solutionrelative:homepageview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{615B9A85-EB08-444A-A7D8-95ECD6A2AC24}|StocksHomepage.csproj|c:\\users\\bolog\\documents\\facultate\\ubb-cs\\semester 4\\iss\\assignments\\assignment 2\\stockshomepage\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{615B9A85-EB08-444A-A7D8-95ECD6A2AC24}|StocksHomepage.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{615B9A85-EB08-444A-A7D8-95ECD6A2AC24}|StocksHomepage.csproj|c:\\users\\bolog\\documents\\facultate\\ubb-cs\\semester 4\\iss\\assignments\\assignment 2\\stockshomepage\\homepageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{615B9A85-EB08-444A-A7D8-95ECD6A2AC24}|StocksHomepage.csproj|solutionrelative:homepageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{615B9A85-EB08-444A-A7D8-95ECD6A2AC24}|StocksHomepage.csproj|c:\\users\\bolog\\documents\\facultate\\ubb-cs\\semester 4\\iss\\assignments\\assignment 2\\stockshomepage\\homepageview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{615B9A85-EB08-444A-A7D8-95ECD6A2AC24}|StocksHomepage.csproj|solutionrelative:homepageview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{615B9A85-EB08-444A-A7D8-95ECD6A2AC24}|StocksHomepage.csproj|c:\\users\\bolog\\documents\\facultate\\ubb-cs\\semester 4\\iss\\assignments\\assignment 2\\stockshomepage\\stock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,32 +34,44 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\MainWindow.xaml",
-              "RelativeToolTip": "MainWindow.xaml",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAAAGMAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-24T10:52:31.375Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\MainWindow.xaml.cs",
-              "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAIwEAAAAB/AAAAAAAAAA==",
+              "Title": "HomepageService.cs",
+              "DocumentMoniker": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\HomepageService.cs",
+              "RelativeDocumentMoniker": "HomepageService.cs",
+              "ToolTip": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\HomepageService.cs",
+              "RelativeToolTip": "HomepageService.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwCEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-24T10:52:33.402Z"
+              "WhenOpened": "2025-03-29T16:15:22.695Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "HomepageView.xaml",
+              "DocumentMoniker": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\HomepageView.xaml",
+              "RelativeDocumentMoniker": "HomepageView.xaml",
+              "ToolTip": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\HomepageView.xaml",
+              "RelativeToolTip": "HomepageView.xaml",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAAAGQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-24T10:52:31.375Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HomepageView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\HomepageView.xaml.cs",
+              "RelativeDocumentMoniker": "HomepageView.xaml.cs",
+              "ToolTip": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\HomepageView.xaml.cs",
+              "RelativeToolTip": "HomepageView.xaml.cs",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAIwJwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T10:52:33.402Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Stock.cs",
               "DocumentMoniker": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\ISS\\Assignments\\Assignment 2\\StocksHomepage\\Stock.cs",
               "RelativeDocumentMoniker": "Stock.cs",

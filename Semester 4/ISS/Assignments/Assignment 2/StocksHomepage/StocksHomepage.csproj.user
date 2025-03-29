@@ -5,7 +5,7 @@
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
-    <None Update="MainWindow.xaml">
+    <None Update="HomepageView.xaml">
       <SubType>Designer</SubType>
     </None>
     <None Update="Package.appxmanifest">

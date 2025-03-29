@@ -1,6 +1,5 @@
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\StocksHomepage.exe
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\App.xbf
-C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\MainWindow.xbf
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\StocksHomepage.deps.json
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\StocksHomepage.runtimeconfig.json
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\StocksHomepage.dll
@@ -219,13 +218,9 @@ C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\StocksHomepage.csproj.AssemblyReference.cache
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\App.g.i.cs
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\App.g.cs
-C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\MainWindow.g.i.cs
-C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\MainWindow.g.cs
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\XamlTypeInfo.g.cs
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\App.xaml
-C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\MainWindow.xaml
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\App.xbf
-C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\MainWindow.xbf
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\XamlSaveStateFile.xml
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\StocksHomepage.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\StocksHomepage.AssemblyInfoInputs.cache
@@ -254,3 +249,8 @@ C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\qualifiers.txt.intermediate
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\MultipleQualifiersPerDimensionFound.txt
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\ProjectArchitectures.txt
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\HomepageView.xbf
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\HomepageView.g.i.cs
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\HomepageView.g.cs
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\HomepageView.xaml
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\HomepageView.xbf

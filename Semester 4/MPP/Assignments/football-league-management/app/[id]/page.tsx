@@ -5,12 +5,10 @@ import { useParams } from "next/navigation";
 import { useTeams } from "../TeamContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/navigation"
 
 export default function TeamPage() {
   const { id } = useParams();
   const { teams, setTeams } = useTeams();
-  const router = useRouter();
 
   const teamName = id ? decodeURIComponent(Array.isArray(id) ? id[0] : id) : "Unknown Team";
   const team = teams.find((t) => t.name.toLowerCase() === teamName.toLowerCase());
@@ -46,12 +44,6 @@ export default function TeamPage() {
       return;
     }
 
-    // Validate unique name
-    if (editingField === "name" && teams.some((t) => t.name.toLowerCase() === editedValue.toLowerCase() && t.name !== team.name)) {
-      alert("The team name must be unique.");
-      return;
-    }
-
     // Update the team details
     const updatedTeams = teams.map((t) =>
       {
@@ -67,12 +59,7 @@ export default function TeamPage() {
       }
     );
     setTeams(updatedTeams);
-
-    // If the name was changed, update the URL
-    if (editingField === "name") {
-      router.push(`/${encodeURIComponent(editedValue)}`);
-    }
-
+    
     // Reset editing state
     setEditingField(null);
     setEditedValue("");
@@ -432,11 +419,107 @@ export default function TeamPage() {
         <h2 className="text-2xl font-bold mb-4">Players</h2>
         <ul className="list-disc list-inside">
           {team.players.map((player, index) => (
-            <li key={index} className="text-lg">
-              {player}
+            <li key={index} className="text-lg relative group">
+              {editingField === `player-${index}` ? (
+                <input
+                  type="text"
+                  value={editedValue}
+                  onChange={(e) => setEditedValue(e.target.value)}
+                  className="bg-gray-700 text-white p-1 rounded"
+                />
+              ) : (
+                player
+              )}
+              {editingField !== `player-${index}` && (
+                <FontAwesomeIcon
+                  icon={faPencilAlt}
+                  className="inline-block w-4 h-4 ml-2 cursor-pointer opacity-0 group-hover:opacity-100"
+                  onClick={() => handleEditClick(`player-${index}`, player)}
+                />
+              )}
+              {editingField === `player-${index}` && (
+                <div className="inline-block ml-2">
+                  <button
+                    onClick={() => {
+                      if (!editedValue.trim()) {
+                        alert("Player name cannot be empty.");
+                        return;
+                      }
+
+                      const updatedPlayers = [...team.players];
+                      updatedPlayers[index] = editedValue;
+
+                      const updatedTeams = teams.map((t) =>
+                        t.name === team.name ? { ...t, players: updatedPlayers } : t
+                      );
+                      setTeams(updatedTeams);
+
+                      setEditingField(null);
+                      setEditedValue("");
+                    }}
+                    className="bg-green-500 text-white px-2 py-1 rounded mr-2"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={handleCancel}
+                    className="bg-red-500 text-white px-2 py-1 rounded"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              )}
             </li>
           ))}
         </ul>
+        <div className="mt-4">
+          <button
+            onClick={() => {
+              setEditingField("new-player");
+              setEditedValue("");
+            }}
+            className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"
+          >
+            Add Player
+          </button>
+          {editingField === "new-player" && (
+            <div className="mt-2">
+              <input
+                type="text"
+                value={editedValue}
+                onChange={(e) => setEditedValue(e.target.value)}
+                className="bg-gray-700 text-white p-1 rounded mr-2"
+              />
+              <button
+                onClick={() => {
+                  if (!editedValue.trim()) {
+                    alert("Player name cannot be empty.");
+                    return;
+                  }
+
+                  const updatedPlayers = [...team.players, editedValue];
+
+                  const updatedTeams = teams.map((t) =>
+                    t.name === team.name ? { ...t, players: updatedPlayers } : t
+                  );
+                  setTeams(updatedTeams);
+
+                  setEditingField(null);
+                  setEditedValue("");
+                }}
+                className="bg-green-500 text-white px-2 py-1 rounded mr-2"
+              >
+                Save
+              </button>
+              <button
+                onClick={handleCancel}
+                className="bg-red-500 text-white px-2 py-1 rounded"
+              >
+                Cancel
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
