@@ -1,27 +1,26 @@
-﻿using Microsoft.UI;
-using Microsoft.UI.Xaml.Media;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-namespace StocksHomepage
+namespace StocksHomepage.Models
 {
-    public class Stock
+    public class Stock : INotifyPropertyChanged
     {
-        public required string Symbol { get; set; }
-        public required string Name { get; set; }
-        public required string Price { get; set; }
-        public required string Change { get; set; }
-        public SolidColorBrush ChangeColor
+        private string _symbol;
+        private string _name;
+        private string _price;
+        private string _change;
+        private bool _isFavorite;
+
+        public string Symbol { get => _symbol; set { _symbol = value; OnPropertyChanged(); } }
+        public string Name { get => _name; set { _name = value; OnPropertyChanged(); } }
+        public string Price { get => _price; set { _price = value; OnPropertyChanged(); } }
+        public string Change { get => _change; set { _change = value; OnPropertyChanged(); } }
+        public bool IsFavorite { get => _isFavorite; set { _isFavorite = value; OnPropertyChanged(); } }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            get => Change.StartsWith("+") ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
-        }
-        public required bool isFavorite { get; set; }
-        public string FavoriteStar
-        {
-            get => isFavorite ? "★" : "☆";
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

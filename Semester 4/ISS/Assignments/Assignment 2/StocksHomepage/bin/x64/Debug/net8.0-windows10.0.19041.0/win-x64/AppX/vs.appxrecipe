@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-03-29T16:12:22.611</Modified>
+      <Modified>2025-03-29T18:28:26.663</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-03-29T16:12:22.359</Modified>
+      <Modified>2025-03-29T18:28:26.442</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\StocksHomepage.runtimeconfig.json">
       <PackagePath>StocksHomepage.runtimeconfig.json</PackagePath>
@@ -44,11 +44,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\StocksHomepage.dll">
       <PackagePath>StocksHomepage.dll</PackagePath>
-      <Modified>2025-03-29T16:12:21.010</Modified>
+      <Modified>2025-03-29T18:28:25.932</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\apphost.exe">
       <PackagePath>StocksHomepage.exe</PackagePath>
-      <Modified>2025-03-29T16:12:21.208</Modified>
+      <Modified>2025-03-29T18:28:26.194</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\bolog\.nuget\packages\microsoft.netcore.app.runtime.win-x64\8.0.13\runtimes\win-x64\lib\net8.0\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>

@@ -1,1 +1,0 @@
-C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\ISS\Assignments\Assignment 2\StocksHomepage\StocksHomepage.csproj;x64
