@@ -22,6 +22,19 @@ export default function PremierLeagueTeams() {
       }));
   };
 
+  if (!teams || teams.length === 0) {
+    return (
+      <div className="bg-black text-white min-h-screen flex items-center justify-center">
+        <h1 className="text-3xl font-bold">No Teams Available</h1>
+      </div>
+    );
+  }
+
+  const winsArray = teams.map((team) => team.wins);
+  const maxWins = Math.max(...winsArray);
+  const minWins = Math.min(...winsArray);
+  const avgWins = winsArray.reduce((sum, wins) => sum + wins, 0) / winsArray.length;
+
   const [sortedTeams, setSortedTeams] = useState(calculatePositions(teams));
   const [sortCriteria, setSortCriteria] = useState("points"); // Default sorting by points
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc"); // Default descending order
@@ -62,9 +75,9 @@ export default function PremierLeagueTeams() {
       } else if (sortCriteria === "goalsScored") {
         comparison = b.goalsScored - a.goalsScored;
       } else if (sortCriteria === "goalsConceded") {
-        comparison = a.goalsConceded - b.goalsConceded; // Less is better
+        comparison = b.goalsConceded - a.goalsConceded; // Less is better
       } else if (sortCriteria === "name") {
-        comparison = a.name.localeCompare(b.name);
+        comparison = b.name.localeCompare(a.name);
       }
 
       return sortOrder === "asc" ? -comparison : comparison;
@@ -304,9 +317,18 @@ export default function PremierLeagueTeams() {
                 const points = team.wins * 3 + team.draws;
                 const gamesPlayed = team.wins + team.draws + team.losses;
                 const originalPosition = teams.findIndex((t) => t.name === team.name) + 1;
+                let bgColor = "bg-[#1d1d1d]"; // Default color
+
+                if (team.wins === maxWins) {
+                  bgColor = "bg-green-600"; // Most wins
+                } else if (team.wins === minWins) {
+                  bgColor = "bg-red-500"; // Least wins
+                } else if (Math.abs(team.wins - avgWins) < 1) {
+                  bgColor = "bg-blue-700"; // Close to average
+                }
 
                 return (
-                  <tr key={team.name} className="border-b border-gray-700 hover:bg-gray-700">
+                  <tr key={team.name} className={`${bgColor} border-b border-gray-700 hover:bg-gray-700`}>
                     <td className="py-2 px-4 text-left">{originalPosition}</td>
                     <td
                       className="py-2 px-4 font-medium cursor-pointer"

@@ -1,10 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; 
 import { useParams } from "next/navigation";
 import { useTeams } from "../TeamContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+
+
+
 
 export default function TeamPage() {
   const { id } = useParams();
