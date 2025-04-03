@@ -141,17 +141,6 @@ export default function Statistics() {
   });
 
   useEffect(() => {
-    // Simulating an API call to get team data
-    const fetchTeamData = async () => {
-      const response = await fetch('/api/teams'); // Replace with actual endpoint
-      const data = await response.json();
-      setTeams(data);
-    };
-
-    fetchTeamData();
-  }, []);
-
-  useEffect(() => {
     if (teams.length > 0) {
       const labels = teams.map(team => team.name);
       const winsData = teams.map(team => team.wins);

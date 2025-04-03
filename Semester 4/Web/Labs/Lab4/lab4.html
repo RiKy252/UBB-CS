@@ -4,71 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Puzzle</title>
-    <style>
-        .puzzle-container {
-            display: grid;
-            grid-template-columns: repeat(3, 100px);
-            grid-template-rows: repeat(3, 100px);
-            gap: 2px;
-            border: 2px solid black;
-        }
-        .tile {
-            width: 100px;
-            height: 100px;
-            background-size: 300px 300px;
-            cursor: pointer;
-            border: 1px solid #000;
-        }
-    </style>
+    <link rel="stylesheet" href="lab4.css">
 </head>
 <body>
     <h2>Image Puzzle</h2>
     <div class="puzzle-container" id="puzzle"></div>
     <p id="message"></p>
-    <button onclick="shuffleTiles()">Shuffle</button>
-
-    <script>
-        const size = 3;
-        const imageUrl = "https://via.placeholder.com/300";
-        let tiles = [...Array(size * size).keys()];
-
-        function isSolved() {
-            return tiles.every((num, idx) => num === idx);
-        }
-
-        function swapTiles(index1, index2) {
-            [tiles[index1], tiles[index2]] = [tiles[index2], tiles[index1]];
-            renderTiles();
-            if (isSolved()) {
-                document.getElementById("message").textContent = "Well done!";
-            }
-        }
-
-        function shuffleTiles() {
-            do {
-                tiles = tiles.sort(() => Math.random() - 0.5);
-            } while (isSolved());
-            document.getElementById("message").textContent = "";
-            renderTiles();
-        }
-
-        function renderTiles() {
-            const puzzle = document.getElementById("puzzle");
-            puzzle.innerHTML = "";
-            tiles.forEach((num, idx) => {
-                const tile = document.createElement("div");
-                tile.className = "tile";
-                tile.style.backgroundImage = `url(${imageUrl})`;
-                tile.style.backgroundPosition = `${(num % size) * -100}px ${(Math.floor(num / size)) * -100}px`;
-                tile.onclick = () => {
-                    if (idx > 0) swapTiles(idx, idx - 1);
-                    if (idx < size * size - 1) swapTiles(idx, idx + 1);
-                };
-                puzzle.appendChild(tile);
-            });
-        }
-
-        renderTiles();
-    </script>
+    <script src="lab4.js"></script>
 </body>
 </html>

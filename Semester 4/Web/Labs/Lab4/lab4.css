@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+.puzzle-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 100%;
+    height: 100%;
+    max-width: 100vh;
+    max-height: 100vh;
+    border: 2px solid black;
+}
+.tile {
+    width: 100%;
+    height: 100%;
+    background-image: url("puzzle-photo.webp");
+    background-size: 300% 300%;
+    cursor: grab;
+    border: 2px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

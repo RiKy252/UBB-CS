@@ -1,11 +1,35 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useTeams } from "./TeamContext";
+import { Team } from "./api/teams/data";
 
 export default function PremierLeagueTeams() {
-  const { teams, setTeams } = useTeams();
+  const [teams, setTeams] = useState<Team[]>([]);
+  const [sortCriteria, setSortCriteria] = useState("points");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedTeams, setSelectedTeams] = useState<string[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const router = useRouter();
+  const teamsPerPage = 10;
+
+  const fetchTeams = async () => {
+    try {
+      const response = await fetch(
+        `/api/teams?sort=${sortCriteria}&order=${sortOrder}&search=${searchQuery}`
+      );
+      const data: Team[] = await response.json();
+      setTeams(data);
+    } catch (error) {
+      console.error("Error fetching teams:", error);
+    }
+  };
+
+  // Fetch teams from API
+  useEffect(() => {
+    fetchTeams();
+  }, [sortCriteria, sortOrder, searchQuery]); // Re-fetch when sorting or search changes
 
   const calculatePositions = (teams: any[]) => {
     return teams
@@ -36,10 +60,6 @@ export default function PremierLeagueTeams() {
   const avgWins = winsArray.reduce((sum, wins) => sum + wins, 0) / winsArray.length;
 
   const [sortedTeams, setSortedTeams] = useState(calculatePositions(teams));
-  const [sortCriteria, setSortCriteria] = useState("points"); // Default sorting by points
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc"); // Default descending order
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedTeams, setSelectedTeams] = useState<string[]>([]); // Track selected teams for deletion
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
   const [newTeam, setNewTeam] = useState({
     name: "",
@@ -54,9 +74,6 @@ export default function PremierLeagueTeams() {
     players: "",
     country: "",
   });
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const teamsPerPage = 10; 
 
   const getSortedTeams = () => {
     const filteredTeams = teams.filter((team) =>
@@ -229,8 +246,6 @@ export default function PremierLeagueTeams() {
 
     handleCloseModal(); // Close the modal
   };
-
-  const router = useRouter();
 
   return (
     <div className="bg-black text-white min-h-screen p-4">
