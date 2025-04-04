@@ -7,7 +7,7 @@ body {
     margin: 0;
     background-color: #f0f0f0;
 }
-.puzzle-container {
+#puzzle {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
