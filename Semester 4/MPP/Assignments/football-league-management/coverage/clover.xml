@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1744287179139" clover="3.2.0">
+  <project timestamp="1744287179139" name="All files">
+    <metrics statements="108" coveredstatements="107" conditionals="33" coveredconditionals="33" methods="26" coveredmethods="26" elements="167" coveredelements="166" complexity="0" loc="108" ncloc="108" packages="3" files="4" classes="4"/>
+    <package name="teams">
+      <metrics statements="43" coveredstatements="42" conditionals="7" coveredconditionals="7" methods="15" coveredmethods="15"/>
+      <file name="data.ts" path="C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\MPP\Assignments\football-league-management\app\api\teams\data.ts">
+        <metrics statements="25" coveredstatements="24" conditionals="4" coveredconditionals="4" methods="10" coveredmethods="10"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="371" count="1" type="stmt"/>
+        <line num="372" count="17" type="stmt"/>
+        <line num="373" count="12" type="stmt"/>
+        <line num="379" count="6" type="cond" truecount="1" falsecount="0"/>
+        <line num="380" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="381" count="0" type="stmt"/>
+        <line num="383" count="12" type="stmt"/>
+        <line num="389" count="10" type="stmt"/>
+        <line num="391" count="1" type="stmt"/>
+        <line num="392" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="393" count="3" type="stmt"/>
+        <line num="395" count="4" type="stmt"/>
+        <line num="398" count="1" type="stmt"/>
+        <line num="399" count="7" type="stmt"/>
+        <line num="400" count="7" type="stmt"/>
+        <line num="402" count="7" type="stmt"/>
+        <line num="405" count="1" type="stmt"/>
+        <line num="407" count="2" type="stmt"/>
+        <line num="410" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="411" count="1" type="stmt"/>
+        <line num="415" count="1" type="stmt"/>
+        <line num="418" count="1" type="stmt"/>
+        <line num="421" count="1" type="stmt"/>
+        <line num="423" count="1" type="stmt"/>
+      </file>
+      <file name="route.ts" path="C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\MPP\Assignments\football-league-management\app\api\teams\route.ts">
+        <metrics statements="18" coveredstatements="18" conditionals="3" coveredconditionals="3" methods="5" coveredmethods="5"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="7" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="9" count="7" type="stmt"/>
+        <line num="10" count="7" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="25" count="3" type="cond" truecount="3" falsecount="0"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="teams.[id]">
+      <metrics statements="29" coveredstatements="29" conditionals="3" coveredconditionals="3" methods="5" coveredmethods="5"/>
+      <file name="route.ts" path="C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\MPP\Assignments\football-league-management\app\api\teams\[id]\route.ts">
+        <metrics statements="29" coveredstatements="29" conditionals="3" coveredconditionals="3" methods="5" coveredmethods="5"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="7" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="19" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="5" type="stmt"/>
+        <line num="28" count="5" type="stmt"/>
+        <line num="29" count="5" type="stmt"/>
+        <line num="30" count="5" type="stmt"/>
+        <line num="31" count="5" type="stmt"/>
+        <line num="32" count="10" type="stmt"/>
+        <line num="34" count="5" type="cond" truecount="1" falsecount="0"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="38" count="4" type="stmt"/>
+        <line num="39" count="3" type="stmt"/>
+        <line num="41" count="3" type="stmt"/>
+        <line num="42" count="3" type="stmt"/>
+        <line num="43" count="3" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="teams.sort">
+      <metrics statements="36" coveredstatements="36" conditionals="23" coveredconditionals="23" methods="6" coveredmethods="6"/>
+      <file name="route.ts" path="C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\MPP\Assignments\football-league-management\app\api\teams\sort\route.ts">
+        <metrics statements="36" coveredstatements="36" conditionals="23" coveredconditionals="23" methods="6" coveredmethods="6"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="16" type="stmt"/>
+        <line num="7" count="16" type="cond" truecount="6" falsecount="0"/>
+        <line num="8" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="16" type="stmt"/>
+        <line num="13" count="68" type="stmt"/>
+        <line num="14" count="16" type="stmt"/>
+        <line num="15" count="16" type="stmt"/>
+        <line num="16" count="68" type="stmt"/>
+        <line num="19" count="16" type="cond" truecount="1" falsecount="0"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="21" count="20" type="stmt"/>
+        <line num="25" count="16" type="stmt"/>
+        <line num="28" count="63" type="cond" truecount="6" falsecount="0"/>
+        <line num="30" count="17" type="stmt"/>
+        <line num="31" count="17" type="stmt"/>
+        <line num="32" count="17" type="stmt"/>
+        <line num="34" count="18" type="stmt"/>
+        <line num="35" count="18" type="stmt"/>
+        <line num="36" count="18" type="stmt"/>
+        <line num="38" count="9" type="stmt"/>
+        <line num="39" count="9" type="stmt"/>
+        <line num="40" count="9" type="stmt"/>
+        <line num="42" count="7" type="stmt"/>
+        <line num="43" count="7" type="stmt"/>
+        <line num="44" count="7" type="stmt"/>
+        <line num="47" count="12" type="stmt"/>
+        <line num="48" count="12" type="stmt"/>
+        <line num="51" count="63" type="cond" truecount="3" falsecount="0"/>
+        <line num="52" count="41" type="cond" truecount="3" falsecount="0"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="56" count="53" type="stmt"/>
+        <line num="65" count="16" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

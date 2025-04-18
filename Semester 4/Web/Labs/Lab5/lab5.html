@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 5</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body {
+            overflow: hidden;
+        }
+        #game-area {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+        }
+        .mole {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+        #message {
+            position: fixed;
+            bottom: 50%;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Score: <span id="score">0</span>/10</h1>
+    <div id="game-area"></div>
+    <h2 id="message">You won!</h2>
+
+    <script>
+        $(document).ready(function() {
+            let score = 0;
+            let gameActive = true;
+
+            function createMole() {
+                if (!gameActive) return;
+                
+                const maxWidth = $(window).width();
+                const maxHeight = $(window).height();
+                const left = Math.floor(Math.random() * maxWidth);
+                const top = Math.floor(Math.random() * maxHeight);
+                
+                const $mole = $('<img class="mole"></img>').attr('src', "blockPhoto.jpg").css({
+                    left: left + 'px',
+                    top: top + 'px'
+                });
+                
+                $('#game-area').append($mole);
+                
+                $mole.click(function() {
+                    $(this).remove();
+                    score++;
+                    $('#score').text(score);
+                    
+                    if (score >= 10) {
+                        gameActive = false;
+                        $('#message').show();
+                    }
+                });
+                
+                setTimeout(function() {
+                    $mole.remove();
+                }, 1000);
+                
+                if (gameActive) {
+                    setTimeout(createMole, Math.random() * 1000 + 200);
+                }
+            }
+            
+            createMole();
+        });
+    </script>
+</body>
+</html>

@@ -2,27 +2,41 @@
 
 import React, { useState, useEffect } from "react"; 
 import { useParams } from "next/navigation";
-import { useTeams } from "../TeamContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
-
-
-
 export default function TeamPage() {
-  const { id } = useParams();
-  const { teams, setTeams } = useTeams();
+  const { id: teamName } = useParams();
 
-  const teamName = id ? decodeURIComponent(Array.isArray(id) ? id[0] : id) : "Unknown Team";
-  const team = teams.find((t) => t.name.toLowerCase() === teamName.toLowerCase());
-
+  const [team, setTeam] = useState<any | null>(null);
+  
   const [editingField, setEditingField] = useState<string | null>(null); // Track which field is being edited
   const [editedValue, setEditedValue] = useState<string>(""); // Track the new value for the field
+
+  useEffect(() => {
+    const fetchTeam = async () => {
+      try {
+        const res = await fetch(`/api/teams/${teamName}`);
+        if (!res.ok) throw new Error("Failed to fetch team");
+
+        const data = await res.json();
+        setTeam(data);
+      } catch (err) {
+        console.error(err);
+        alert("Error fetching team data.");
+      }
+    };
+
+    if (teamName) {
+      fetchTeam();
+    }
+  }, [teamName]);
+
 
   if (!team) {
     return (
       <div className="bg-black text-white min-h-screen flex items-center justify-center">
-        <h1 className="text-3xl font-bold">No Team Found...</h1>
+        <h1 className="text-3xl font-bold">Searching...</h1>
       </div>
     );
   }
@@ -32,7 +46,38 @@ export default function TeamPage() {
     setEditedValue(currentValue);
   };
 
-  const handleSave = () => {
+  const handlePlayerUpdate = async (index: number, newName: string) => {
+    if (!newName.trim()) {
+      alert("Player name cannot be empty.");
+      return;
+    }
+
+    const updatedPlayers = [...team.players];
+    updatedPlayers[index] = newName;
+
+    try {
+      const res = await fetch(`/api/teams/${team.name}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ players: updatedPlayers }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to update player");
+      }
+
+      const updatedTeam = await res.json();
+
+      setTeam(updatedTeam);
+      
+      setEditingField(null);
+      setEditedValue("");
+    } catch (err) {
+      alert("Error updating player: " + err);
+    }
+  };
+
+  const handleSave = async () => {
     if (!editedValue.trim()) {
       alert("Input cannot be empty.");
       return;
@@ -47,21 +92,28 @@ export default function TeamPage() {
       return;
     }
 
-    // Update the team details
-    const updatedTeams = teams.map((t) =>
-      {
-        if (t.name === team.name) {
-          // If the field is numeric, convert the value to a number
-          const updatedValue = ["foundedYear", "wins", "draws", "losses", "goalsScored", "goalsConceded"].includes(editingField!)
-            ? Number(editedValue)
-            : editedValue;
-    
-          return { ...t, [editingField!]: updatedValue };
-        }
-        return t;
+    const updatedValue = ["foundedYear", "wins", "draws", "losses", "goalsScored", "goalsConceded"].includes(editingField!)
+                              ? Number(editedValue)
+                              : editedValue;
+
+    try {
+      const res = await fetch(`/api/teams/${team.name}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ [editingField!]: updatedValue }),
+      }); 
+
+      if (!res.ok) {
+        throw new Error("Failed to update team");
       }
-    );
-    setTeams(updatedTeams);
+
+      const updatedTeam = await res.json();
+      setTeam(updatedTeam);
+
+    } catch (err) {
+      alert("Error updating team: " + err);
+    }
+
     
     // Reset editing state
     setEditingField(null);
@@ -421,7 +473,7 @@ export default function TeamPage() {
       <div className="bg-[#1d1d1d] p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-4">Players</h2>
         <ul className="list-disc list-inside">
-          {team.players.map((player, index) => (
+          {team.players.map((player: string, index: number) => (
             <li key={index} className="text-lg relative group">
               {editingField === `player-${index}` ? (
                 <input
@@ -443,23 +495,7 @@ export default function TeamPage() {
               {editingField === `player-${index}` && (
                 <div className="inline-block ml-2">
                   <button
-                    onClick={() => {
-                      if (!editedValue.trim()) {
-                        alert("Player name cannot be empty.");
-                        return;
-                      }
-
-                      const updatedPlayers = [...team.players];
-                      updatedPlayers[index] = editedValue;
-
-                      const updatedTeams = teams.map((t) =>
-                        t.name === team.name ? { ...t, players: updatedPlayers } : t
-                      );
-                      setTeams(updatedTeams);
-
-                      setEditingField(null);
-                      setEditedValue("");
-                    }}
+                    onClick={() => handlePlayerUpdate(index, editedValue)}
                     className="bg-green-500 text-white px-2 py-1 rounded mr-2"
                   >
                     Save
@@ -475,7 +511,7 @@ export default function TeamPage() {
             </li>
           ))}
         </ul>
-        <div className="mt-4">
+        {/* <div className="mt-4">
           <button
             onClick={() => {
               setEditingField("new-player");
@@ -494,22 +530,7 @@ export default function TeamPage() {
                 className="bg-gray-700 text-white p-1 rounded mr-2"
               />
               <button
-                onClick={() => {
-                  if (!editedValue.trim()) {
-                    alert("Player name cannot be empty.");
-                    return;
-                  }
-
-                  const updatedPlayers = [...team.players, editedValue];
-
-                  const updatedTeams = teams.map((t) =>
-                    t.name === team.name ? { ...t, players: updatedPlayers } : t
-                  );
-                  setTeams(updatedTeams);
-
-                  setEditingField(null);
-                  setEditedValue("");
-                }}
+                // onClick={handleAddPlayer} todo when i will have a database
                 className="bg-green-500 text-white px-2 py-1 rounded mr-2"
               >
                 Save
@@ -522,7 +543,7 @@ export default function TeamPage() {
               </button>
             </div>
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );

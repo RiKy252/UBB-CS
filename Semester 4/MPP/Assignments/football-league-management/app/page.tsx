@@ -2,65 +2,21 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Team } from "./api/teams/data";
+import { Team, RankedTeam } from "./api/teams/data";
 
 export default function PremierLeagueTeams() {
-  const [teams, setTeams] = useState<Team[]>([]);
+  const [teams, setTeams] = useState<RankedTeam[]>([]);
   const [sortCriteria, setSortCriteria] = useState("points");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTeams, setSelectedTeams] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const teamsPerPage = 10;
 
-  const fetchTeams = async () => {
-    try {
-      const response = await fetch(
-        `/api/teams?sort=${sortCriteria}&order=${sortOrder}&search=${searchQuery}`
-      );
-      const data: Team[] = await response.json();
-      setTeams(data);
-    } catch (error) {
-      console.error("Error fetching teams:", error);
-    }
-  };
-
-  // Fetch teams from API
-  useEffect(() => {
-    fetchTeams();
-  }, [sortCriteria, sortOrder, searchQuery]); // Re-fetch when sorting or search changes
-
-  const calculatePositions = (teams: any[]) => {
-    return teams
-      .sort((a, b) => {
-        const aPoints = a.wins * 3 + a.draws;
-        const bPoints = b.wins * 3 + b.draws;
-        if (bPoints !== aPoints) return bPoints - aPoints; // First leaderboard criteria: Points
-        if (b.goalsScored !== a.goalsScored) return b.goalsScored - a.goalsScored; // Second leaderboard criteria: Goals scored
-        return a.goalsConceded - b.goalsConceded; // Third leaderboard criteria: Goals conceded (less is better)
-      })
-      .map((team, index) => ({
-        ...team,
-        position: index + 1, // Assign position based on sorted order
-      }));
-  };
-
-  if (!teams || teams.length === 0) {
-    return (
-      <div className="bg-black text-white min-h-screen flex items-center justify-center">
-        <h1 className="text-3xl font-bold">No Teams Available</h1>
-      </div>
-    );
-  }
-
-  const winsArray = teams.map((team) => team.wins);
-  const maxWins = Math.max(...winsArray);
-  const minWins = Math.min(...winsArray);
-  const avgWins = winsArray.reduce((sum, wins) => sum + wins, 0) / winsArray.length;
-
-  const [sortedTeams, setSortedTeams] = useState(calculatePositions(teams));
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
   const [newTeam, setNewTeam] = useState({
     name: "",
     coachName: "",
@@ -75,38 +31,128 @@ export default function PremierLeagueTeams() {
     country: "",
   });
 
-  const getSortedTeams = () => {
-    const filteredTeams = teams.filter((team) =>
-      team.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    return [...filteredTeams].sort((a, b) => {
-      let comparison = 0;
-
-      if (sortCriteria === "points") {
-        const aPoints = a.wins * 3 + a.draws;
-        const bPoints = b.wins * 3 + b.draws;
-        comparison = bPoints - aPoints;
-      } else if (sortCriteria === "wins") {
-        comparison = b.wins - a.wins;
-      } else if (sortCriteria === "goalsScored") {
-        comparison = b.goalsScored - a.goalsScored;
-      } else if (sortCriteria === "goalsConceded") {
-        comparison = b.goalsConceded - a.goalsConceded; // Less is better
-      } else if (sortCriteria === "name") {
-        comparison = b.name.localeCompare(a.name);
+  const fetchTeams = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+  
+      const response = await fetch(
+        `/api/teams/`
+      );
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
-
-      return sortOrder === "asc" ? -comparison : comparison;
-    });
+      
+      const data = await response.json();
+      setTeams(data);
+    } catch (error) {
+      console.error("Error fetching teams:", error);
+      setError("Failed to fetch teams. Please try again later.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const paginatedTeams = getSortedTeams().slice(
+  const searchTeams = async () => {
+    setIsLoading(true);
+    setError(null);
+  
+    try {
+      const queryParams = new URLSearchParams();
+  
+      if (searchQuery) queryParams.append("query", searchQuery);
+      if (sortCriteria) queryParams.append("sortBy", sortCriteria);
+      if (sortOrder) queryParams.append("order", sortOrder);
+  
+      const response = await fetch(`/api/teams/sort?${queryParams.toString()}`);
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      setTeams(data);
+    } catch (error) {
+      console.error("Error searching and sorting teams:", error);
+      setError("Failed to fetch teams. Please try again later.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+  if (teams.length === 0) {
+    // Initially fetch teams only once when the teams array is empty
+    fetchTeams();
+  } else {
+    // After initial fetch, sort teams as per criteria
+    searchTeams();
+  }
+}, [sortCriteria, sortOrder]); // This will run again whenever sortCriteria or sortOrder changes
+
+  // Effect for fetching teams or searching based on criteria
+  useEffect(() => {
+    if (searchQuery || sortCriteria || sortOrder) {
+      searchTeams();
+    } else {
+      fetchTeams();
+    }
+  }, [sortCriteria, sortOrder]); // Re-fetch when sorting changes
+
+  // Handle search with debounce
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchQuery) {
+        searchTeams();
+      } else {
+        fetchTeams();
+      }
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
+  if (isLoading) {
+    return (
+      <div className="bg-black text-white min-h-screen flex items-center justify-center">
+        <h1 className="text-3xl font-bold">Loading teams...</h1>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-black text-white min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-red-500">Error</h1>
+          <p className="mt-2">{error}</p>
+          <button 
+            onClick={fetchTeams}
+            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (teams.length === 0) {
+    return (
+      <div className="bg-black text-white min-h-screen flex items-center justify-center">
+        <h1 className="text-3xl font-bold">No Teams Available</h1>
+      </div>
+    );
+  }
+
+  // Pagination calculation
+  const paginatedTeams = teams.slice(
     (currentPage - 1) * teamsPerPage,
     currentPage * teamsPerPage
   );
 
-  const totalPages = Math.ceil(getSortedTeams().length / teamsPerPage);
+  const totalPages = Math.ceil(teams.length / teamsPerPage);
 
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
@@ -134,25 +180,49 @@ export default function PremierLeagueTeams() {
     );
   };
 
-  const handleRemoveTeams = () => {
+  const handleRemoveTeams = async () => {
     if (selectedTeams.length === 0) {
       alert("Please select at least one team to remove.");
       return;
     }
 
-    // Remove the selected teams
-    const updatedTeams = teams.filter((team) => !selectedTeams.includes(team.name));
-    setTeams(updatedTeams);
-    setSortedTeams(calculatePositions(updatedTeams));
-    setSelectedTeams([]); // Reset selected teams
+    setIsLoading(true);
+    
+    try {
+      // Delete each selected team using the API
+      for (const teamName of selectedTeams) {
+        const teamToDelete = teams.find(team => team.name === teamName);
+        if (teamToDelete) {
+          const response = await fetch(`/api/teams/${teamToDelete.name}`, {
+            method: 'DELETE',
+          });
+          
+          if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Delete error response:", errorData);
+            throw new Error(`Failed to delete team: ${teamName}`);
+          }
+        }
+      }
+      
+      // Refresh the teams list
+      setSelectedTeams([]);
+      await fetchTeams();
+      
+    } catch (error) {
+      console.error("Error removing teams:", error);
+      setError("Failed to remove teams. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleAddTeam = () => {
-    setIsModalOpen(true); // Open the modal
+    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false); // Close the modal
+    setIsModalOpen(false);
     setNewTeam({
       name: "",
       coachName: "",
@@ -173,7 +243,7 @@ export default function PremierLeagueTeams() {
     setNewTeam((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSaveTeam = () => {
+  const handleSaveTeam = async () => {
     // Validate inputs
     if (!newTeam.name.trim()) {
       alert("Team Name cannot be empty.");
@@ -224,27 +294,47 @@ export default function PremierLeagueTeams() {
       return;
     }
 
-    // Create the new team object
-    const team = {
-      name: newTeam.name,
-      coachName: newTeam.coachName,
-      homeStadium: newTeam.homeStadium,
-      foundedYear: parseInt(newTeam.foundedYear, 10),
-      wins: parseInt(newTeam.wins, 10),
-      draws: parseInt(newTeam.draws, 10),
-      losses: parseInt(newTeam.losses, 10),
-      goalsScored: parseInt(newTeam.goalsScored, 10),
-      goalsConceded: parseInt(newTeam.goalsConceded, 10),
-      players: newTeam.players.split(",").map((player) => player.trim()),
-      country: newTeam.country,
-    };
+    try {
+      setIsLoading(true);
+      
+      // Create the new team object for the API
+      const teamData = {
+        name: newTeam.name,
+        coachName: newTeam.coachName,
+        homeStadium: newTeam.homeStadium,
+        foundedYear: parseInt(newTeam.foundedYear, 10),
+        wins: parseInt(newTeam.wins, 10),
+        draws: parseInt(newTeam.draws, 10),
+        losses: parseInt(newTeam.losses, 10),
+        goalsScored: parseInt(newTeam.goalsScored, 10),
+        goalsConceded: parseInt(newTeam.goalsConceded, 10),
+        players: newTeam.players.split(",").map((player) => player.trim()),
+        country: newTeam.country,
+      };
 
-    // Add the new team and recalculate positions
-    setTeams((prev) => [...prev, team]);
-    const updatedTeams = calculatePositions([...teams, team]);
-    setSortedTeams(updatedTeams);
+      // Send POST request to create new team
+      const response = await fetch('/api/teams', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(teamData),
+      });
 
-    handleCloseModal(); // Close the modal
+      if (!response.ok) {
+        throw new Error('Failed to create team');
+      }
+
+      // Refresh the teams list
+      await fetchTeams();
+      handleCloseModal();
+      
+    } catch (error) {
+      console.error("Error adding team:", error);
+      setError("Failed to add team. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -269,6 +359,7 @@ export default function PremierLeagueTeams() {
             <button
               className="bg-red-500 text-white text-center p-2 rounded cursor-pointer w-30"
               onClick={handleRemoveTeams}
+              disabled={selectedTeams.length === 0}
             >
               Remove team
             </button>
@@ -325,37 +416,36 @@ export default function PremierLeagueTeams() {
                 <th className="py-2 px-4 text-center" style={{ width: "10%" }}>
                   Points
                 </th>
+                <th className="py-2 px-4 text-center" style={{ width: "5%" }}>
+                  Select
+                </th>
               </tr>
             </thead>
             <tbody>
               {paginatedTeams.map((team) => {
-                const points = team.wins * 3 + team.draws;
-                const gamesPlayed = team.wins + team.draws + team.losses;
-                const originalPosition = teams.findIndex((t) => t.name === team.name) + 1;
                 let bgColor = "bg-[#1d1d1d]"; // Default color
 
-                if (team.wins === maxWins) {
+                if (team.metadata?.isMostWins) {
                   bgColor = "bg-green-600"; // Most wins
-                } else if (team.wins === minWins) {
+                } else if (team.metadata?.isLeastWins) {
                   bgColor = "bg-red-500"; // Least wins
-                } else if (Math.abs(team.wins - avgWins) < 1) {
+                } else if (team.metadata?.isAvgWins) {
                   bgColor = "bg-blue-700"; // Close to average
                 }
-
                 return (
                   <tr key={team.name} className={`${bgColor} border-b border-gray-700 hover:bg-gray-700`}>
-                    <td className="py-2 px-4 text-left">{originalPosition}</td>
+                    <td className="py-2 px-4 text-left">{team.position}</td>
                     <td
                       className="py-2 px-4 font-medium cursor-pointer"
                       onClick={() => router.push(`/${team.name}`)} // Navigate to team's page
                     >
                       {team.name}
                     </td>
-                    <td className="py-2 px-4 text-center">{gamesPlayed}</td>
+                    <td className="py-2 px-4 text-center">{team.gamesPlayed}</td>
                     <td className="py-2 px-4 text-center">{team.wins}</td>
                     <td className="py-2 px-4 text-center">{team.draws}</td>
                     <td className="py-2 px-4 text-center">{team.losses}</td>
-                    <td className="py-2 px-4 text-center font-bold">{points}</td>
+                    <td className="py-2 px-4 text-center font-bold">{team.points}</td>
                     <td className="py-2 px-4 text-center">
                       <input
                         type="checkbox"
@@ -369,8 +459,8 @@ export default function PremierLeagueTeams() {
             </tbody>
           </table>
         </div>
-      {/* Pagination controls */}
-      <div className="flex justify-center mt-4 gap-4">
+        {/* Pagination controls */}
+        <div className="flex justify-center mt-4 gap-4">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
@@ -405,7 +495,7 @@ export default function PremierLeagueTeams() {
                   key={key}
                   type="text"
                   name={key}
-                  placeholder={key}
+                  placeholder={key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}
                   value={newTeam[key as keyof typeof newTeam]}
                   onChange={handleInputChange}
                   className="p-2 border border-gray-300 rounded"
