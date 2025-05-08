@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { Team, RankedTeam } from "./api/teams/data";
+// import { Team, RankedTeam } from "./api/teams/data";
+import { TeamType } from "@/app/types/team";
 
 export default function PremierLeagueTeams() {
-  const [teams, setTeams] = useState<RankedTeam[]>([]);
+  const [teams, setTeams] = useState<TeamType[]>([]);
+  const [filteredTeams, setFilteredTeams] = useState<TeamType[]>([]);
   const [sortCriteria, setSortCriteria] = useState("points");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   const [searchQuery, setSearchQuery] = useState("");
@@ -16,6 +18,7 @@ export default function PremierLeagueTeams() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const teamsPerPage = 10;
+  const searchInputRef = useRef<HTMLInputElement>(null); // Reference to the search input element
 
   const [newTeam, setNewTeam] = useState({
     name: "",
@@ -46,11 +49,16 @@ export default function PremierLeagueTeams() {
       
       const data = await response.json();
       setTeams(data);
+      setFilteredTeams(data);
     } catch (error) {
       console.error("Error fetching teams:", error);
       setError("Failed to fetch teams. Please try again later.");
     } finally {
       setIsLoading(false);
+      // Refocus on the search input after operation completes
+      if (searchInputRef.current) {
+        searchInputRef.current.focus();
+      }
     }
   };
 
@@ -72,24 +80,28 @@ export default function PremierLeagueTeams() {
       }
   
       const data = await response.json();
-      setTeams(data);
+      setFilteredTeams(data);
     } catch (error) {
       console.error("Error searching and sorting teams:", error);
       setError("Failed to fetch teams. Please try again later.");
     } finally {
       setIsLoading(false);
+      // Refocus on the search input after operation completes
+      if (searchInputRef.current) {
+        searchInputRef.current.focus();
+      }
     }
   };
 
   useEffect(() => {
-  if (teams.length === 0) {
-    // Initially fetch teams only once when the teams array is empty
-    fetchTeams();
-  } else {
-    // After initial fetch, sort teams as per criteria
-    searchTeams();
-  }
-}, [sortCriteria, sortOrder]); // This will run again whenever sortCriteria or sortOrder changes
+    if (teams.length === 0) {
+      // Initially fetch teams only once when the teams array is empty
+      fetchTeams();
+    } else {
+      // After initial fetch, sort teams as per criteria
+      searchTeams();
+    }
+  }, [sortCriteria, sortOrder]); // This will run again whenever sortCriteria or sortOrder changes
 
   // Effect for fetching teams or searching based on criteria
   useEffect(() => {
@@ -147,12 +159,12 @@ export default function PremierLeagueTeams() {
   }
 
   // Pagination calculation
-  const paginatedTeams = teams.slice(
+  const paginatedTeams = filteredTeams.slice(
     (currentPage - 1) * teamsPerPage,
     currentPage * teamsPerPage
   );
 
-  const totalPages = Math.ceil(teams.length / teamsPerPage);
+  const totalPages = Math.ceil(filteredTeams.length / teamsPerPage);
 
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
@@ -214,6 +226,10 @@ export default function PremierLeagueTeams() {
       setError("Failed to remove teams. Please try again.");
     } finally {
       setIsLoading(false);
+      // Refocus on search input after operation completes
+      if (searchInputRef.current) {
+        searchInputRef.current.focus();
+      }
     }
   };
 
@@ -236,6 +252,10 @@ export default function PremierLeagueTeams() {
       players: "",
       country: "",
     });
+    // Refocus on search input after closing modal
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -334,6 +354,10 @@ export default function PremierLeagueTeams() {
       setError("Failed to add team. Please try again.");
     } finally {
       setIsLoading(false);
+      // Refocus on search input after operation completes
+      if (searchInputRef.current) {
+        searchInputRef.current.focus();
+      }
     }
   };
 
@@ -349,6 +373,8 @@ export default function PremierLeagueTeams() {
               value={searchQuery}
               onChange={handleSearch}
               className="p-2 rounded bg-gray-800 text-white border border-gray-600 w-150"
+              ref={searchInputRef} // Add the ref to the search input
+              autoFocus // Auto-focus on initial render
             />
             <button
               className="bg-green-500 text-white text-center p-2 rounded cursor-pointer w-30"
@@ -422,67 +448,78 @@ export default function PremierLeagueTeams() {
               </tr>
             </thead>
             <tbody>
-              {paginatedTeams.map((team) => {
-                let bgColor = "bg-[#1d1d1d]"; // Default color
+              {paginatedTeams.length > 0 ? (
+                paginatedTeams.map((team) => {
+                  let bgColor = "bg-[#1d1d1d]"; // Default color
 
-                if (team.metadata?.isMostWins) {
-                  bgColor = "bg-green-600"; // Most wins
-                } else if (team.metadata?.isLeastWins) {
-                  bgColor = "bg-red-500"; // Least wins
-                } else if (team.metadata?.isAvgWins) {
-                  bgColor = "bg-blue-700"; // Close to average
-                }
-                return (
-                  <tr key={team.name} className={`${bgColor} border-b border-gray-700 hover:bg-gray-700`}>
-                    <td className="py-2 px-4 text-left">{team.position}</td>
-                    <td
-                      className="py-2 px-4 font-medium cursor-pointer"
-                      onClick={() => router.push(`/${team.name}`)} // Navigate to team's page
-                    >
-                      {team.name}
-                    </td>
-                    <td className="py-2 px-4 text-center">{team.gamesPlayed}</td>
-                    <td className="py-2 px-4 text-center">{team.wins}</td>
-                    <td className="py-2 px-4 text-center">{team.draws}</td>
-                    <td className="py-2 px-4 text-center">{team.losses}</td>
-                    <td className="py-2 px-4 text-center font-bold">{team.points}</td>
-                    <td className="py-2 px-4 text-center">
-                      <input
-                        type="checkbox"
-                        checked={selectedTeams.includes(team.name)}
-                        onChange={() => handleCheckboxChange(team.name)} // Handle checkbox selection
-                      />
-                    </td>
-                  </tr>
-                );
-              })}
+                  if (team.metadata?.isMostWins) {
+                    bgColor = "bg-green-600"; // Most wins
+                  } else if (team.metadata?.isLeastWins) {
+                    bgColor = "bg-red-500"; // Least wins
+                  } else if (team.metadata?.isAvgWins) {
+                    bgColor = "bg-blue-700"; // Close to average
+                  }
+                  return (
+                    <tr key={team.name} className={`${bgColor} border-b border-gray-700 hover:bg-gray-700`}>
+                      <td className="py-2 px-4 text-left">{team.position}</td>
+                      <td
+                        className="py-2 px-4 font-medium cursor-pointer"
+                        onClick={() => router.push(`/${team.name}`)} // Navigate to team's page
+                      >
+                        {team.name}
+                      </td>
+                      <td className="py-2 px-4 text-center">{team.gamesPlayed}</td>
+                      <td className="py-2 px-4 text-center">{team.wins}</td>
+                      <td className="py-2 px-4 text-center">{team.draws}</td>
+                      <td className="py-2 px-4 text-center">{team.losses}</td>
+                      <td className="py-2 px-4 text-center font-bold">{team.points}</td>
+                      <td className="py-2 px-4 text-center">
+                        <input
+                          type="checkbox"
+                          checked={selectedTeams.includes(team.name)}
+                          onChange={() => handleCheckboxChange(team.name)} // Handle checkbox selection
+                        />
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr>
+                  <td colSpan={8} className="py-4 px-4 text-center">
+                    No matching teams found. Try adjusting your search criteria.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
-        {/* Pagination controls */}
-        <div className="flex justify-center mt-4 gap-4">
-          <button
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            className={`px-4 py-2 rounded ${
-              currentPage === 1 ? "bg-gray-500 cursor-not-allowed" : "bg-blue-500 text-white cursor-pointer"
-            }`}
-          >
-            Previous
-          </button>
-          <span className="text-white">
-            Page {currentPage} of {totalPages}
-          </span>
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            className={`px-4 py-2 rounded ${
-              currentPage === totalPages ? "bg-gray-500 cursor-not-allowed" : "bg-blue-500 text-white cursor-pointer"
-            }`}
-          >
-            Next
-          </button>
-        </div>
+        
+        {/* Pagination controls - only show if we have teams */}
+        {filteredTeams.length > 0 && (
+          <div className="flex justify-center mt-4 gap-4">
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className={`px-4 py-2 rounded ${
+                currentPage === 1 ? "bg-gray-500 cursor-not-allowed" : "bg-blue-500 text-white cursor-pointer"
+              }`}
+            >
+              Previous
+            </button>
+            <span className="text-white">
+              Page {currentPage} of {totalPages || 1}
+            </span>
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages || totalPages === 0}
+              className={`px-4 py-2 rounded ${
+                currentPage === totalPages || totalPages === 0 ? "bg-gray-500 cursor-not-allowed" : "bg-blue-500 text-white cursor-pointer"
+              }`}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
 
       {isModalOpen && (
