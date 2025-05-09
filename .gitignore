@@ -34,3 +34,6 @@ yarn.lock
 
 # Ignore Jest output (coverage, etc.)
 jest-coverage/
+
+.dll
+.vsidx
