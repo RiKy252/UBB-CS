@@ -2,6 +2,11 @@
 node_modules/
 .next/
 
+*.dll
+*.vsidx
+*.suo
+*.exe
+
 # Logs
 logs
 *.log
@@ -35,5 +40,3 @@ yarn.lock
 # Ignore Jest output (coverage, etc.)
 jest-coverage/
 
-.dll
-.vsidx
