@@ -1,0 +1,27 @@
+{
+  "formTitle": "Products and Categories",
+  "masterQuery": "SELECT * FROM category",
+  "detailQuery": "SELECT * FROM products WHERE categoryId = @id",
+  "idColumn": "productId",
+  "insertDetailQuery": "INSERT INTO products (name, categoryId, price, expiringDate) VALUES (@name, @categoryId, @price, @expiringDate)",
+  "updateDetailQuery": "UPDATE products SET name = @name, price = @price, expiringDate = @expiringDate WHERE productId = @productId",
+  "deleteDetailQuery": "DELETE FROM products WHERE productId = @productId",
+  "masterKeyColumn": "categoryId",
+  "detailForeignKeyColumn": "categoryId",
+  "detailColumns": [
+    "productId",
+    "name",
+    "categoryId",
+    "price",
+    "expiringDate"
+  ],
+  "fieldLabels": {
+    "name": "Product Name",
+    "price": "Price",
+    "expiringDate": "Expiring Date"
+  },
+  "requiredFields": [
+    "name",
+    "price"
+  ]
+}

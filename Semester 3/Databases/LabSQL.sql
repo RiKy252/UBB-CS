@@ -3,6 +3,24 @@
 --1:n -> category and products
 --n:m -> customers and products
 
+use Supermarket
+
+select * from checkoutCounter
+select * from customers
+
+EXEC sp_rename 'products', 'products_old';
+INSERT INTO products (categoryId, name, expiringDate, price)
+SELECT categoryId, name, expiringDate, price
+FROM products_old;
+
+SELECT 
+    COLUMN_NAME, 
+    COLUMNPROPERTY(OBJECT_ID(TABLE_SCHEMA + '.' + TABLE_NAME), COLUMN_NAME, 'IsIdentity') AS IsIdentity
+FROM 
+    INFORMATION_SCHEMA.COLUMNS
+WHERE 
+    TABLE_NAME = 'products';  -- replace with your table name
+
 create table shelves(
 	shelfId int not null primary key,
 	shelfCapacity int,
@@ -23,6 +41,15 @@ create table products(
 	constraint FK_Category_Products foreign key (categoryId) references category (categoryId)
 )
 
+CREATE TABLE products (
+    productId INT IDENTITY(1,1) PRIMARY KEY,
+	categoryId int not null,
+    name NVARCHAR(100),
+    price float,
+    expiringDate date,
+	constraint FK_Category_Products1 foreign key (categoryId) references category (categoryId)
+);
+
 create table checkoutCounter(
 	checkoutCounterId int not null primary key,
 	cashInside float,
@@ -41,6 +68,13 @@ create table customers(
 	customerName varchar(100),
 	checkoutCounterId int foreign key references checkoutCounter(checkoutCounterId)
 )
+
+CREATE TABLE customers (
+    customerId INT IDENTITY(1,1) PRIMARY KEY,
+    customerName NVARCHAR(100),
+    checkoutCounterId INT FOREIGN KEY REFERENCES checkoutCounter(checkoutCounterId),
+    age INT
+);
 
 create table customersProducts(
 	customerId int foreign key references customers(customerId),

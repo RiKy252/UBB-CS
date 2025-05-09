@@ -8,67 +8,150 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.Json;
+using System.IO;
 
 namespace DBMS
 {
-    public partial class Form1: Form
+    public partial class Form1 : Form
     {
-        string connectionString = @"Data Source=RIKY\SQLEXPRESS;Initial Catalog=Supermarket;Integrated Security=True;TrustServerCertificate=True";
+        private string connectionString = @"Data Source=RIKY\SQLEXPRESS;Initial Catalog=Supermarket;Integrated Security=True;TrustServerCertificate=True";
+        private Config config;
+        private Dictionary<string, TextBox> inputFields = new Dictionary<string, TextBox>();
+        private Dictionary<string, Label> inputLabels = new Dictionary<string, Label>();
+
         public Form1()
         {
             InitializeComponent();
-            allCategories.SelectionChanged += allCategories_selectionChanged;
-            productsGrid.UserDeletingRow += productsGrid_UserDeletingRow;
-            productsGrid.CellValueChanged += productsGrid_CellValueChanged;
+            LoadConfig();
+            SetupForm();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SqlConnection cn = new SqlConnection(connectionString);
-                if (cn.State == System.Data.ConnectionState.Closed)
-                    cn.Open();
-                MessageBox.Show("Test connection succeded.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void loadAllCategories()
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-
-                SqlCommand cmd = new SqlCommand("select * from category", conn);
-                SqlDataAdapter daChild = new SqlDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                daChild.Fill(ds);
-                allCategories.DataSource = ds.Tables[0];
-
-                conn.Close();
-            }
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void LoadConfig()
         {
-            loadAllCategories();
+            try
+            {
+                string configJson = File.ReadAllText("C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\config.json");
+                config = JsonSerializer.Deserialize<Config>(configJson);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading config: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void SetupForm()
+        {
+            if (config == null) return;
+
+            // Set form title
+            this.Text = config.FormTitle;
+
+            // Setup master grid
+            allCategories.SelectionChanged += allCategories_selectionChanged;
+            allCategories.AllowUserToAddRows = false;
+            allCategories.AllowUserToDeleteRows = false;
+            allCategories.ReadOnly = true;
+            allCategories.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            // Setup detail grid
+            productsGrid.UserDeletingRow += productsGrid_UserDeletingRow;
+            productsGrid.CellValueChanged += productsGrid_CellValueChanged;
+
+            // Create dynamic input fields
+            CreateInputFields();
+
+            // Load initial data
+            LoadMasterData();
+        }
+
+        private void CreateInputFields()
+        {
+            int yOffset = 350; 
+            int labelX = 280;
+            int textBoxX = 380;
+            int width = 500;
+            int height = 25;
+            int spacing = 30;
+
+            foreach (var column in config.DetailColumns)
+            {
+                if (column == config.IdColumn || column == config.MasterKeyColumn || column == config.DetailForeignKeyColumn)
+                    continue;
+
+                // Create label
+                Label label = new Label();
+                label.AutoSize = true;
+                label.Location = new Point(labelX, yOffset);
+                label.Text = config.FieldLabels.ContainsKey(column) ? config.FieldLabels[column] : column;
+                this.Controls.Add(label);
+                inputLabels[column] = label;
+
+                // Create textbox
+                TextBox textBox = new TextBox();
+                textBox.Location = new Point(textBoxX, yOffset);
+                textBox.Size = new Size(width, height);
+                textBox.Name = column + "TextBox";
+                this.Controls.Add(textBox);
+                inputFields[column] = textBox;
+
+                yOffset += spacing;
+            }
+        }
+
+        private void LoadMasterData()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(config.MasterQuery, conn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                allCategories.DataSource = ds.Tables[0];
+                conn.Close();
+            }
+        }
+
+        private void allCategories_selectionChanged(object sender, EventArgs e)
+        {
+            if (allCategories.CurrentRow == null) return;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(config.DetailQuery, conn);
+                cmd.Parameters.AddWithValue("@id", allCategories.CurrentRow.Cells[config.MasterKeyColumn].Value);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                productsGrid.DataSource = ds.Tables[0];
+
+                // Make key columns readonly
+                productsGrid.Columns[config.IdColumn].ReadOnly = true;
+                productsGrid.Columns[config.MasterKeyColumn].ReadOnly = true;
+                productsGrid.Columns[config.DetailForeignKeyColumn].ReadOnly = true;
+
+                conn.Close();
+            }
         }
 
         private void productsGrid_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand("DELETE FROM products WHERE productId=@id", conn);
-                cmd.Parameters.AddWithValue("@id", e.Row.Cells["productId"].Value);
+                SqlCommand cmd = new SqlCommand(config.DeleteDetailQuery, conn);
+
+                // Dynamically get the ID column and its value
+                string idColumn = config.IdColumn;
+                object idValue = e.Row.Cells[idColumn].Value;
+
+                cmd.Parameters.AddWithValue("@" + idColumn, idValue);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -76,22 +159,20 @@ namespace DBMS
             }
         }
 
+
         private void productsGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (productsGrid.Rows[e.RowIndex].IsNewRow) return;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand(
-                    "UPDATE products SET productId=@productId, categoryId=@categoryId, name=@name, expiringDate=@expiringDate, price=@price, shelfId=@shelfId WHERE productId=@productId", conn);
+                SqlCommand cmd = new SqlCommand(config.UpdateDetailQuery, conn);
 
-                cmd.Parameters.AddWithValue("@productId", productsGrid.Rows[e.RowIndex].Cells["productId"].Value);
-                cmd.Parameters.AddWithValue("@categoryId", productsGrid.Rows[e.RowIndex].Cells["categoryId"].Value);
-
-                cmd.Parameters.AddWithValue("@name", productsGrid.Rows[e.RowIndex].Cells["name"].Value ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@expiringDate", productsGrid.Rows[e.RowIndex].Cells["expiringDate"].Value ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@price", productsGrid.Rows[e.RowIndex].Cells["price"].Value ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@shelfId", productsGrid.Rows[e.RowIndex].Cells["shelfId"].Value ?? DBNull.Value);
+                foreach (DataGridViewCell cell in productsGrid.Rows[e.RowIndex].Cells)
+                {
+                    string paramName = "@" + cell.OwningColumn.Name;
+                    cmd.Parameters.AddWithValue(paramName, cell.Value ?? DBNull.Value);
+                }
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -103,72 +184,78 @@ namespace DBMS
         {
             if (allCategories.CurrentRow == null) return;
 
-            int categoryId = Convert.ToInt32(allCategories.CurrentRow.Cells["categoryId"].Value);
-            int newProductId;
-            string name = nameTextBox.Text;
-            string shelfId = shelfIdTextBox.Text;
-            string price = priceTextBox.Text;
-            DateTime expiringDate;
-            if (!DateTime.TryParse(expDateTextBox.Text, out expiringDate))
+            // Validate required fields
+            foreach (var requiredField in config.RequiredFields)
             {
-                MessageBox.Show("Please enter a valid date for Expiring Date (e.g., yyyy-MM-dd).", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                if (string.IsNullOrWhiteSpace(inputFields[requiredField].Text))
+                {
+                    MessageBox.Show($"Please fill in the required field: {config.FieldLabels[requiredField]}", 
+                        "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
+                SqlCommand cmd = new SqlCommand(config.InsertDetailQuery, conn);
 
-                SqlCommand getMaxId = new SqlCommand("SELECT ISNULL(MAX(productId), 0) + 1 FROM products", conn);
-                newProductId = (int)getMaxId.ExecuteScalar();
-
-                SqlCommand cmd = new SqlCommand(
-                    "INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) " +
-                    "VALUES (@productId, @categoryId, @name, @expiringDate, @price, @shelfId)", conn);
-
-                cmd.Parameters.AddWithValue("@productId", newProductId);
-                cmd.Parameters.AddWithValue("@categoryId", categoryId);
-                cmd.Parameters.AddWithValue("@name", name);
-                cmd.Parameters.AddWithValue("@expiringDate", expiringDate);
-                cmd.Parameters.AddWithValue("@price", price);
-                cmd.Parameters.AddWithValue("@shelfId", shelfId);
+                // Add parameters for all detail columns
+                foreach (var column in config.DetailColumns)
+                {
+                    if (column == config.IdColumn) continue; 
+                    if (column == config.DetailForeignKeyColumn)
+                    {
+                        cmd.Parameters.AddWithValue("@" + column, allCategories.CurrentRow.Cells[config.MasterKeyColumn].Value);
+                    }
+                    else if (inputFields.ContainsKey(column))
+                    {
+                        cmd.Parameters.AddWithValue("@" + column, inputFields[column].Text);
+                    }
+                }
 
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
 
-            allCategories_selectionChanged(null, null); // Refresh product list
+            // Clear input fields
+            foreach (var textBox in inputFields.Values)
+            {
+                textBox.Clear();
+            }
+
+            // Refresh the detail grid
+            allCategories_selectionChanged(null, null);
         }
 
-
-
-        private void allCategories_selectionChanged(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-
-                if (allCategories.CurrentRow != null)
-                {
-                    int categoryId = Convert.ToInt32(allCategories.CurrentRow.Cells["categoryId"].Value);
-                    SqlCommand cmd = new SqlCommand("select * from products where categoryId=@categoryId", conn);
-                    cmd.Parameters.AddWithValue("@categoryId", categoryId);
-
-                    SqlDataAdapter daChild = new SqlDataAdapter(cmd);
-                    DataSet dataSet = new DataSet();
-                    daChild.Fill(dataSet);
-                    productsGrid.DataSource = dataSet.Tables[0];
-                    productsGrid.Columns["productId"].ReadOnly = true;
-                    productsGrid.Columns["categoryId"].ReadOnly = true;
-                }
-
-                conn.Close();
+                SqlConnection cn = new SqlConnection(connectionString);
+                if (cn.State == System.Data.ConnectionState.Closed)
+                    cn.Open();
+                MessageBox.Show("Test connection succeeded.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void nameTextBox_TextChanged(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                SqlConnection cn = new SqlConnection(connectionString);
+                if (cn.State == System.Data.ConnectionState.Closed)
+                    cn.Open();
+                MessageBox.Show("Test connection succeeded.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
