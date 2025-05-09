@@ -2,10 +2,8 @@
 node_modules/
 .next/
 
-*.dll
-*.vsidx
-*.suo
-*.exe
+FileContentIndex/
+.vs/
 
 # Logs
 logs
