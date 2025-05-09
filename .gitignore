@@ -3,7 +3,12 @@ node_modules/
 .next/
 
 FileContentIndex/
-.vs/
+**/bin/
+**/debug/
+*.dll
+*.pdb
+packages/
+*.cache
 
 # Logs
 logs
