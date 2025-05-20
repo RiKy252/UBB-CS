@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Vacation Destination</title>
+  <script>
+    function validateForm() {
+      const location = document.forms["addForm"]["location"].value.trim();
+      const country = document.forms["addForm"]["country"].value.trim();
+      const description = document.forms["addForm"]["description"].value.trim();
+      const targets = document.forms["addForm"]["tourist_targets"].value.trim();
+      const cost = document.forms["addForm"]["cost_per_day"].value.trim();
+
+      if (!location || !country || !description || !targets || !cost) {
+        alert("All fields are required.");
+        return false;
+      }
+
+      if (isNaN(cost) || cost <= 0) {
+        alert("Cost per day must be a positive number.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <h1>Add New Destination</h1>
+  <form name="addForm" action="add_destination.php" method="POST" onsubmit="return validateForm()">
+    <label>Location (City):</label><br>
+    <input type="text" name="location" required><br><br>
+
+    <label>Country:</label><br>
+    <input type="text" name="country" required><br><br>
+
+    <label>Description:</label><br>
+    <textarea name="description" required></textarea><br><br>
+
+    <label>Tourist Targets:</label><br>
+    <input type="text" name="tourist_targets" required><br><br>
+
+    <label>Estimated Cost Per Day ($):</label><br>
+    <input type="number" name="cost_per_day" step="0.01" min="0.01" required><br><br>
+
+    <input type="submit" value="Add Destination">
+  </form>
+  <br>
+  <a href="index.html">Back to Listing</a>
+</body>
+</html>
