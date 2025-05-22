@@ -29,3 +29,4 @@ C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\Baze\Labs\Lab1\DBMS\obj\Deb
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\Baze\Labs\Lab1\DBMS\obj\Debug\DBMS.csproj.Up2Date
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\Baze\Labs\Lab1\DBMS\obj\Debug\DBMS.exe
 C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\Baze\Labs\Lab1\DBMS\obj\Debug\DBMS.pdb
+C:\Users\bolog\Documents\Facultate\UBB-CS\Semester 4\Baze\Labs\Lab1\DBMS\obj\Debug\DBMS.CustomerProductsForm.resources

@@ -257,5 +257,11 @@ namespace DBMS
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnCustomerProducts_Click(object sender, EventArgs e)
+        {
+            var form = new CustomerProductsForm();
+            form.ShowDialog();
+        }
     }
 }

@@ -1,9 +1,10 @@
---Lab1 HW
+﻿--Lab1 HW
 --1:n -> checkoutCounter and customers
 --1:n -> category and products
 --n:m -> customers and products
 
 use Supermarket
+go
 
 select * from checkoutCounter
 select * from customers
@@ -20,6 +21,9 @@ FROM
     INFORMATION_SCHEMA.COLUMNS
 WHERE 
     TABLE_NAME = 'products';  -- replace with your table name
+
+use Supermarket
+go
 
 create table shelves(
 	shelfId int not null primary key,
