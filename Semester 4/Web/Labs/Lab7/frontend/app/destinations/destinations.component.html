@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>Vacation Destinations</h1>
+
+  <label for="filter">Filter by country</label>
+  <input type="text" id="filter" [(ngModel)]="countryFilter" (keyup)="onFilterChange()">
+
+  <div *ngIf="destinations.length === 0" class="no-results">
+    <p>No destinations found for "{{ countryFilter }}"</p>
+    <p class="sub-text">Try searching for a different country or add a new destination</p>
+  </div>
+
+  <div *ngFor="let dest of destinations" class="destination">
+    <h3>{{ dest.location }} ({{ dest.country }})</h3>
+    <p>{{ dest.description }}</p>
+    <p><strong>Targets:</strong> {{ dest.tourist_targets }}</p>
+    <p><strong>Cost/Day:</strong> ${{ dest.cost_per_day }}</p>
+    <div class="actions">
+      <button [routerLink]="['/edit', dest.id]">Edit</button>
+      <button (click)="deleteDestination(dest.id)">Delete</button>
+    </div>
+  </div>
+
+  <button (click)="prevPage()" [disabled]="currentPage === 1" class="pagination-btn">Previous</button>
+  <span>{{ pageInfo }}</span>
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="pagination-btn">Next</button>
+
+  <br><br>
+  <a [routerLink]="['/add']">Add a New Destination</a>
+</div>

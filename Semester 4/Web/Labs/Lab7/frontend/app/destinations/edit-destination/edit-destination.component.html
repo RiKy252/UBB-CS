@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Edit Destination</h2>
+  <form (ngSubmit)="updateDestination()">
+    <label>Location:</label>
+    <input class="text-input" [(ngModel)]="location" name="location" required />
+
+    <label>Country:</label>
+    <input class="text-input" [(ngModel)]="country" name="country" required />
+
+    <label>Description:</label>
+    <textarea class="text-input" [(ngModel)]="description" name="description" required></textarea>
+
+    <label>Tourist Targets:</label>
+    <input class="text-input" [(ngModel)]="tourist_targets" name="tourist_targets" />
+
+    <label>Cost per Day:</label>
+    <input class="number-input" type="number" [(ngModel)]="cost_per_day" name="cost_per_day" />
+
+    <div class="button-group">
+      <button type="submit">Save</button>
+      <button type="button" (click)="router.navigate(['/'])">Cancel</button>
+    </div>
+  </form>
+</div>
