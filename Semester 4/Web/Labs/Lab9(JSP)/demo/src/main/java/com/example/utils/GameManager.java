@@ -1,6 +1,7 @@
-package utils;
+package com.example.utils;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class GameManager {
     private static final Set<String> players = new HashSet<>();

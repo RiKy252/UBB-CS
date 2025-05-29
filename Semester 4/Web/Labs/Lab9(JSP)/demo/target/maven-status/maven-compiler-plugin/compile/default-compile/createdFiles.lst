@@ -1,0 +1,5 @@
+com\example\GameServlet.class
+com\example\LoginServlet.class
+com\example\utils\DatabaseUtil.class
+com\example\LogoutServlet.class
+com\example\utils\GameManager.class
