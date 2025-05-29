@@ -1,0 +1,1 @@
+<html><body><h2>Error: <%= request.getAttribute("error") %></h2></body></html>
