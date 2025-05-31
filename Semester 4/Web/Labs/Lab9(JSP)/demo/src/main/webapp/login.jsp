@@ -100,12 +100,6 @@
             </div>
             <button type="submit">Login</button>
         </form>
-
-        <div class="default-users">
-            <p>Default users for testing:</p>
-            <p>Username: player1, Password: pass1</p>
-            <p>Username: player2, Password: pass2</p>
-        </div>
     </div>
 </body>
 </html>

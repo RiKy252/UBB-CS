@@ -4,20 +4,23 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.Random;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import com.example.utils.DatabaseUtil;
 
 @WebServlet("/GameServlet")
 public class GameServlet extends HttpServlet {
     private static final int BOARD_SIZE = 10;
     private static final int SHIPS_PER_PLAYER = 2;
+    private static final int SHIP_SIZE = 2;
+    private Random random = new Random();
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -26,6 +29,12 @@ public class GameServlet extends HttpServlet {
         
         if (username == null) {
             response.getWriter().write("Not logged in");
+            return;
+        }
+
+        String action = request.getParameter("action");
+        if ("getBoardState".equals(action)) {
+            getBoardState(request, response, username);
             return;
         }
 
@@ -80,7 +89,7 @@ public class GameServlet extends HttpServlet {
                     pstmt.setInt(3, gameId);
                     pstmt.executeUpdate();
                     
-                    // Place ships for both players
+                    // Place ships randomly for both players
                     placeShips(conn, gameId, player1);
                     placeShips(conn, gameId, username);
                     
@@ -176,11 +185,12 @@ public class GameServlet extends HttpServlet {
             }
             
             // Check if move was already made
-            sql = "SELECT * FROM moves WHERE game_id = ? AND row = ? AND col = ?";
+            sql = "SELECT * FROM moves WHERE game_id = ? AND player = ? AND row = ? AND col = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, gameId);
-            pstmt.setInt(2, rowInt);
-            pstmt.setInt(3, colInt);
+            pstmt.setString(2, username);
+            pstmt.setInt(3, rowInt);
+            pstmt.setInt(4, colInt);
             rs = pstmt.executeQuery();
             
             if (rs.next()) {
@@ -218,10 +228,13 @@ public class GameServlet extends HttpServlet {
             rs.next();
             int totalShips = rs.getInt("total_ships");
             
-            sql = "SELECT COUNT(*) as hits FROM moves WHERE game_id = ? AND player = ? AND is_hit = true";
+            sql = "SELECT COUNT(DISTINCT s.row, s.col) as hits FROM ships s " +
+                  "JOIN moves m ON s.game_id = m.game_id AND s.row = m.row AND s.col = m.col " +
+                  "WHERE s.game_id = ? AND s.player = ? AND m.player = ? AND m.is_hit = true";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, gameId);
-            pstmt.setString(2, username);
+            pstmt.setString(2, opponent);
+            pstmt.setString(3, username);
             rs = pstmt.executeQuery();
             rs.next();
             int hits = rs.getInt("hits");
@@ -268,45 +281,140 @@ public class GameServlet extends HttpServlet {
     }
 
     private void placeShips(Connection conn, int gameId, String player) throws Exception {
-        Random random = new Random();
-        int shipsPlaced = 0;
+        String sql = "INSERT INTO ships (game_id, player, row, col) VALUES (?, ?, ?, ?)";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
         
-        while (shipsPlaced < SHIPS_PER_PLAYER) {
-            int row = random.nextInt(BOARD_SIZE);
-            int col = random.nextInt(BOARD_SIZE);
-            
-            // Try to place a ship of length 2
-            if (col + 1 < BOARD_SIZE) {
-                // Check if positions are free
-                String sql = "SELECT COUNT(*) as count FROM ships WHERE game_id = ? AND player = ? AND ((row = ? AND col = ?) OR (row = ? AND col = ?))";
-                PreparedStatement pstmt = conn.prepareStatement(sql);
-                pstmt.setInt(1, gameId);
-                pstmt.setString(2, player);
-                pstmt.setInt(3, row);
-                pstmt.setInt(4, col);
-                pstmt.setInt(5, row);
-                pstmt.setInt(6, col + 1);
-                ResultSet rs = pstmt.executeQuery();
-                
-                if (rs.next() && rs.getInt("count") == 0) {
-                    // Place ship
-                    sql = "INSERT INTO ships (game_id, player, row, col) VALUES (?, ?, ?, ?), (?, ?, ?, ?)";
-                    pstmt = conn.prepareStatement(sql);
-                    pstmt.setInt(1, gameId);
-                    pstmt.setString(2, player);
-                    pstmt.setInt(3, row);
-                    pstmt.setInt(4, col);
-                    pstmt.setInt(5, gameId);
-                    pstmt.setString(6, player);
-                    pstmt.setInt(7, row);
-                    pstmt.setInt(8, col + 1);
-                    pstmt.executeUpdate();
-                    shipsPlaced++;
+        Random random = new Random();
+
+        for (int ship = 0; ship < SHIPS_PER_PLAYER; ship++) {
+            boolean placed = false;
+            while (!placed) {
+                // Try to place ship horizontally or vertically
+                boolean isHorizontal = random.nextBoolean();
+                int row, col;
+
+                if (isHorizontal) {
+                    row = random.nextInt(BOARD_SIZE);
+                    col = random.nextInt(BOARD_SIZE - SHIP_SIZE + 1);
+                } else {
+                    row = random.nextInt(BOARD_SIZE - SHIP_SIZE + 1);
+                    col = random.nextInt(BOARD_SIZE);
                 }
                 
-                rs.close();
-                pstmt.close();
+                // Check if space is available
+                boolean spaceAvailable = true;
+                for (int i = 0; i < SHIP_SIZE; i++) {
+                    int checkRow = isHorizontal ? row : row + i;
+                    int checkCol = isHorizontal ? col + i : col;
+
+                    String checkSql = "SELECT COUNT(*) FROM ships WHERE game_id = ? AND player = ? AND row = ? AND col = ?";
+                    PreparedStatement checkStmt = null; // Initialize to null
+                    ResultSet rsCheck = null; // Use a different variable name
+                    try {
+                         checkStmt = conn.prepareStatement(checkSql);
+                         checkStmt.setInt(1, gameId);
+                         checkStmt.setString(2, player);
+                         checkStmt.setInt(3, checkRow);
+                         checkStmt.setInt(4, checkCol);
+                         rsCheck = checkStmt.executeQuery();
+                         rsCheck.next();
+                         if (rsCheck.getInt(1) > 0) {
+                             spaceAvailable = false;
+                             break;
+                         }
+                    } finally {
+                        if (rsCheck != null) try { rsCheck.close(); } catch (Exception e) {} // Close ResultSet
+                        if (checkStmt != null) try { checkStmt.close(); } catch (Exception e) {} // Close PreparedStatement
+                    }
+                }
+                
+                if (spaceAvailable) {
+                    // Place the ship
+                    for (int i = 0; i < SHIP_SIZE; i++) {
+                         int placeRow = isHorizontal ? row : row + i;
+                         int placeCol = isHorizontal ? col + i : col;
+                        pstmt.setInt(1, gameId);
+                        pstmt.setString(2, player);
+                        pstmt.setInt(3, placeRow);
+                        pstmt.setInt(4, placeCol);
+                        pstmt.executeUpdate();
+                    }
+                    placed = true;
+                }
             }
+        }
+        if (pstmt != null) try { pstmt.close(); } catch (Exception e) {} // Close PreparedStatement after loop
+    }
+
+    private void getBoardState(HttpServletRequest request, HttpServletResponse response, String username) 
+            throws IOException {
+         Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = DatabaseUtil.getConnection();
+            
+            // Get current game
+            String sql = "SELECT * FROM games WHERE (player1 = ? OR player2 = ?) AND status = 'active'";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, username);
+            pstmt.setString(2, username);
+            rs = pstmt.executeQuery();
+            
+            if (!rs.next()) {
+                response.getWriter().write("No active game");
+                return;
+            }
+            
+            int gameId = rs.getInt("id");
+            String opponent = username.equals(rs.getString("player1")) ? rs.getString("player2") : rs.getString("player1");
+            
+            StringBuilder boardState = new StringBuilder();
+            
+            // Get player's ships
+            sql = "SELECT row, col FROM ships WHERE game_id = ? AND player = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, gameId);
+            pstmt.setString(2, username);
+            rs = pstmt.executeQuery();
+            
+            System.out.println("Getting ships for player: " + username + " in game: " + gameId);
+            while (rs.next()) {
+                int row = rs.getInt("row");
+                int col = rs.getInt("col");
+                String shipData = "ship," + row + "," + col + ";";
+                boardState.append(shipData);
+                System.out.println("Found ship at: " + row + "," + col);
+            }
+
+            // Get opponent's moves
+            sql = "SELECT row, col, is_hit FROM moves WHERE game_id = ? AND player = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, gameId);
+            pstmt.setString(2, opponent);
+            rs = pstmt.executeQuery();
+            
+            System.out.println("Getting moves for opponent: " + opponent + " in game: " + gameId);
+            while (rs.next()) {
+                int row = rs.getInt("row");
+                int col = rs.getInt("col");
+                boolean isHit = rs.getBoolean("is_hit");
+                String moveData = "move," + row + "," + col + "," + isHit + ";";
+                boardState.append(moveData);
+                System.out.println("Found move at: " + row + "," + col + " isHit: " + isHit);
+            }
+            
+            String finalState = boardState.toString();
+            System.out.println("Final board state: " + finalState);
+            response.getWriter().write(finalState);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.getWriter().write("Error getting board state: " + e.getMessage());
+        } finally {
+            if (rs != null) try { rs.close(); } catch (Exception e) {}
+            if (pstmt != null) try { pstmt.close(); } catch (Exception e) {}
+            if (conn != null) try { conn.close(); } catch (Exception e) {}
         }
     }
 }

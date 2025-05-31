@@ -118,16 +118,23 @@
             margin-right: 5px;
             vertical-align: middle;
         }
+        .refresh-button {
+            margin: 10px 0;
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+            cursor: pointer;
+        }
+        .refresh-button:hover {
+            background-color: #e0e0e0;
+        }
     </style>
 </head>
 <body>
     <div class="game-container">
         <h1>Battleships Game</h1>
         
-        <div class="user-info">
-            Logged in as: <%= username %>
-        </div>
-
         <div class="boards-container">
             <div>
                 <h2>Your Board</h2>
@@ -156,21 +163,6 @@
             </div>
         </div>
 
-        <div class="legend">
-            <div class="legend-item">
-                <span class="legend-color" style="background-color: #ff4444;"></span>
-                Hit
-            </div>
-            <div class="legend-item">
-                <span class="legend-color" style="background-color: #4444ff;"></span>
-                Miss
-            </div>
-            <div class="legend-item">
-                <span class="legend-color" style="background-color: #666;"></span>
-                Ship
-            </div>
-        </div>
-
         <div id="status">Waiting for opponent...</div>
 
         <div class="logout">
@@ -181,22 +173,25 @@
     <script>
         function makeMove(cell) {
             if (cell.classList.contains('hit') || cell.classList.contains('miss')) {
-                return; // Cell already played
+                return;
             }
             
             const row = cell.getAttribute('data-row');
             const col = cell.getAttribute('data-col');
+            
+            const formData = new URLSearchParams();
+            formData.append('row', row);
+            formData.append('col', col);
             
             fetch('GameServlet', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: `row=${row}&col=${col}`
+                body: formData.toString()
             })
             .then(response => response.text())
             .then(result => {
-                console.log('Move result:', result); // Debug log
                 if(result.includes('Hit')) {
                     cell.classList.add('hit');
                 } else if(result.includes('Miss')) {
@@ -209,33 +204,84 @@
                     alert('No active game found!');
                 } else if(result.includes('Game Over')) {
                     alert(result);
-                    location.reload(); // Reload page when game is over
+                    location.reload();
                 }
                 document.getElementById('status').textContent = result;
             })
             .catch(error => {
-                console.error('Error:', error); // Debug log
+                console.error('Error:', error);
                 document.getElementById('status').textContent = 'Error: ' + error;
             });
         }
 
-        // Poll for game updates
-        setInterval(() => {
-            fetch('GameServlet')
+        function refreshBoard() {
+            fetch('GameServlet?action=getBoardState')
             .then(response => response.text())
-            .then(status => {
-                console.log('Status update:', status); // Debug log
-                document.getElementById('status').textContent = status;
+            .then(data => {
+                // Clear previous moves
+                const cells = document.querySelectorAll('#playerBoard .cell');
+                cells.forEach(cell => {
+                    cell.classList.remove('hit', 'miss');
+                    cell.style.backgroundColor = ''; // Clear background color
+                    cell.textContent = ''; // Clear text content
+                });
                 
-                // If game is over, reload the page
-                if(status.includes('Game Over')) {
-                    location.reload();
-                }
+                // Update with new moves
+                const moves = data.split(';').filter(move => move.length > 0);
+                moves.forEach(move => {
+                    const parts = move.split(',');
+                     if (parts.length < 3) return; // Skip invalid items
+                    
+                    const row = parts[1];
+                    const col = parts[2];
+                    const isHit = parts[3] === 'true';
+                    
+                    const cell = document.querySelector(
+                        `#playerBoard .cell[data-row="${row}"][data-col="${col}"]`
+                    );
+                    if (cell) {
+                         if (isHit) {
+                            cell.classList.add('hit');
+                             cell.style.backgroundColor = '#ff4444'; // Red for hits
+                             cell.textContent = 'H';
+                         } else {
+                             cell.classList.add('miss');
+                             cell.style.backgroundColor = '#4444ff'; // Blue for misses
+                              cell.textContent = 'M';
+                         }
+                    }
+                });
             })
             .catch(error => {
-                console.error('Status error:', error); // Debug log
+                console.error('Board update error:', error);
             });
-        }, 2000);
+        }
+
+        // Initial board refresh
+        // Poll for game status every 2 seconds
+        document.addEventListener('DOMContentLoaded', (event) => {
+            console.log('DOM fully loaded and parsed');
+            
+            refreshBoard();
+
+            let lastStatus = '';
+            setInterval(() => {
+                fetch('GameServlet')
+                .then(response => response.text())
+                .then(status => {
+                    if (status !== lastStatus) {
+                        document.getElementById('status').textContent = status;
+                        lastStatus = status;
+                        if(status.includes('Your turn') || status.includes('Opponent\'s turn')) {
+                            refreshBoard();
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Status error:', error);
+                });
+            }, 2000);
+        });
     </script>
 </body>
 </html>
