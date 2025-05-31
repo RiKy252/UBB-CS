@@ -11,6 +11,9 @@ packages/
 *.cache
 *.suo
 *.resx
+*.vs
+*.sln
+*.map
 
 # Logs
 logs
