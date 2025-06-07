@@ -51,6 +51,7 @@
             this.allCategories.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.allCategories.Size = new System.Drawing.Size(341, 380);
             this.allCategories.TabIndex = 1;
+            this.allCategories.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.allCategories_CellContentClick);
             // 
             // productsGrid
             // 
@@ -78,7 +79,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(16, 690);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(337, 28);
             this.button2.TabIndex = 5;

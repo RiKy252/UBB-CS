@@ -37,7 +37,7 @@ UPDATE ExampleTable SET ExampleNumber = ExampleNumber - 10 WHERE ExampleId = 1; 
 commit;
 
 -- sol:
-SET DEADLOCK_PRIORITY LOW
+SET DEADLOCK_PRIORITY high
 BEGIN TRAN;
 UPDATE ExampleTable SET ExampleNumber = ExampleNumber - 10 WHERE ExampleId = 1;
 WAITFOR DELAY '00:00:10';

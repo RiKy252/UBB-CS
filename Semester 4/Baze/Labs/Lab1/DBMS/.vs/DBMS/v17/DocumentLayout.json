@@ -1,38 +1,46 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\",
+  "WorkspaceRootPath": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|c:\\users\\bolog\\documents\\facultate\\ubb-cs\\semester 4\\baze\\labs\\lab1\\dbms\\customerproductsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|solutionrelative:customerproductsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\customerproductsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|solutionrelative:customerproductsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\customerproductsform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\config.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|solutionrelative:config.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|c:\\facultate\\ubb-cs\\semester 4\\baze\\labs\\lab1\\dbms\\customerproductsform1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|solutionrelative:customerproductsform1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\customerproductsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|solutionrelative:customerproductsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\customerproductsform.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
+      "RelativeMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|solutionrelative:customerproductsform.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\customerproductsform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|solutionrelative:customerproductsform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\customerproductsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|solutionrelative:customerproductsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|solutionrelative:form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|solutionrelative:config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\config.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{BD5E829D-7D9F-4FE2-86AD-9186FA4838F2}|DBMS.csproj|solutionrelative:config.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,114 +50,134 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:491163893:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CustomerProductsForm.resx",
+              "DocumentMoniker": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\CustomerProductsForm.resx",
+              "RelativeDocumentMoniker": "CustomerProductsForm.resx",
+              "ToolTip": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\CustomerProductsForm.resx",
+              "RelativeToolTip": "CustomerProductsForm.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-06-05T16:18:08.85Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CustomerProductsForm.cs",
-              "DocumentMoniker": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\CustomerProductsForm.cs",
+              "DocumentIndex": 4,
+              "Title": "CustomerProductsForm.cs [Design]",
+              "DocumentMoniker": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\CustomerProductsForm.cs",
               "RelativeDocumentMoniker": "CustomerProductsForm.cs",
-              "ToolTip": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\CustomerProductsForm.cs",
+              "ToolTip": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\CustomerProductsForm.cs [Design]",
+              "RelativeToolTip": "CustomerProductsForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-22T11:48:44.723Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CustomerProductsForm.cs",
+              "DocumentMoniker": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\CustomerProductsForm.cs",
+              "RelativeDocumentMoniker": "CustomerProductsForm.cs",
+              "ToolTip": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\CustomerProductsForm.cs",
               "RelativeToolTip": "CustomerProductsForm.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAAAEcAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAEIAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-22T11:49:20.774Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CustomerProductsForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\CustomerProductsForm.cs",
-              "RelativeDocumentMoniker": "CustomerProductsForm.cs",
-              "ToolTip": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\CustomerProductsForm.cs [Design]",
-              "RelativeToolTip": "CustomerProductsForm.cs [Design]",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\Form1.cs [Design]",
+              "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-22T11:48:44.723Z"
+              "WhenOpened": "2025-05-09T10:10:53.786Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\Form1.cs",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\Form1.cs [Design]",
-              "RelativeToolTip": "Form1.cs [Design]",
+              "ToolTip": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AgIAAMIAAAAAAAAAAAAlwI4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T10:10:53.786Z"
+              "WhenOpened": "2025-03-07T12:48:01.534Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "config.json",
+              "DocumentMoniker": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\config.json",
+              "RelativeDocumentMoniker": "config.json",
+              "ToolTip": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\config.json",
+              "RelativeToolTip": "config.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-09T07:35:46.335Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\Form1.cs",
-              "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\Form1.cs",
-              "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAAPoAAAAAAAAAAAAUwAYBAAAMAAAAAAAAAA==",
+              "Title": "CustomerProductsForm1.Designer.cs",
+              "DocumentMoniker": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\CustomerProductsForm1.Designer.cs",
+              "RelativeDocumentMoniker": "CustomerProductsForm1.Designer.cs",
+              "ToolTip": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\CustomerProductsForm1.Designer.cs",
+              "RelativeToolTip": "CustomerProductsForm1.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T12:48:01.534Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CustomerProductsForm.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\CustomerProductsForm.Designer.cs",
-              "RelativeDocumentMoniker": "CustomerProductsForm.Designer.cs",
-              "ToolTip": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\CustomerProductsForm.Designer.cs",
-              "RelativeToolTip": "CustomerProductsForm.Designer.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAAwCoAAABYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-22T11:51:07.456Z"
+              "WhenOpened": "2025-06-05T16:18:20.079Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "CustomerProductsForm.Designer.cs",
+              "DocumentMoniker": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\CustomerProductsForm.Designer.cs",
+              "RelativeDocumentMoniker": "CustomerProductsForm.Designer.cs",
+              "ToolTip": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\CustomerProductsForm.Designer.cs",
+              "RelativeToolTip": "CustomerProductsForm.Designer.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAzwFEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-22T11:51:07.456Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Config.cs",
-              "DocumentMoniker": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\Config.cs",
+              "DocumentMoniker": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\Config.cs",
               "RelativeDocumentMoniker": "Config.cs",
-              "ToolTip": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\Config.cs",
+              "ToolTip": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\Config.cs",
               "RelativeToolTip": "Config.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAEsAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T07:37:35.451Z"
+              "WhenOpened": "2025-05-09T07:37:35.451Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "config.json",
-              "DocumentMoniker": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\config.json",
-              "RelativeDocumentMoniker": "config.json",
-              "ToolTip": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\config.json",
-              "RelativeToolTip": "config.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-09T07:35:46.335Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Form1.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "Form1.Designer.cs",
-              "ToolTip": "C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\Form1.Designer.cs",
+              "ToolTip": "C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\Form1.Designer.cs",
               "RelativeToolTip": "Form1.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-08T22:45:12.262Z"
+              "WhenOpened": "2025-05-08T22:45:12.262Z",
+              "EditorCaption": ""
             }
           ]
         }

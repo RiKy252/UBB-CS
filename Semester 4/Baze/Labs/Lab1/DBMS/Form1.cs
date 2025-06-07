@@ -35,7 +35,7 @@ namespace DBMS
         {
             try
             {
-                string configJson = File.ReadAllText("C:\\Users\\bolog\\Documents\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\config.json");
+                string configJson = File.ReadAllText("C:\\Facultate\\UBB-CS\\Semester 4\\Baze\\Labs\\Lab1\\DBMS\\config.json");
                 config = JsonSerializer.Deserialize<Config>(configJson);
             }
             catch (Exception ex)
@@ -262,6 +262,11 @@ namespace DBMS
         {
             var form = new CustomerProductsForm();
             form.ShowDialog();
+        }
+
+        private void allCategories_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

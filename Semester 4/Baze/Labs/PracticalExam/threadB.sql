@@ -1,0 +1,12 @@
+use Altex
+go
+
+select * from Distributors
+
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+
+BEGIN TRAN;
+UPDATE Distributors SET Dphone = 'new dphone' WHERE Did = 1;
+COMMIT;
+
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;

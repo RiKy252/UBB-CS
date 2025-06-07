@@ -27,6 +27,17 @@ namespace VacationAppNET.Controllers
             return View();
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetDestination(int id)
+        {
+            var destination = await _context.Destinations.FindAsync(id);
+            if (destination == null)
+            {
+                return NotFound();
+            }
+            return Ok(destination);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Destination destination)

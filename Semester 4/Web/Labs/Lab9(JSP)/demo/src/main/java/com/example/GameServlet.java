@@ -38,7 +38,6 @@ public class GameServlet extends HttpServlet {
             return;
         }
 
-        // Clean up old games
         DatabaseUtil.cleanupOldGames();
 
         Connection conn = null;
@@ -48,7 +47,6 @@ public class GameServlet extends HttpServlet {
         try {
             conn = DatabaseUtil.getConnection();
             
-            // First, check if this player is already in a game
             String sql = "SELECT * FROM games WHERE (player1 = ? OR player2 = ?) AND status = 'active'";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
@@ -56,7 +54,6 @@ public class GameServlet extends HttpServlet {
             rs = pstmt.executeQuery();
             
             if (rs.next()) {
-                // Player is in an active game
                 String currentPlayer = rs.getString("current_player");
                 if (currentPlayer == null) {
                     response.getWriter().write("Waiting for opponent...");
@@ -68,28 +65,24 @@ public class GameServlet extends HttpServlet {
                 return;
             }
             
-            // Check if there's a waiting game that's not created by this player
             sql = "SELECT * FROM games WHERE status = 'waiting' AND player1 != ? LIMIT 1";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
             rs = pstmt.executeQuery();
             
             if (rs.next()) {
-                // Join existing waiting game
                 int gameId = rs.getInt("id");
                 String player1 = rs.getString("player1");
                 
                 conn.setAutoCommit(false);
                 try {
-                    // Update game status
                     sql = "UPDATE games SET player2 = ?, current_player = ?, status = 'active' WHERE id = ?";
                     pstmt = conn.prepareStatement(sql);
                     pstmt.setString(1, username);
-                    pstmt.setString(2, player1); // First player starts
+                    pstmt.setString(2, player1); 
                     pstmt.setInt(3, gameId);
                     pstmt.executeUpdate();
                     
-                    // Place ships randomly for both players
                     placeShips(conn, gameId, player1);
                     placeShips(conn, gameId, username);
                     
@@ -102,14 +95,12 @@ public class GameServlet extends HttpServlet {
                     conn.setAutoCommit(true);
                 }
             } else {
-                // Check if this player already has a waiting game
                 sql = "SELECT * FROM games WHERE player1 = ? AND status = 'waiting'";
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1, username);
                 rs = pstmt.executeQuery();
                 
                 if (!rs.next()) {
-                    // Create new waiting game only if player doesn't have one
                     sql = "INSERT INTO games (player1, status) VALUES (?, 'waiting')";
                     pstmt = conn.prepareStatement(sql);
                     pstmt.setString(1, username);
@@ -154,7 +145,6 @@ public class GameServlet extends HttpServlet {
             conn = DatabaseUtil.getConnection();
             conn.setAutoCommit(false);
             
-            // Get current game
             String sql = "SELECT * FROM games WHERE (player1 = ? OR player2 = ?) AND status = 'active'";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
@@ -175,7 +165,6 @@ public class GameServlet extends HttpServlet {
             int gameId = rs.getInt("id");
             String opponent = username.equals(rs.getString("player1")) ? rs.getString("player2") : rs.getString("player1");
             
-            // Make the move
             int rowInt = Integer.parseInt(row);
             int colInt = Integer.parseInt(col);
             
@@ -184,7 +173,6 @@ public class GameServlet extends HttpServlet {
                 return;
             }
             
-            // Check if move was already made
             sql = "SELECT * FROM moves WHERE game_id = ? AND player = ? AND row = ? AND col = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, gameId);
@@ -198,7 +186,6 @@ public class GameServlet extends HttpServlet {
                 return;
             }
             
-            // Check if hit
             sql = "SELECT * FROM ships WHERE game_id = ? AND player = ? AND row = ? AND col = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, gameId);
@@ -209,7 +196,6 @@ public class GameServlet extends HttpServlet {
             
             boolean isHit = rs.next();
             
-            // Record the move
             sql = "INSERT INTO moves (game_id, player, row, col, is_hit) VALUES (?, ?, ?, ?, ?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, gameId);
@@ -219,7 +205,6 @@ public class GameServlet extends HttpServlet {
             pstmt.setBoolean(5, isHit);
             pstmt.executeUpdate();
             
-            // Check if game is over
             sql = "SELECT COUNT(*) as total_ships FROM ships WHERE game_id = ? AND player = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, gameId);
@@ -240,7 +225,6 @@ public class GameServlet extends HttpServlet {
             int hits = rs.getInt("hits");
             
             if (hits == totalShips) {
-                // Game over - current player wins
                 sql = "UPDATE games SET status = 'finished', winner = ? WHERE id = ?";
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1, username);
@@ -251,7 +235,6 @@ public class GameServlet extends HttpServlet {
                 return;
             }
             
-            // Update current player
             sql = "UPDATE games SET current_player = ? WHERE id = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, opponent);
@@ -289,7 +272,6 @@ public class GameServlet extends HttpServlet {
         for (int ship = 0; ship < SHIPS_PER_PLAYER; ship++) {
             boolean placed = false;
             while (!placed) {
-                // Try to place ship horizontally or vertically
                 boolean isHorizontal = random.nextBoolean();
                 int row, col;
 
@@ -301,15 +283,14 @@ public class GameServlet extends HttpServlet {
                     col = random.nextInt(BOARD_SIZE);
                 }
                 
-                // Check if space is available
                 boolean spaceAvailable = true;
                 for (int i = 0; i < SHIP_SIZE; i++) {
                     int checkRow = isHorizontal ? row : row + i;
                     int checkCol = isHorizontal ? col + i : col;
 
                     String checkSql = "SELECT COUNT(*) FROM ships WHERE game_id = ? AND player = ? AND row = ? AND col = ?";
-                    PreparedStatement checkStmt = null; // Initialize to null
-                    ResultSet rsCheck = null; // Use a different variable name
+                    PreparedStatement checkStmt = null; 
+                    ResultSet rsCheck = null; 
                     try {
                          checkStmt = conn.prepareStatement(checkSql);
                          checkStmt.setInt(1, gameId);
@@ -323,13 +304,12 @@ public class GameServlet extends HttpServlet {
                              break;
                          }
                     } finally {
-                        if (rsCheck != null) try { rsCheck.close(); } catch (Exception e) {} // Close ResultSet
-                        if (checkStmt != null) try { checkStmt.close(); } catch (Exception e) {} // Close PreparedStatement
+                        if (rsCheck != null) try { rsCheck.close(); } catch (Exception e) {} 
+                        if (checkStmt != null) try { checkStmt.close(); } catch (Exception e) {} 
                     }
                 }
                 
                 if (spaceAvailable) {
-                    // Place the ship
                     for (int i = 0; i < SHIP_SIZE; i++) {
                          int placeRow = isHorizontal ? row : row + i;
                          int placeCol = isHorizontal ? col + i : col;
@@ -343,7 +323,7 @@ public class GameServlet extends HttpServlet {
                 }
             }
         }
-        if (pstmt != null) try { pstmt.close(); } catch (Exception e) {} // Close PreparedStatement after loop
+        if (pstmt != null) try { pstmt.close(); } catch (Exception e) {} 
     }
 
     private void getBoardState(HttpServletRequest request, HttpServletResponse response, String username) 
@@ -355,7 +335,6 @@ public class GameServlet extends HttpServlet {
         try {
             conn = DatabaseUtil.getConnection();
             
-            // Get current game
             String sql = "SELECT * FROM games WHERE (player1 = ? OR player2 = ?) AND status = 'active'";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
@@ -372,7 +351,6 @@ public class GameServlet extends HttpServlet {
             
             StringBuilder boardState = new StringBuilder();
             
-            // Get player's ships
             sql = "SELECT row, col FROM ships WHERE game_id = ? AND player = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, gameId);
@@ -388,7 +366,6 @@ public class GameServlet extends HttpServlet {
                 System.out.println("Found ship at: " + row + "," + col);
             }
 
-            // Get opponent's moves
             sql = "SELECT row, col, is_hit FROM moves WHERE game_id = ? AND player = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, gameId);

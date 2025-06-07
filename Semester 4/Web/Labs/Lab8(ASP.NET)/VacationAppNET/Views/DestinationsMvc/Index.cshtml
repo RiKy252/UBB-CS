@@ -27,7 +27,7 @@
             <div class="row">
                 @foreach (var item in Model)
                 {
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-4 mb-4 destination-card">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">@item.City, @item.Country</h5>
@@ -66,25 +66,26 @@
             }
         }
 
-        document.getElementById('searchButton').addEventListener('click', function() {
+        function searchDestinations() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const cards = document.querySelectorAll('.destination-card');
             
             cards.forEach(card => {
                 const title = card.querySelector('.card-title').textContent.toLowerCase();
                 const description = card.querySelector('.card-text').textContent.toLowerCase();
+                const attractions = card.querySelectorAll('.card-text')[1].textContent.toLowerCase();
                 
-                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                if (title.includes(searchTerm) || description.includes(searchTerm) || attractions.includes(searchTerm)) {
                     card.style.display = '';
                 } else {
                     card.style.display = 'none';
                 }
             });
-        });
+        }
 
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                document.getElementById('searchButton').click();
+                searchDestinations();
             }
         });
     </script>

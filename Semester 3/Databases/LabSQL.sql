@@ -3,24 +3,8 @@
 --1:n -> category and products
 --n:m -> customers and products
 
-use Supermarket
+create database Supermarket
 go
-
-select * from checkoutCounter
-select * from customers
-
-EXEC sp_rename 'products', 'products_old';
-INSERT INTO products (categoryId, name, expiringDate, price)
-SELECT categoryId, name, expiringDate, price
-FROM products_old;
-
-SELECT 
-    COLUMN_NAME, 
-    COLUMNPROPERTY(OBJECT_ID(TABLE_SCHEMA + '.' + TABLE_NAME), COLUMN_NAME, 'IsIdentity') AS IsIdentity
-FROM 
-    INFORMATION_SCHEMA.COLUMNS
-WHERE 
-    TABLE_NAME = 'products';  -- replace with your table name
 
 use Supermarket
 go
@@ -133,32 +117,33 @@ INSERT INTO category (categoryId, categoryName) VALUES (5, 'Beverages');
 INSERT INTO category (categoryId, categoryName) VALUES (6, 'Snacks');
 
 SELECT * FROM category;
+SELECT * FROM products;
 
 -- Product insertions
 -- Dairy Products
-INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) VALUES (1, 1, 'Milk', '2025-03-13', 5.35, 1);
-INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) VALUES (2, 1, 'Cheddar Cheese', '2025-06-10', 3.75, 1);
-INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) VALUES (3, 1, 'Yogurt', '2025-01-22', 2.50, 1);
+INSERT INTO products (categoryId, name, expiringDate, price, shelfId) VALUES (1, 'Milk', '2025-03-13', 5.35, 1);
+INSERT INTO products (categoryId, name, expiringDate, price, shelfId) VALUES (1, 'Cheddar Cheese', '2025-06-10', 3.75, 1);
+INSERT INTO products (categoryId, name, expiringDate, price, shelfId) VALUES (1, 'Yogurt', '2025-01-22', 2.50, 1);
 -- Bakery Products
-INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) VALUES (4, 2, 'Whole Wheat Bread', '2023-11-15', 1.99, 2);
-INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) VALUES (5, 2, 'Croissant', '2023-11-05', 1.50, 2);
-INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) VALUES (6, 2, 'Bagel', '2023-11-08', 1.25, 2);
+INSERT INTO products (categoryId, name, expiringDate, price, shelfId) VALUES (2, 'Whole Wheat Bread', '2023-11-15', 1.99, 2);
+INSERT INTO products (categoryId, name, expiringDate, price, shelfId) VALUES (2, 'Croissant', '2023-11-05', 1.50, 2);
+INSERT INTO products (categoryId, name, expiringDate, price, shelfId) VALUES (2, 'Bagel', '2023-11-08', 1.25, 2);
 -- Meat & Seafood
-INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) VALUES (7, 3, 'Chicken Breast', '2023-12-10', 7.99, 3);
-INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) VALUES (8, 3, 'Salmon Fillet', '2023-12-05', 12.50, 3);
-INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) VALUES (9, 3, 'Ground Beef', '2023-12-01', 6.99, 3);
+INSERT INTO products (categoryId, name, expiringDate, price, shelfId) VALUES (3, 'Chicken Breast', '2023-12-10', 7.99, 3);
+INSERT INTO products (categoryId, name, expiringDate, price, shelfId) VALUES (3, 'Salmon Fillet', '2023-12-05', 12.50, 3);
+INSERT INTO products (categoryId, name, expiringDate, price, shelfId) VALUES (3, 'Ground Beef', '2023-12-01', 6.99, 3);
 -- Frozen Foods
-INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) VALUES (10, 4, 'Frozen Peas', '2025-08-30', 2.75, 4);
-INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) VALUES (11, 4, 'Ice Cream', '2025-05-15', 4.99, 4);
-INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) VALUES (12, 4, 'Pizza', '2025-06-01', 5.49, 4);
+INSERT INTO products (categoryId, name, expiringDate, price, shelfId) VALUES (4, 'Frozen Peas', '2025-08-30', 2.75, 4);
+INSERT INTO products (categoryId, name, expiringDate, price, shelfId) VALUES (4, 'Ice Cream', '2025-05-15', 4.99, 4);
+INSERT INTO products (categoryId, name, expiringDate, price, shelfId) VALUES (4, 'Pizza', '2025-06-01', 5.49, 4);
 -- Beverages
-INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) VALUES (13, 5, 'Orange Juice', '2024-01-10', 3.99, 3);
-INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) VALUES (14, 5, 'Cola', '2025-02-01', 1.25, 3);
-INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) VALUES (15, 5, 'Mineral Water', '2025-06-15', 0.99, 3);
+INSERT INTO products (categoryId, name, expiringDate, price, shelfId) VALUES (5, 'Orange Juice', '2024-01-10', 3.99, 3);
+INSERT INTO products (categoryId, name, expiringDate, price, shelfId) VALUES (5, 'Cola', '2025-02-01', 1.25, 3);
+INSERT INTO products (categoryId, name, expiringDate, price, shelfId) VALUES (5, 'Mineral Water', '2025-06-15', 0.99, 3);
 -- Snacks
-INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) VALUES (16, 6, 'Potato Chips', '2025-03-01', 1.75, 2);
-INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) VALUES (17, 6, 'Pretzels', '2025-03-15', 1.50, 2);
-INSERT INTO products (productId, categoryId, name, expiringDate, price, shelfId) VALUES (18, 6, 'Chocolate Bar', '2025-04-01', 1.20, 2);
+INSERT INTO products (categoryId, name, expiringDate, price, shelfId) VALUES (6, 'Potato Chips', '2025-03-01', 1.75, 2);
+INSERT INTO products (categoryId, name, expiringDate, price, shelfId) VALUES (6, 'Pretzels', '2025-03-15', 1.50, 2);
+INSERT INTO products (categoryId, name, expiringDate, price, shelfId) VALUES (6, 'Chocolate Bar', '2025-04-01', 1.20, 2);
 
 SELECT * FROM products;
 
@@ -175,16 +160,16 @@ INSERT INTO checkoutCounter (checkoutCounterId, cashInside, isActive) VALUES (5,
 SELECT * FROM checkoutCounter;
 
 -- Customer insertions
-INSERT INTO customers (customerId, customerName, checkoutCounterId) VALUES (1, 'Alex', 1);
-INSERT INTO customers (customerId, customerName, checkoutCounterId) VALUES (2, 'Denis', 1);
-INSERT INTO customers (customerId, customerName, checkoutCounterId) VALUES (3, 'Mihai', 5);
-INSERT INTO customers (customerId, customerName, checkoutCounterId) VALUES (4, 'Radu', 5);
-INSERT INTO customers (customerId, customerName, checkoutCounterId) VALUES (5, 'Razvan', 4);
-INSERT INTO customers (customerId, customerName, checkoutCounterId) VALUES (6, 'Robert', 3);
-INSERT INTO customers (customerId, customerName, checkoutCounterId) VALUES (7, 'Paul', 1);
-INSERT INTO customers (customerId, customerName, checkoutCounterId) VALUES (8, 'Ionut', 2);
-INSERT INTO customers (customerId, customerName, checkoutCounterId) VALUES (9, 'Dan', 4);
-INSERT INTO customers (customerId, customerName, checkoutCounterId) VALUES (10, 'David', 3);
+INSERT INTO customers (customerName, checkoutCounterId, age) VALUES ('Alex', 1, 22);
+INSERT INTO customers (customerName, checkoutCounterId, age) VALUES ('Denis', 1, 24);
+INSERT INTO customers (customerName, checkoutCounterId, age) VALUES ('Mihai', 5, 19);
+INSERT INTO customers (customerName, checkoutCounterId, age) VALUES ('Radu', 5, 16);
+INSERT INTO customers (customerName, checkoutCounterId, age) VALUES ('Razvan', 4, 15);
+INSERT INTO customers (customerName, checkoutCounterId, age) VALUES ('Robert', 3, 14);
+INSERT INTO customers (customerName, checkoutCounterId, age) VALUES ('Paul', 1, 26);
+INSERT INTO customers (customerName, checkoutCounterId, age) VALUES ('Ionut', 2, 43);
+INSERT INTO customers (customerName, checkoutCounterId, age) VALUES ('Dan', 4, 53);
+INSERT INTO customers (customerName, checkoutCounterId, age) VALUES ('David', 3, 34);
 
 
 SELECT * FROM customers;

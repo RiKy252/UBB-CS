@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import com.example.utils.DatabaseUtil;
 
 @WebServlet("/LoginServlet")
@@ -31,7 +33,6 @@ public class LoginServlet extends HttpServlet {
         try {
             conn = DatabaseUtil.getConnection();
             
-            // Check if user exists and password is correct
             String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
@@ -39,12 +40,10 @@ public class LoginServlet extends HttpServlet {
             rs = pstmt.executeQuery();
             
             if (rs.next()) {
-                // User exists and password is correct
                 HttpSession session = request.getSession();
                 session.setAttribute("user", username);
                 response.sendRedirect("game.jsp");
             } else {
-                // Invalid username or password
                 response.sendRedirect("login.jsp?error=invalid");
             }
         } catch (Exception e) {
