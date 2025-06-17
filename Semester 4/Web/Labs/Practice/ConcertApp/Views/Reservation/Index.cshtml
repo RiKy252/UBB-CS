@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Concert Reservation";
+}
+<h2>Begin Reservation</h2>
+<form method="post" asp-action="BeginReservation">
+    <label>Name:</label><input name="person" required />
+    <label>Date:</label><input name="date" type="date" required />
+    <label>City:</label><input name="destinationCity" required />
+    <button type="submit">Begin Reservation</button>
+</form>

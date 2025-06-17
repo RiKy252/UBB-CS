@@ -1,0 +1,17 @@
+﻿@model List<Hotel>
+<h2>Available Hotels</h2>
+<table>
+    <tr><th>Name</th><th>City</th><th>Date</th><th>Rooms</th><th>Action</th></tr>
+    @foreach (var hotel in Model)
+    {
+        <tr>
+            <td>@hotel.HotelName</td>
+            <td>@hotel.City</td>
+            <td>@hotel.Date.ToShortDateString()</td>
+            <td>@hotel.AvailableRooms</td>
+            <td>
+                <a asp-action="ReserveHotel" asp-route-id="@hotel.HotelId">Reserve</a>
+            </td>
+        </tr>
+    }
+</table>

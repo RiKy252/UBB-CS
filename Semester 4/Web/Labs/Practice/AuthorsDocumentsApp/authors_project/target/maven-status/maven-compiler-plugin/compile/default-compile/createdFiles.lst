@@ -1,0 +1,6 @@
+com\authors\DashboardServlet.class
+com\authors\AddDocumentServlet.class
+com\authors\AuthServlet.class
+com\authors\DBUtil.class
+com\authors\DeleteMovieServlet.class
+com\authors\MostAuthorsDocument.class

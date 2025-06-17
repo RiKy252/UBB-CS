@@ -1,0 +1,17 @@
+﻿@model List<Flight>
+<h2>Available Flights</h2>
+<table>
+    <tr><th>ID</th><th>Date</th><th>Destination</th><th>Seats</th><th>Action</th></tr>
+    @foreach (var flight in Model)
+    {
+        <tr>
+            <td>@flight.FlightId</td>
+            <td>@flight.Date.ToShortDateString()</td>
+            <td>@flight.DestinationCity</td>
+            <td>@flight.AvailableSeats</td>
+            <td>
+                <a asp-action="ReserveFlight" asp-route-id="@flight.FlightId">Reserve</a>
+            </td>
+        </tr>
+    }
+</table>
