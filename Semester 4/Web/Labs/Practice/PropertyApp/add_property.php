@@ -1,27 +1,23 @@
 <?php
     include 'db.php';
+    session_start();
     if (!isset($_SESSION['user'])) {
         header('Location: login.php');
         exit;
     }
-    $address = $_POST['address'];
+    $user = $_SESSION['user'];
+    $db = new Database();
+    $addr = $_POST['address'];
     $desc = $_POST['description'];
-    $idUser = $_SESSION['user']['id'];
-
-    $stmt = $pdo->prepare("SELECT id FROM Property WHERE address = ? AND description = ?");
-    $stmt->execute([$address, $desc]);
-    $existing = $stmt->fetch();
-
+    $existing = $db->checkPropertyExists($addr, $desc);
     if ($existing) {
-        $idProperty = $existing['id'];
-    } else {
-        $stmt = $pdo->prepare("INSERT INTO Property (address, description) VALUES (?, ?)");
-        $stmt->execute([$address, $desc]);
-        $idProperty = $pdo->lastInsertId();
+        $propertyId = $existing['propertyId'];
     }
-
-    $stmt = $pdo->prepare("INSERT INTO UserToProperties (idUser, idProperty) VALUES (?, ?)");
-    $stmt->execute([$idUser, $idProperty]);
-
+    else {
+        $propertyId = $db->addProperty($addr, $desc);
+    }
+    $notOk = $db->checkLinkingExists($user['userId'], $propertyId);
+    if (!$notOk)
+        $db->linkUserToProperty($user['userId'], $propertyId);
     header('Location: index.php');
 ?>

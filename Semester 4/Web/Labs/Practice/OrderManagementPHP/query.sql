@@ -1,0 +1,25 @@
+CREATE TABLE User (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE `Order` (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT NOT NULL,
+    totalPrice DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (userId) REFERENCES User(id)
+);
+
+CREATE TABLE OrderItem (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    orderId INT NOT NULL,
+    productId INT NOT NULL,
+    FOREIGN KEY (orderId) REFERENCES `Order`(id),
+    FOREIGN KEY (productId) REFERENCES Products(id)
+);

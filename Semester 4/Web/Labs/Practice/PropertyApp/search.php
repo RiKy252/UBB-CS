@@ -1,5 +1,7 @@
-<?php
+<?php 
     include 'db.php';
+    session_start();
+    $db = new Database();
     if (!isset($_SESSION['user'])) {
         header('Location: login.php');
         exit;
@@ -10,11 +12,9 @@
         arsort($count);
         $mostPopular = array_key_first($count);
         if ($mostPopular) {
-            $stmt = $pdo->prepare("SELECT * FROM Property WHERE id = ?");
-            $stmt->execute([$mostPopular]);
-            $property = $stmt->fetch();
+            $property = $db->getPropertyById($mostPopular);
             echo "<h3>Most Popular Property</h3>";
-            echo "{$property['address']} – {$property['description']}";
+            echo "{$property['propertyAddress']} – {$property['propertyDescription']}";
         } else {
             echo "No searches yet.";
         }
@@ -22,15 +22,23 @@
         exit;
     }
 
-    $desc = $_POST['desc'] ?? '';
-    $stmt = $pdo->prepare("SELECT * FROM Property WHERE description LIKE ?");
-    $stmt->execute(["%$desc%"]);
-    $results = $stmt->fetchAll();
-
-    echo "<h3>Search Results</h3>";
-    foreach ($results as $p) {
-        echo "<p><strong>ID {$p['id']}</strong>: {$p['address']} – {$p['description']}</p>";
-        $_SESSION['search_log'][] = $p['id'];
-    }
-    echo "<p><a href='index.php'>Back</a></p>";
+    $description = $_POST['desc'] ?? '';
+    $properties = $db->searchProperties($description);
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property App</title>
+</head>
+<body>
+    <h2>Search result:</h2>
+    <?php foreach ($properties as $p): ?>
+        <p>ID <?= $p['propertyId'] ?>: <?= $p['propertyAddress'] ?> - <?= $p['propertyDescription'] ?></p>
+        <?php $_SESSION['search_log'][] = $p['propertyId'] ?>
+    <?php endforeach; ?>
+    <p><a href='index.php'>Back</p>
+</body>
+</html>
