@@ -1,0 +1,43 @@
+{
+  "Workflows": [
+    {
+      "Path": null,
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Main.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "tryAgain&Flowchart_1",
+        "answers&Flowchart_1",
+        "questions&Flowchart_1",
+        "score&Flowchart_1",
+        "userAnswer&Flowchart_1"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "MainSeq.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "questionItem&Sequence_1",
+        "userAnswer&Sequence_1",
+        "userInput&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "tryAgain",
+        "score",
+        "answers",
+        "questions"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    }
+  ]
+}

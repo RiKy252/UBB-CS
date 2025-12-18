@@ -1,0 +1,89 @@
+{
+  "Workflows": [
+    {
+      "Path": null,
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Main.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "menuChoice&Flowchart_1",
+        "playerName&Flowchart_1",
+        "filePath&Flowchart_1",
+        "tryAgain&Flowchart_1",
+        "score&Flowchart_1"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "RunQuiz.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "isCorrect&Sequence_1",
+        "tmpResponse&Sequence_1",
+        "validAnswer&Sequence_1",
+        "playerLine&Sequence_1",
+        "answers&Sequence_1",
+        "questions&Sequence_1",
+        "questionItem&Sequence_1",
+        "userAnswer&Sequence_1",
+        "userInput&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "playerName",
+        "filePath",
+        "tryAgain",
+        "score"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "ShowScores.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "line&Sequence_1",
+        "displayText&Sequence_1",
+        "lines&Sequence_1",
+        "fileContent&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "filePath"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "GetUserInput.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "tempResponse&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "response",
+        "message"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "ValidateAnswer.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [
+        "isCorrect",
+        "correctAnswer",
+        "userAnswer"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    }
+  ]
+}
