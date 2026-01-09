@@ -11,7 +11,7 @@ using namespace std;
 
 void printPoly(const vector<int>& poly) {
     if (poly.size() > 2010) {
-        printf("[Poly too large to print: %llu elements]\n", poly.size());
+        printf("[Poly too large to print: %zu elements]\n", poly.size());
         return;
     }
     for (int x : poly) printf("%d ", x);
